@@ -330,14 +330,14 @@
    "stale_note": "claim_age_min=32 run_active=False"
   },
   "chunk-000027": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
-   "dispatch_token": "7fe49100e32b",
-   "dispatched_at": "2026-10-04T18:34:14Z",
-   "attempt": 1,
+   "dispatch_token": "536109adafcd",
+   "dispatched_at": "2026-10-04T19:27:46Z",
+   "attempt": 2,
    "not_before": 1791141653.9575732,
    "stale_note": "claim_age_min=32 run_active=False"
   },
@@ -359,14 +359,14 @@
    "undetermined": 0
   },
   "chunk-000029": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
-   "dispatch_token": "cd145a7b9485",
-   "dispatched_at": "2026-10-04T18:34:16Z",
-   "attempt": 1,
+   "dispatch_token": "93dcba9c2a4c",
+   "dispatched_at": "2026-10-04T19:27:47Z",
+   "attempt": 2,
    "not_before": 1791141653.9575992,
    "stale_note": "claim_age_min=32 run_active=False"
   },
@@ -541,50 +541,50 @@
    "undetermined": 0
   },
   "chunk-000040": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
-   "dispatch_token": "8953a4cdc62d",
-   "dispatched_at": "2026-10-04T18:34:54Z",
-   "attempt": 1,
+   "dispatch_token": "90b94d29f761",
+   "dispatched_at": "2026-10-04T19:27:48Z",
+   "attempt": 2,
    "not_before": 1791141653.9576306,
    "stale_note": "claim_age_min=31 run_active=False"
   },
   "chunk-000041": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
-   "dispatch_token": "6c17de186a42",
-   "dispatched_at": "2026-10-04T18:34:55Z",
-   "attempt": 1,
+   "dispatch_token": "cf24a00e9046",
+   "dispatched_at": "2026-10-04T19:27:49Z",
+   "attempt": 2,
    "not_before": 1791141653.9576573,
    "stale_note": "claim_age_min=31 run_active=False"
   },
   "chunk-000042": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
-   "dispatch_token": "44453b79c6f0",
-   "dispatched_at": "2026-10-04T18:34:56Z",
-   "attempt": 1,
+   "dispatch_token": "d30f0234b718",
+   "dispatched_at": "2026-10-04T19:27:50Z",
+   "attempt": 2,
    "not_before": 1791141653.9576855,
    "stale_note": "claim_age_min=31 run_active=False"
   },
   "chunk-000043": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
-   "dispatch_token": "1d1515917125",
-   "dispatched_at": "2026-10-04T18:34:57Z",
-   "attempt": 1,
+   "dispatch_token": "66cdf763f3ae",
+   "dispatched_at": "2026-10-04T19:27:51Z",
+   "attempt": 2,
    "not_before": 1791141653.9577105,
    "stale_note": "claim_age_min=31 run_active=False"
   },
@@ -2541,14 +2541,19 @@
    "undetermined": 0
   },
   "chunk-000172": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "d1c0faf32db8",
    "dispatched_at": "2026-10-04T18:54:08Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T19:27:33Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000173": {
    "status": "RUNNING",
@@ -7912,10 +7917,10 @@
  "batches_seq": 0,
  "peak_active_workers": 99,
  "counts": {
-  "RUNNING": 77,
-  "RETRY": 51,
-  "COMPLETED": 117,
+  "RUNNING": 82,
+  "COMPLETED": 118,
+  "RETRY": 45,
   "PENDING": 656
  },
- "updated_utc": "2026-10-04T19:26:57Z"
+ "updated_utc": "2026-10-04T19:27:52Z"
 }
