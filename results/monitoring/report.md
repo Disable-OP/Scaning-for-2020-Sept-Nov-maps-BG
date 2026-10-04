@@ -1,12 +1,12 @@
 # Distributed MAPS scan — live status
-_Cycle completed 2026-10-04T18:29:31Z (cycle 63.8s, 59 API calls)_
+_Cycle completed 2026-10-04T18:32:06Z (cycle 28.1s, 38 API calls)_
 
 ## Workers
-- Active workers: **14** (peak 15, cap 100)
-- Dispatched this cycle: 40
+- Active workers: **0** (peak 15, cap 0)
+- Dispatched this cycle: 0
 
 ## Chunks
-- Completed **0** / running **120** / pending **781** / retry **0** / failed **0** (total 901)
+- Completed **0** / running **101** / pending **781** / retry **19** / failed **0** (total 901)
 
 ## Candidates (unique)
 - Scheduled total: 18000252
