@@ -10154,6 +10154,57 @@
    "found": 0,
    "attempt": 1,
    "source": "spec"
+  },
+  "chunk-000601": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.84,
+   "p50": 341.6,
+   "p95": 432.4,
+   "finished_utc": "2026-10-04T21:32:14Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000602": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.9,
+   "p50": 324.6,
+   "p95": 446.8,
+   "finished_utc": "2026-10-04T21:32:06Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000603": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20001,
+   "rps_mean": 81.87,
+   "p50": 359.0,
+   "p95": 429.9,
+   "finished_utc": "2026-10-04T21:32:22Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
   }
  },
  "found_ledger": {},
