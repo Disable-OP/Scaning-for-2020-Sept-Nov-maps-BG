@@ -269,11 +269,14 @@ async def run(args) -> int:
             prior = gh.get_file_json(args.resume_from_result, branch)
             if prior and prior.get("outcome") == "PARTIAL" and prior.get("default_status"):
                 pdef = prior["default_status"]
+                # worker exception keys are GLOBAL ordinals for spec chunks
+                off = (prior.get("chunk_id") or 0) * spec["chunk_size"] \
+                    if prior.get("candidate_source") == "spec" else 0
                 prior_status = {}
                 for pos in range(prior.get("candidates_scheduled", 0)):
                     prior_status[pos] = pdef
                 for pos, st in prior.get("exceptions", []):
-                    prior_status[pos] = st
+                    prior_status[int(pos) - off] = st
                 skip = {pos for pos, st in prior_status.items()
                         if st in (ST404, ST200)}
                 prior_found_urls = {f["url"] for f in prior.get("found", [])}

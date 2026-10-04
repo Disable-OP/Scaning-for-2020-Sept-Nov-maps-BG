@@ -99,21 +99,22 @@ def parse_utc(s: str) -> float:
         return 0.0
 
 
-def undetermined_of(res: dict) -> list[tuple[int, str]]:
-    """[(pos, status)] of probed candidates that are undetermined."""
+def undetermined_of(res: dict, chunk_size: int) -> list[tuple[int, str]]:
+    """[(pos_local, status)] of probed candidates that are undetermined.
+    Worker exception keys are GLOBAL stream ordinals for spec chunks and
+    local batch indices for retry batches; normalize to local here."""
     default = res.get("default_status")
     if not default:
         return []
-    out = []
-    for pos in range(res.get("candidates_probed_unique", 0)):
-        out.append((pos, default))  # placeholder, corrected below
-    ex = dict(res.get("exceptions", []))
+    off = (res["chunk_id"] * chunk_size
+           if res.get("candidate_source") == "spec" and res.get("chunk_id") is not None
+           else 0)
+    ex = {int(p): s for p, s in res.get("exceptions", [])}
     undet = []
-    for pos in range(res.get("candidates_probed_unique", 0)):
-        st = ex.get(pos, default)
+    for pos_local in range(res.get("candidates_probed_unique", 0)):
+        st = ex.get(pos_local + off, default)
         if st in UNDETERMINED or st.startswith("OTHER_"):
-            undet.append((pos, st))
-    del out
+            undet.append((pos_local, st))
     return undet
 
 
@@ -201,7 +202,7 @@ def main() -> int:
             ent["status"] = "COMPLETED"
             ent["completed_at"] = res.get("finished_utc")
             ent["statuses"] = res.get("statuses", {})
-            ent["undetermined"] = len(undetermined_of(res))
+            ent["undetermined"] = len(undetermined_of(res, spec["chunk_size"]))
         elif outc == "TEST":
             ent["status"] = "IGNORED_TEST"
         else:  # PARTIAL or unexpected: consume one job attempt, retry later
@@ -270,12 +271,13 @@ def main() -> int:
             level = 2
             parent_kind = "spec"
             cid = int(key.split("-")[1])
-            pos_map = {o: (m, ts, None)
+            start = cid * spec["chunk_size"]
+            pos_map = {o - start: (m, ts, None)
                        for o, m, ts, _t in G.iter_chunk(spec, cid)}
         if level > CANDIDATE_MAX_ROUNDS:
             continue
         cands = []
-        for pos, prior in undetermined_of(res):
+        for pos, prior in undetermined_of(res, spec["chunk_size"]):
             if pos_map and pos in pos_map:
                 m, ts, orig = pos_map[pos]
                 cands.append({"map_id": m, "ts_ms": ts,

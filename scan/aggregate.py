@@ -28,16 +28,19 @@ def rank(s: str) -> int:
     return RANK.get(s, 1)
 
 
-def statuses_of(res: dict) -> dict[int, str]:
-    """pos -> observed status for one result (default + exceptions)."""
+def statuses_of(res: dict, chunk_size: int) -> dict[int, str]:
+    """pos_LOCAL -> observed status for one result (default + exceptions).
+    Worker exception keys are GLOBAL ordinals for spec chunks and local batch
+    indices for retry batches; normalize to local here."""
     default = res.get("default_status")
     if not default:
         return {}
+    off = (res["chunk_id"] * chunk_size
+           if res.get("candidate_source") == "spec" and res.get("chunk_id") is not None
+           else 0)
     n = res.get("candidates_probed_unique", 0)
-    st = {pos: default for pos in range(n)}
-    for pos, s in res.get("exceptions", []):
-        st[pos] = s
-    return st
+    ex = {int(p): s for p, s in res.get("exceptions", [])}
+    return {pos: ex.get(pos + off, default) for pos in range(n)}
 
 
 def iso(t: float) -> str:
@@ -123,6 +126,7 @@ def main() -> int:
     for tid, start, count in G.tier_offsets(spec):
         for o in range(start, start + count):
             tier_of_ordinal[o] = tid
+    cs = spec["chunk_size"]
 
     for key, ent in chunks.items():
         if ent.get("kind") != "spec":
@@ -140,11 +144,12 @@ def main() -> int:
                 chain.append(results[bkey])
         for res in chain:
             rounds += 1
-            st_map = statuses_of(res)
-            for pos, s in st_map.items():
-                cur = merged.get(pos)
+            st_map = statuses_of(res, cs)
+            for pos_local, s in st_map.items():
+                pos_g = start + pos_local
+                cur = merged.get(pos_g)
                 if cur is None or rank(s) > rank(cur):
-                    merged[pos] = s
+                    merged[pos_g] = s
         # follow-up batches whose parent is a batch of this chunk
         stack = list(batches_by_parent.get(key, []))
         while stack:
@@ -154,15 +159,15 @@ def main() -> int:
             if bkey not in results:
                 continue
             rmap = resolve_batch(bkey, chunk_cache)
-            st_map = statuses_of(results[bkey])
+            st_map = statuses_of(results[bkey], cs)
             for pos_b, s in st_map.items():
                 tgt = rmap.get(pos_b)
                 if not tgt or tgt[0] != key:
                     continue
-                pos = tgt[1]
-                cur = merged.get(pos)
+                pos_g = start + tgt[1]
+                cur = merged.get(pos_g)
                 if cur is None or rank(s) > rank(cur):
-                    merged[pos] = s
+                    merged[pos_g] = s
             rounds += 1
         # count canonical statuses for this chunk
         cnt = {"found_200": 0, "found_invalid": 0, "confirmed_404": 0,
