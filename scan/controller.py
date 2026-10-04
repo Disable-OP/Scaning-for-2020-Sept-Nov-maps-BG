@@ -69,6 +69,29 @@ def load_json(gh: GH, path: str, default):
         return default
 
 
+def queue_blob_sha(gh: GH) -> str | None:
+    """Current blob sha of queue.json on the state branch (via tree)."""
+    st, ref, _h = gh.api("GET", f"/repos/{gh.owner}/{gh.repo}/git/ref/heads/{STATE}")
+    if st != 200:
+        return None
+    st, tree, _h = gh.api("GET",
+                          f"/repos/{gh.owner}/{gh.repo}/git/trees/{ref['object']['sha']}?recursive=0")
+    if st != 200:
+        return None
+    for e in tree.get("tree", []):
+        if e.get("path") == "queue.json":
+            return e.get("sha")
+    return None
+
+
+def load_queue_blob(gh: GH, sha: str):
+    st, blob, _h = gh.api("GET", f"/repos/{gh.owner}/{gh.repo}/git/blobs/{sha}")
+    if st != 200:
+        return None
+    import base64
+    return json.loads(base64.b64decode(blob["content"]))
+
+
 def parse_utc(s: str) -> float:
     try:
         return time.mktime(time.strptime(s, "%Y-%m-%dT%H:%M:%SZ")) - time.timezone
@@ -104,7 +127,8 @@ def main() -> int:
     gh.ensure_branch(STATE, "main")
 
     # ------------------------------------------------ queue init / load ----
-    queue = load_json(gh, "queue.json", None)
+    q_sha0 = queue_blob_sha(gh)
+    queue = load_queue_blob(gh, q_sha0) if q_sha0 else None
     if queue is None or not queue.get("chunks"):
         log("initializing queue")
         chunks = {}
@@ -380,6 +404,34 @@ def main() -> int:
         counts[e["status"]] = counts.get(e["status"], 0) + 1
     queue["counts"] = counts
     queue["updated_utc"] = iso(now())
+
+    # ------------------------- concurrent-writer merge guard ---------------
+    # If queue.json changed on the branch since we loaded it, rebase our
+    # per-entry mutations onto the fresh copy instead of clobbering it.
+    q_sha1 = queue_blob_sha(gh)
+    if q_sha0 and q_sha1 and q_sha0 != q_sha1:
+        log("queue.json changed underneath; rebasing mutations")
+        fresh = load_queue_blob(gh, q_sha1) or queue
+        import copy
+        orig = copy.deepcopy(chunks)
+        # find entries we touched this cycle
+        touched = {k: e for k, e in chunks.items() if orig.get(k) != e}
+        fchunks = fresh.setdefault("chunks", {})
+        for k, e in touched.items():
+            fchunks[k] = e
+        fresh["batches_seq"] = max(fresh.get("batches_seq", 0),
+                                   queue.get("batches_seq", 0))
+        fresh["peak_active_workers"] = max(
+            fresh.get("peak_active_workers", 0),
+            queue.get("peak_active_workers", 0))
+        fresh["counts"] = {}
+        fc = {}
+        for e in fchunks.values():
+            fc[e["status"]] = fc.get(e["status"], 0) + 1
+        fresh["counts"] = fc
+        fresh["updated_utc"] = iso(now())
+        queue = fresh
+        counts = fc
     commit["queue.json"] = json.dumps(queue, indent=1) + "\n"
     commit["agg.json"] = json.dumps(agg, indent=1) + "\n"
 
