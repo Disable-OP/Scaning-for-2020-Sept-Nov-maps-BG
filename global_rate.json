@@ -1,17 +1,9 @@
 {
  "budget_rps": 8000.0,
- "active_hint": 96,
- "updated_utc": "2026-10-04T19:36:18Z",
+ "active_hint": 93,
+ "updated_utc": "2026-10-04T19:38:46Z",
  "reason": "bad=0.000<1% raise x1.15",
  "history": [
-  {
-   "utc": "2026-10-04T19:19:26Z",
-   "budget_rps": 5276.7,
-   "bad_frac": 0.0,
-   "recent_probes": 760000,
-   "reason": "bad=0.000<1% raise x1.15",
-   "active": 86
-  },
   {
    "utc": "2026-10-04T19:22:19Z",
    "budget_rps": 6068.2,
@@ -99,6 +91,14 @@
    "recent_probes": 1420000,
    "reason": "bad=0.000<1% raise x1.15",
    "active": 96
+  },
+  {
+   "utc": "2026-10-04T19:38:46Z",
+   "budget_rps": 8000.0,
+   "bad_frac": 0.0,
+   "recent_probes": 1560000,
+   "reason": "bad=0.000<1% raise x1.15",
+   "active": 93
   }
  ]
 }
