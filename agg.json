@@ -8058,6 +8058,40 @@
    "found": 0,
    "attempt": 1,
    "source": "spec"
+  },
+  "chunk-000478": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.83,
+   "p50": 324.0,
+   "p95": 449.9,
+   "finished_utc": "2026-10-04T21:00:07Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000479": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.9,
+   "p50": 353.7,
+   "p95": 424.9,
+   "finished_utc": "2026-10-04T21:00:15Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
   }
  },
  "found_ledger": {},
