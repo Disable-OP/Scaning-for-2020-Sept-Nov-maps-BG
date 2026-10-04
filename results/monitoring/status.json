@@ -1,26 +1,26 @@
 {
- "updated_utc": "2026-10-04T21:53:34Z",
+ "updated_utc": "2026-10-04T21:54:23Z",
  "workflows": {
-  "active_workers": 91,
+  "active_workers": 96,
   "peak_active_workers": 99,
   "max_allowed": 100,
-  "dispatched_this_cycle": 9
+  "dispatched_this_cycle": 4
  },
  "chunks": {
-  "completed": 682,
+  "completed": 685,
   "retry": 3,
-  "running": 97,
-  "pending": 122,
+  "running": 98,
+  "pending": 118,
   "total": 904
  },
  "candidates": {
   "scheduled_total": 18000252,
-  "unique_confirmed_404": 13639998,
+  "unique_confirmed_404": 13699998,
   "unique_found_200": 0,
   "unique_found_invalid": 0,
   "unique_undetermined": 2,
   "unique_other": 0,
-  "remaining_unsearched": 4360252
+  "remaining_unsearched": 4300252
  },
  "retries": {
   "retry_batches": 3,
@@ -29,20 +29,20 @@
  },
  "rate": {
   "global_budget_rps": 16000.0,
-  "measured_rps_recent": 81.8,
+  "measured_rps_recent": 81.7,
   "bad_frac_recent": 0.0,
   "reason": "bad=0.000<1% raise x1.15",
-  "recent_window_results": 98
+  "recent_window_results": 97
  },
  "latency_ms_recent": {
-  "p50": 339.0,
-  "p95": 439.9
+  "p50": 339.2,
+  "p95": 439.8
  },
  "found": {
   "candidates": 0,
   "verified": 0,
   "rejected": 0
  },
- "cycle_seconds": 27.7,
- "github_api_calls": 48
+ "cycle_seconds": 16.6,
+ "github_api_calls": 38
 }
