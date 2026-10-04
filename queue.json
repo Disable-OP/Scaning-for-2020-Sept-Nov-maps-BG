@@ -13652,44 +13652,64 @@
    "undetermined": 0
   },
   "chunk-000892": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "02990952b125",
    "dispatched_at": "2026-10-04T22:20:59Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T22:44:34Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000893": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "f67a4fadbb2d",
    "dispatched_at": "2026-10-04T22:21:01Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T22:44:27Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000894": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "a65e8e147268",
    "dispatched_at": "2026-10-04T22:22:48Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T22:44:36Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000895": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "5cb90c67377c",
    "dispatched_at": "2026-10-04T22:22:49Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T22:44:41Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000896": {
    "status": "RUNNING",
@@ -13802,9 +13822,9 @@
  "batches_seq": 4,
  "peak_active_workers": 99,
  "counts": {
-  "COMPLETED": 888,
+  "COMPLETED": 892,
   "RETRY": 5,
-  "RUNNING": 12
+  "RUNNING": 8
  },
- "updated_utc": "2026-10-04T22:44:43Z"
+ "updated_utc": "2026-10-04T22:45:15Z"
 }
