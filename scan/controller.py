@@ -122,9 +122,9 @@ def main() -> int:
                                      "verified": {}})
 
     # ------------------------------------------------ list state files -----
-    st, ref = gh.api("GET", f"/repos/{owner}/{repo}/git/ref/heads/{STATE}")
+    st, ref, _h = gh.api("GET", f"/repos/{owner}/{repo}/git/ref/heads/{STATE}")
     head_sha = ref["object"]["sha"]
-    st, tree = gh.api("GET", f"/repos/{owner}/{repo}/git/trees/{head_sha}?recursive=1")
+    st, tree, _h = gh.api("GET", f"/repos/{owner}/{repo}/git/trees/{head_sha}?recursive=1")
     paths = [e["path"] for e in tree.get("tree", [])
              if e["type"] == "blob" and e["path"].startswith(("results/", "claims/"))]
     result_keys = {p.split("/", 1)[1].rsplit(".", 1)[0]

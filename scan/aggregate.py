@@ -54,8 +54,8 @@ def main() -> int:
     chunks = queue["chunks"]
 
     # ---------------- list + fetch all full results ------------------------
-    st, ref = gh.api("GET", f"/repos/{owner}/{repo}/git/ref/heads/{STATE}")
-    st, tree = gh.api("GET",
+    st, ref, _h = gh.api("GET", f"/repos/{owner}/{repo}/git/ref/heads/{STATE}")
+    st, tree, _h = gh.api("GET",
                       f"/repos/{owner}/{repo}/git/trees/{ref['object']['sha']}?recursive=1")
     result_paths = [e["path"] for e in tree.get("tree", [])
                     if e["type"] == "blob" and e["path"].startswith("results/")

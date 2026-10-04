@@ -88,7 +88,9 @@ class GH:
         return st == 201
 
     def get_file(self, path: str, branch: str):
-        st, d, _ = self.api("GET", f"/repos/{self.owner}/{self.repo}/contents/{path}",
+        from urllib.parse import quote
+        st, d, _ = self.api("GET",
+                            f"/repos/{self.owner}/{self.repo}/contents/{quote(path)}?ref={quote(branch)}",
                             headers={"Accept": "application/vnd.github.raw"},
                             body=None)
         if st == 200:
@@ -102,6 +104,10 @@ class GH:
         raw = self.get_file(path, branch)
         if raw is None:
             return None
+        if isinstance(raw, (dict, list)):
+            return raw  # API already parsed the JSON body
+        if isinstance(raw, bytes):
+            raw = raw.decode()
         return json.loads(raw)
 
     def list_dir(self, path: str, branch: str) -> list[str]:
