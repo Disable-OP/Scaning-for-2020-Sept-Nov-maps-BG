@@ -44,7 +44,7 @@ CANDIDATE_MAX_ROUNDS = 3       # 1 spec probe + up to 2 retry rounds
 RETRY_DELAYS_MIN = {2: 15, 3: 60}
 BUDGET_START = float(os.environ.get("BUDGET_START_RPS", "1500"))
 BUDGET_MIN = float(os.environ.get("BUDGET_MIN_RPS", "150"))
-BUDGET_MAX = float(os.environ.get("BUDGET_MAX_RPS", "8000"))
+BUDGET_MAX = float(os.environ.get("BUDGET_MAX_RPS", "16000"))
 UNDETERMINED = {"503", "TIMEOUT", "NETERR", "OTHER"}
 BATCH_SIZE = 20000
 
