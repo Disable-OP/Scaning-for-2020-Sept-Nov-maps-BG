@@ -8092,6 +8092,108 @@
    "found": 0,
    "attempt": 1,
    "source": "spec"
+  },
+  "chunk-000480": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20001,
+   "rps_mean": 81.85,
+   "p50": 318.6,
+   "p95": 454.5,
+   "finished_utc": "2026-10-04T21:00:30Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000481": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.76,
+   "p50": 318.4,
+   "p95": 435.2,
+   "finished_utc": "2026-10-04T21:00:52Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000482": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20003,
+   "rps_mean": 81.73,
+   "p50": 343.0,
+   "p95": 420.9,
+   "finished_utc": "2026-10-04T21:01:06Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000483": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.83,
+   "p50": 321.4,
+   "p95": 456.1,
+   "finished_utc": "2026-10-04T21:01:10Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000484": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.9,
+   "p50": 359.6,
+   "p95": 435.4,
+   "finished_utc": "2026-10-04T21:01:28Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000485": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.89,
+   "p50": 317.6,
+   "p95": 454.1,
+   "finished_utc": "2026-10-04T21:01:49Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
   }
  },
  "found_ledger": {},
