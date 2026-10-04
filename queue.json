@@ -11906,7 +11906,7 @@
    "undetermined": 0
   },
   "chunk-000774": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 2,
    "attempt_seq": 3,
    "kind": "spec",
@@ -11915,7 +11915,12 @@
    "dispatched_at": "2026-10-04T23:41:38Z",
    "attempt": 3,
    "not_before": 1791157101.9653807,
-   "stale_note": "claim_age_min=26 run_active=False"
+   "stale_note": "claim_age_min=26 run_active=False",
+   "completed_at": "2026-10-04T23:45:55Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000775": {
    "status": "COMPLETED",
@@ -13891,8 +13896,7 @@
  "batches_seq": 4,
  "peak_active_workers": 99,
  "counts": {
-  "COMPLETED": 904,
-  "RUNNING": 1
+  "COMPLETED": 905
  },
- "updated_utc": "2026-10-04T23:42:03Z"
+ "updated_utc": "2026-10-04T23:46:12Z"
 }
