@@ -13797,7 +13797,7 @@
    "undetermined": 0
   },
   "batch-0000": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 1,
    "attempt_seq": 2,
    "kind": "retry_batch",
@@ -13809,7 +13809,12 @@
    "dispatched_at": "2026-10-04T23:23:33Z",
    "attempt": 2,
    "not_before": 1791155553.083271,
-   "stale_note": "claim_age_min=35 run_active=False"
+   "stale_note": "claim_age_min=35 run_active=False",
+   "completed_at": "2026-10-04T23:23:55Z",
+   "statuses": {
+    "404": 1
+   },
+   "undetermined": 0
   },
   "batch-0001": {
    "status": "COMPLETED",
@@ -13832,7 +13837,7 @@
    "undetermined": 0
   },
   "batch-0002": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 1,
    "attempt_seq": 2,
    "kind": "retry_batch",
@@ -13844,10 +13849,15 @@
    "dispatched_at": "2026-10-04T23:23:36Z",
    "attempt": 2,
    "not_before": 1791155553.0833535,
-   "stale_note": "claim_age_min=33 run_active=False"
+   "stale_note": "claim_age_min=33 run_active=False",
+   "completed_at": "2026-10-04T23:24:03Z",
+   "statuses": {
+    "404": 1
+   },
+   "undetermined": 0
   },
   "batch-0003": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 1,
    "attempt_seq": 2,
    "kind": "retry_batch",
@@ -13859,16 +13869,20 @@
    "dispatched_at": "2026-10-04T23:23:37Z",
    "attempt": 2,
    "not_before": 1791155553.0833726,
-   "stale_note": "claim_age_min=33 run_active=False"
+   "stale_note": "claim_age_min=33 run_active=False",
+   "completed_at": "2026-10-04T23:24:12Z",
+   "statuses": {
+    "404": 1
+   },
+   "undetermined": 0
   }
  },
  "batches_seq": 4,
  "peak_active_workers": 99,
  "counts": {
-  "COMPLETED": 899,
+  "COMPLETED": 902,
   "FAILED": 1,
-  "RETRY": 2,
-  "RUNNING": 3
+  "RETRY": 2
  },
- "updated_utc": "2026-10-04T23:24:03Z"
+ "updated_utc": "2026-10-04T23:24:41Z"
 }
