@@ -4452,14 +4452,14 @@
    "undetermined": 0
   },
   "chunk-000278": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 3,
-   "attempt_seq": 3,
+   "attempt_seq": 4,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
-   "dispatch_token": "dbbf4a41d5bc",
-   "dispatched_at": "2026-10-04T22:14:54Z",
-   "attempt": 3,
+   "dispatch_token": "ec21cae65f27",
+   "dispatched_at": "2026-10-04T23:23:32Z",
+   "attempt": 4,
    "not_before": 1791155760.2997243,
    "stale_note": "claim_age_min=131 run_active=False"
   },
@@ -13797,62 +13797,62 @@
    "undetermined": 0
   },
   "batch-0000": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "retry_batch",
    "retry_level": 2,
    "batch_file": "retry_batches/batch-0000.json",
    "size": 1,
    "parent_result": "chunk-000571",
-   "dispatch_token": "d2ed99b23bdb",
-   "dispatched_at": "2026-10-04T22:22:57Z",
-   "attempt": 1,
+   "dispatch_token": "6fb374c0ab30",
+   "dispatched_at": "2026-10-04T23:23:33Z",
+   "attempt": 2,
    "not_before": 1791155553.083271,
    "stale_note": "claim_age_min=35 run_active=False"
   },
   "batch-0001": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "retry_batch",
    "retry_level": 2,
    "batch_file": "retry_batches/batch-0001.json",
    "size": 1,
    "parent_result": "chunk-000450",
-   "dispatch_token": "03957c9cce8e",
-   "dispatched_at": "2026-10-04T22:23:35Z",
-   "attempt": 1,
+   "dispatch_token": "7aae25b27ad4",
+   "dispatched_at": "2026-10-04T23:23:35Z",
+   "attempt": 2,
    "not_before": 1791155553.0833287,
    "stale_note": "claim_age_min=34 run_active=False"
   },
   "batch-0002": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "retry_batch",
    "retry_level": 2,
    "batch_file": "retry_batches/batch-0002.json",
    "size": 1,
    "parent_result": "chunk-000571",
-   "dispatch_token": "548ccd7666eb",
-   "dispatched_at": "2026-10-04T22:24:35Z",
-   "attempt": 1,
+   "dispatch_token": "787c9be18bc4",
+   "dispatched_at": "2026-10-04T23:23:36Z",
+   "attempt": 2,
    "not_before": 1791155553.0833535,
    "stale_note": "claim_age_min=33 run_active=False"
   },
   "batch-0003": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "retry_batch",
    "retry_level": 2,
    "batch_file": "retry_batches/batch-0003.json",
    "size": 1,
    "parent_result": "chunk-000762",
-   "dispatch_token": "fd5ff3e14227",
-   "dispatched_at": "2026-10-04T22:24:36Z",
-   "attempt": 1,
+   "dispatch_token": "888e2a51dbe1",
+   "dispatched_at": "2026-10-04T23:23:37Z",
+   "attempt": 2,
    "not_before": 1791155553.0833726,
    "stale_note": "claim_age_min=33 run_active=False"
   }
@@ -13861,7 +13861,8 @@
  "peak_active_workers": 99,
  "counts": {
   "COMPLETED": 898,
-  "RETRY": 7
+  "RUNNING": 5,
+  "RETRY": 2
  },
- "updated_utc": "2026-10-04T23:02:30Z"
+ "updated_utc": "2026-10-04T23:23:39Z"
 }
