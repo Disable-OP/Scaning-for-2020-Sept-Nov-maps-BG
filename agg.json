@@ -1087,6 +1087,23 @@
    "found": 0,
    "attempt": 1,
    "source": "spec"
+  },
+  "chunk-000117": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 25.53,
+   "p50": 332.9,
+   "p95": 463.0,
+   "finished_utc": "2026-10-04T19:05:30Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
   }
  },
  "found_ledger": {},
