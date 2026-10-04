@@ -42,26 +42,26 @@
    "stale_note": "claim_age_min=32 run_active=False"
   },
   "chunk-000003": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
-   "dispatch_token": "5c393d33d555",
-   "dispatched_at": "2026-10-04T18:33:48Z",
-   "attempt": 1,
+   "dispatch_token": "54022f155472",
+   "dispatched_at": "2026-10-04T19:23:15Z",
+   "attempt": 2,
    "not_before": 1791141653.9567378,
    "stale_note": "claim_age_min=32 run_active=False"
   },
   "chunk-000004": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
-   "dispatch_token": "cbc65d72616d",
-   "dispatched_at": "2026-10-04T18:33:49Z",
-   "attempt": 1,
+   "dispatch_token": "9e36a7114e09",
+   "dispatched_at": "2026-10-04T19:23:17Z",
+   "attempt": 2,
    "not_before": 1791141653.9568033,
    "stale_note": "claim_age_min=32 run_active=False"
   },
@@ -2271,24 +2271,34 @@
    "undetermined": 0
   },
   "chunk-000154": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "ed48264725a3",
    "dispatched_at": "2026-10-04T18:52:49Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T19:22:42Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000155": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "68e44b98f897",
    "dispatched_at": "2026-10-04T18:52:50Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T19:22:35Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000156": {
    "status": "RUNNING",
@@ -7777,9 +7787,9 @@
  "peak_active_workers": 99,
  "counts": {
   "RUNNING": 94,
-  "RETRY": 52,
-  "COMPLETED": 99,
+  "RETRY": 50,
+  "COMPLETED": 101,
   "PENDING": 656
  },
- "updated_utc": "2026-10-04T19:22:22Z"
+ "updated_utc": "2026-10-04T19:23:18Z"
 }
