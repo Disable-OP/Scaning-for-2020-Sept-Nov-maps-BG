@@ -13637,14 +13637,19 @@
    "undetermined": 0
   },
   "chunk-000891": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "2c81646e19d2",
    "dispatched_at": "2026-10-04T22:20:58Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T22:44:00Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000892": {
    "status": "RUNNING",
@@ -13797,9 +13802,9 @@
  "batches_seq": 4,
  "peak_active_workers": 99,
  "counts": {
-  "COMPLETED": 887,
+  "COMPLETED": 888,
   "RETRY": 5,
-  "RUNNING": 13
+  "RUNNING": 12
  },
- "updated_utc": "2026-10-04T22:44:09Z"
+ "updated_utc": "2026-10-04T22:44:43Z"
 }
