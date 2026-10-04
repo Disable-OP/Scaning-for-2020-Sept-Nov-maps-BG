@@ -1,12 +1,12 @@
 {
  "key": "chunk-000774",
- "run_id": 37237885122,
- "run_url": "https://github.com/Disable-OP/Scaning-for-2020-Sept-Nov-maps-BG/actions/runs/37237885122",
- "dispatch_token": "fd90b9e650ed",
- "attempt": 1,
+ "run_id": 37244673806,
+ "run_url": "https://github.com/Disable-OP/Scaning-for-2020-Sept-Nov-maps-BG/actions/runs/37244673806",
+ "dispatch_token": "379a7686c5d8",
+ "attempt": 3,
  "mode": "full",
  "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
  "candidates": 20000,
- "started_utc": "2026-10-04T22:11:57Z",
+ "started_utc": "2026-10-04T23:41:49Z",
  "resume_note": null
 }
