@@ -1,7 +1,7 @@
 {
  "budget_rps": 1500.0,
- "active_hint": 1,
- "updated_utc": "2026-10-04T18:33:44Z",
+ "active_hint": 11,
+ "updated_utc": "2026-10-04T18:34:54Z",
  "reason": "insufficient data",
  "history": [
   {
@@ -19,6 +19,14 @@
    "recent_probes": 0,
    "reason": "insufficient data",
    "active": 0
+  },
+  {
+   "utc": "2026-10-04T18:34:54Z",
+   "budget_rps": 1500.0,
+   "bad_frac": 0.0,
+   "recent_probes": 0,
+   "reason": "insufficient data",
+   "active": 11
   }
  ]
 }
