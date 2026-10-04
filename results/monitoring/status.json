@@ -1,13 +1,14 @@
 {
- "updated_utc": "2026-10-04T18:32:55Z",
+ "updated_utc": "2026-10-04T18:34:28Z",
  "workflows": {
   "active_workers": 0,
   "peak_active_workers": 0,
-  "max_allowed": 0,
-  "dispatched_this_cycle": 0
+  "max_allowed": 100,
+  "dispatched_this_cycle": 40
  },
  "chunks": {
-  "pending": 901,
+  "running": 40,
+  "pending": 861,
   "total": 901
  },
  "candidates": {
@@ -40,6 +41,6 @@
   "verified": 0,
   "rejected": 0
  },
- "cycle_seconds": 17.0,
- "github_api_calls": 14
+ "cycle_seconds": 53.2,
+ "github_api_calls": 53
 }
