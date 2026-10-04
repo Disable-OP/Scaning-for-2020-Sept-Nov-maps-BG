@@ -1,0 +1,122 @@
+{
+ "stage_reports": {
+  "t1_fwd_0_300s": {
+   "stage": "t1_fwd_0_300s",
+   "candidates": 600000,
+   "probed": 574417,
+   "parts_completed": "8/8",
+   "statuses": {
+    "head": 647483,
+    "get": 0,
+    "200": 0,
+    "404": 573665,
+    "403": 0,
+    "429": 0,
+    "5xx": 0,
+    "timeout": 2174,
+    "neterr": 0,
+    "other": 0,
+    "retries": 75240,
+    "hits": 0,
+    "hits_zip_invalid": 0,
+    "503": 73818
+   },
+   "elapsed_s": 4110.5
+  },
+  "t2_fwd_300_1800s": {
+   "stage": "t2_fwd_300_1800s",
+   "candidates": 3000000,
+   "probed": 3000000,
+   "parts_completed": "8/8",
+   "statuses": {
+    "head": 78534,
+    "get": 0,
+    "200": 0,
+    "404": 72105,
+    "403": 0,
+    "429": 0,
+    "5xx": 0,
+    "timeout": 2087,
+    "neterr": 0,
+    "other": 0,
+    "retries": 8453,
+    "hits": 0,
+    "hits_zip_invalid": 0,
+    "503": 6429
+   },
+   "elapsed_s": 4110.8
+  },
+  "t3_fwd_1800_3600s": {
+   "stage": "t3_fwd_1800_3600s",
+   "candidates": 3600000,
+   "probed": 3600000,
+   "parts_completed": "8/8",
+   "statuses": {
+    "head": 1154075,
+    "get": 0,
+    "200": 0,
+    "404": 1022819,
+    "403": 0,
+    "429": 0,
+    "5xx": 0,
+    "timeout": 2499,
+    "neterr": 0,
+    "other": 0,
+    "retries": 132126,
+    "hits": 0,
+    "hits_zip_invalid": 0,
+    "503": 131256
+   },
+   "elapsed_s": 4111.3
+  },
+  "t4_back_600s": {
+   "stage": "t4_back_600s",
+   "candidates": 1200000,
+   "probed": 1200000,
+   "parts_completed": "8/8",
+   "statuses": {
+    "head": 182366,
+    "get": 0,
+    "200": 0,
+    "404": 164986,
+    "403": 0,
+    "429": 0,
+    "5xx": 0,
+    "timeout": 2172,
+    "neterr": 0,
+    "other": 0,
+    "retries": 19237,
+    "hits": 0,
+    "hits_zip_invalid": 0,
+    "503": 17380
+   },
+   "elapsed_s": 4111.7
+  },
+  "t0_anchors": {
+   "stage": "t0_anchors",
+   "candidates": 256,
+   "probed": 256,
+   "parts_completed": "8/8",
+   "statuses": {
+    "head": 256,
+    "404": 256,
+    "get": 0,
+    "200": 0,
+    "403": 0,
+    "429": 0,
+    "5xx": 0,
+    "timeout": 0,
+    "neterr": 0,
+    "other": 0,
+    "retries": 0,
+    "hits": 0,
+    "hits_zip_invalid": 0,
+    "503": 0
+   },
+   "elapsed_s": 4.0,
+   "note": "report recovered from chunk-1 log after orchestrator crash"
+  }
+ },
+ "wall_elapsed_s": 4111.8,
+ "chunks": 12
+}

@@ -1,0 +1,57 @@
+name: controller
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+    inputs:
+      trigger:
+        description: 'What triggered this run (manual | worker-done)'
+        required: false
+        default: 'manual'
+      max_workers:
+        description: 'Maximum simultaneously dispatched workers (hard cap 100)'
+        required: false
+        default: '100'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: controller
+  cancel-in-progress: false
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout scan code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Skip if another controller run is already queued
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          Q=$(gh run list --workflow=controller.yml --status=queued --limit 5 \
+              --json databaseId --jq 'length')
+          echo "queued controller runs: $Q"
+          if [ "$Q" -gt 1 ]; then
+            echo "another controller is already queued; exiting to avoid pile-up"
+            exit 0
+          fi
+
+      - name: Reconcile queue, dispatch workers, tune global rate, monitor
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAX_ACTIVE_WORKERS: ${{ github.event.inputs.max_workers || '100' }}
+          MAX_DISPATCH_PER_CYCLE: '40'
+        run: python scan/controller.py

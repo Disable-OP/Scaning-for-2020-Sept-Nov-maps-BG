@@ -1,0 +1,86 @@
+name: worker
+
+on:
+  workflow_dispatch:
+    inputs:
+      chunk_id:
+        description: 'Spec chunk ordinal (0-based)'
+        required: false
+        default: '0'
+      dispatch_token:
+        description: 'Ownership token issued by the controller'
+        required: true
+        default: ''
+      attempt:
+        description: 'Attempt sequence for this queue entry'
+        required: false
+        default: '1'
+      mode:
+        description: 'full | test (test results are excluded from coverage)'
+        required: false
+        default: 'full'
+      max_probes:
+        description: 'Hard cap on candidates probed (smoke tests only)'
+        required: false
+        default: '0'
+      retry_batch:
+        description: 'Retry-batch path inside the scan-state branch (empty = spec chunk)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: worker-${{ github.event.inputs.chunk_id }}-${{ github.event.inputs.retry_batch }}-${{ github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - name: Checkout scan code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: 'scan/requirements.txt'
+
+      - name: Install dependencies
+        run: pip install -r scan/requirements.txt
+
+      - name: Probe chunk (adaptive rate, honest status recording)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scan/scan_worker.py \
+            --chunk-id "${{ github.event.inputs.chunk_id }}" \
+            --dispatch-token "${{ github.event.inputs.dispatch_token }}" \
+            --attempt "${{ github.event.inputs.attempt }}" \
+            --mode "${{ github.event.inputs.mode }}" \
+            --max-probes "${{ github.event.inputs.max_probes }}" \
+            --retry-batch "${{ github.event.inputs.retry_batch }}" \
+            --state-branch scan-state \
+            --out-dir worker_out
+
+      - name: Upload result artifacts (backup to the atomic state commit)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scan-result-${{ github.run_id }}
+          path: worker_out/
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Trigger controller refill (frees the slot immediately)
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run controller.yml -f trigger=worker-done || true

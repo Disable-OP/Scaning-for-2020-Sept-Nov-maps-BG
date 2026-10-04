@@ -1,0 +1,651 @@
+{
+  "generated_at": "2026-10-04T13:40:13Z",
+  "note": "VERIFIED observations only; predictions are in predictions.json and are never counted as evidence here.",
+  "events": [],
+  "by_date": {},
+  "clusters": [],
+  "per_map": {},
+  "nearest_neighbors": [],
+  "estimated_missing_version_windows": [
+    {
+      "map_id": "m1001_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1002_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m301",
+      "window_utc": [
+        "2021-05-02 06:26:19.371 UTC",
+        "2022-07-24 19:32:09.745 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+    },
+    {
+      "map_id": "m701",
+      "window_utc": [
+        "2020-09-11 01:58:10.461 UTC",
+        "2021-12-03 15:04:00.834 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+    },
+    {
+      "map_id": "m1008_2",
+      "window_utc": [
+        "2020-11-18 02:04:00.000 UTC",
+        "2020-11-18 02:04:24.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 2 contributing observation(s) spanning 24.0 s; contributors: _2-suffix family pool of 2 observation(s)"
+    },
+    {
+      "map_id": "m901",
+      "window_utc": [
+        "2020-05-17 11:44:06.005 UTC",
+        "2021-08-09 00:49:56.379 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+    },
+    {
+      "map_id": "m1001",
+      "window_utc": [
+        "2020-03-20 04:37:03.778 UTC",
+        "2021-06-11 17:42:54.151 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+    },
+    {
+      "map_id": "m1101",
+      "window_utc": [
+        "2020-01-21 21:30:01.550 UTC",
+        "2021-04-14 10:35:51.924 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+    },
+    {
+      "map_id": "m1201_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1301",
+      "window_utc": [
+        "2019-09-27 07:15:57.095 UTC",
+        "2020-12-18 20:21:47.468 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+    },
+    {
+      "map_id": "m1401",
+      "window_utc": [
+        "2019-07-31 00:08:54.867 UTC",
+        "2020-10-21 13:14:45.241 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+    },
+    {
+      "map_id": "m1501_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1601",
+      "window_utc": [
+        "2019-04-05 09:54:50.412 UTC",
+        "2020-06-26 23:00:40.785 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+    },
+    {
+      "map_id": "m1701",
+      "window_utc": [
+        "2019-02-06 02:47:48.184 UTC",
+        "2020-04-29 15:53:38.558 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+    },
+    {
+      "map_id": "m1018_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1019_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1020_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1021_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1022_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1023_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1024_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1025_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1026_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1027_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1028_2",
+      "window_utc": [
+        "2020-11-18 02:04:00.000 UTC",
+        "2020-11-18 02:04:24.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 2 contributing observation(s) spanning 24.0 s; contributors: _2-suffix family pool of 2 observation(s)"
+    },
+    {
+      "map_id": "m1029_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1030_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1031_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1032_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1033_2",
+      "window_utc": [
+        "2020-11-18 02:04:00.000 UTC",
+        "2020-11-18 02:04:24.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 2 contributing observation(s) spanning 24.0 s; contributors: _2-suffix family pool of 2 observation(s)"
+    },
+    {
+      "map_id": "m1036_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1037_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1038_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1039_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1041_2",
+      "window_utc": [
+        "2020-11-18 02:04:00.000 UTC",
+        "2020-11-18 02:04:24.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 2 contributing observation(s) spanning 24.0 s; contributors: _2-suffix family pool of 2 observation(s)"
+    },
+    {
+      "map_id": "m1042_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1043_1",
+      "window_utc": [
+        "2020-11-18 02:04:19.000 UTC",
+        "2020-11-18 02:04:29.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "MEDIUM",
+      "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1046_2=2020-11-18 02:04:24"
+    },
+    {
+      "map_id": "m1044_1",
+      "window_utc": [
+        "2020-11-18 02:04:19.000 UTC",
+        "2020-11-18 02:04:29.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "MEDIUM",
+      "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1046_2=2020-11-18 02:04:24"
+    },
+    {
+      "map_id": "m1045_1",
+      "window_utc": [
+        "2020-09-17 04:43:44.000 UTC",
+        "2020-11-18 02:04:24.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor D: 2 contributing observation(s) spanning 5347240.0 s; contributors: m1046_2=2020-11-18 02:04:24, m1048_1=2020-09-17 04:43:44"
+    },
+    {
+      "map_id": "m1046_2",
+      "window_utc": [
+        "2020-09-17 04:43:39.000 UTC",
+        "2020-09-17 04:43:49.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "MEDIUM",
+      "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1048_1=2020-09-17 04:43:44"
+    },
+    {
+      "map_id": "m1047_1",
+      "window_utc": [
+        "2020-09-17 04:43:44.000 UTC",
+        "2020-11-18 02:04:24.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor D: 2 contributing observation(s) spanning 5347240.0 s; contributors: m1046_2=2020-11-18 02:04:24, m1048_1=2020-09-17 04:43:44"
+    },
+    {
+      "map_id": "m1048_1",
+      "window_utc": [
+        "2020-11-18 02:04:19.000 UTC",
+        "2020-11-18 02:04:29.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "MEDIUM",
+      "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1046_2=2020-11-18 02:04:24"
+    },
+    {
+      "map_id": "m1049_2",
+      "window_utc": [
+        "2020-09-17 04:43:44.000 UTC",
+        "2020-11-18 02:04:24.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor D: 2 contributing observation(s) spanning 5347240.0 s; contributors: m1046_2=2020-11-18 02:04:24, m1048_1=2020-09-17 04:43:44"
+    },
+    {
+      "map_id": "m1050_1",
+      "window_utc": [
+        "2020-09-17 04:43:39.000 UTC",
+        "2020-09-17 04:43:49.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "MEDIUM",
+      "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1048_1=2020-09-17 04:43:44"
+    },
+    {
+      "map_id": "m1051_1",
+      "window_utc": [
+        "2020-09-17 04:43:39.000 UTC",
+        "2020-09-17 04:43:49.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "MEDIUM",
+      "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1048_1=2020-09-17 04:43:44"
+    },
+    {
+      "map_id": "m1052_2",
+      "window_utc": [
+        "2020-11-18 02:04:00.000 UTC",
+        "2020-11-18 02:04:24.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 2 contributing observation(s) spanning 24.0 s; contributors: _2-suffix family pool of 2 observation(s)"
+    },
+    {
+      "map_id": "m1053_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1054_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1055_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1056_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1057_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m1058_1",
+      "window_utc": [
+        "2020-09-17 04:43:39.000 UTC",
+        "2020-09-17 04:43:49.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "MEDIUM",
+      "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1061_1=2020-09-17 04:43:44"
+    },
+    {
+      "map_id": "m1060_1",
+      "window_utc": [
+        "2020-09-17 04:43:44.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "HIGH",
+      "reason": "predictor D: 2 contributing observation(s) spanning 0.0 s; contributors: m1061_1=2020-09-17 04:43:44, m1062_1=2020-09-17 04:43:44"
+    },
+    {
+      "map_id": "m1061_1",
+      "window_utc": [
+        "2020-09-17 04:43:39.000 UTC",
+        "2020-09-17 04:43:49.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "MEDIUM",
+      "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1062_1=2020-09-17 04:43:44"
+    },
+    {
+      "map_id": "m1062_1",
+      "window_utc": [
+        "2020-09-17 04:43:39.000 UTC",
+        "2020-09-17 04:43:49.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "MEDIUM",
+      "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1061_1=2020-09-17 04:43:44"
+    },
+    {
+      "map_id": "m1063_1",
+      "window_utc": [
+        "2020-09-17 04:43:44.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "HIGH",
+      "reason": "predictor D: 2 contributing observation(s) spanning 0.0 s; contributors: m1061_1=2020-09-17 04:43:44, m1062_1=2020-09-17 04:43:44"
+    },
+    {
+      "map_id": "m1059_1",
+      "window_utc": [
+        "2020-09-17 04:43:44.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "HIGH",
+      "reason": "predictor D: 2 contributing observation(s) spanning 0.0 s; contributors: m1061_1=2020-09-17 04:43:44, m1062_1=2020-09-17 04:43:44"
+    },
+    {
+      "map_id": "m1059_2",
+      "window_utc": [
+        "2020-09-17 04:43:44.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "HIGH",
+      "reason": "predictor D: 2 contributing observation(s) spanning 0.0 s; contributors: m1061_1=2020-09-17 04:43:44, m1062_1=2020-09-17 04:43:44"
+    },
+    {
+      "map_id": "m1064_1",
+      "window_utc": [
+        "2020-09-17 04:43:44.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "HIGH",
+      "reason": "predictor D: 2 contributing observation(s) spanning 0.0 s; contributors: m1061_1=2020-09-17 04:43:44, m1062_1=2020-09-17 04:43:44"
+    },
+    {
+      "map_id": "m1065_1",
+      "window_utc": [
+        "2020-09-17 04:43:39.000 UTC",
+        "2020-09-17 04:43:49.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "MEDIUM",
+      "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1062_1=2020-09-17 04:43:44"
+    },
+    {
+      "map_id": "m3042_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m3043_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m3044_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    },
+    {
+      "map_id": "m3045_1",
+      "window_utc": [
+        "2020-09-17 04:43:42.000 UTC",
+        "2020-09-17 04:43:44.000 UTC"
+      ],
+      "status": "PREDICTED-UNVERIFIED",
+      "confidence": "LOW",
+      "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+    }
+  ]
+}

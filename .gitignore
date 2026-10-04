@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+worker_out/
+verify_out/
+.secrets/

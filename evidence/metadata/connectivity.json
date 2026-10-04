@@ -1,0 +1,13 @@
+{
+  "dns_ok": true,
+  "ips": [
+    "43.174.127.245"
+  ],
+  "robots_status": 404,
+  "robots_blocked": false,
+  "scheme": "https",
+  "head_supported": true,
+  "notes": [],
+  "root_head_status_https": 200,
+  "object_head_status": 404
+}

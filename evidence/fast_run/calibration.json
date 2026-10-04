@@ -1,0 +1,45 @@
+{
+ "generated_at": "2026-10-04T14:56:19Z",
+ "results": [
+  {
+   "test": "anchor_exact",
+   "url": "https://staticgs.sandboxol.com/sandbox/games/maps/m1014_1.1600317822000.zip",
+   "method": "HEAD",
+   "status": 404,
+   "latency_ms": 213.0,
+   "server": "tencent-cos",
+   "content_type": "application/xml",
+   "head_unsupported": false
+  },
+  {
+   "test": "anchor_exact_nov",
+   "url": "https://staticgs.sandboxol.com/sandbox/games/maps/m1008_2.1605665040000.zip",
+   "method": "HEAD",
+   "status": 404,
+   "latency_ms": 248.5,
+   "server": "tencent-cos",
+   "content_type": "application/xml",
+   "head_unsupported": false
+  },
+  {
+   "test": "garbage_map",
+   "url": "https://staticgs.sandboxol.com/sandbox/games/maps/m99999_9.1600317822000.zip",
+   "method": "HEAD",
+   "status": 404,
+   "latency_ms": 189.4,
+   "server": "tencent-cos",
+   "content_type": "application/xml",
+   "head_unsupported": false
+  },
+  {
+   "test": "listing_probe",
+   "url": "https://staticgs.sandboxol.com/sandbox/games/maps/",
+   "method": "HEAD",
+   "status": 404,
+   "latency_ms": 209.3,
+   "server": "tencent-cos",
+   "content_type": "application/xml",
+   "head_unsupported": false
+  }
+ ]
+}

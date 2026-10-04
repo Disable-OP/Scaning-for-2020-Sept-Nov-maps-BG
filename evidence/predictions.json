@@ -1,0 +1,1951 @@
+{
+  "generated_at": "2026-10-04T13:40:13Z",
+  "definition": "PREDICTED values are inferred, never evidence. confidence in {HIGH, MEDIUM, LOW, UNKNOWN}.",
+  "predictions": {
+    "m1001_1": {
+      "map_id": "m1001_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1604056198965,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1002_1": {
+      "map_id": "m1002_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1604005830742,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m301": {
+      "map_id": "m301",
+      "prediction": {
+        "timestamp_ms": 1639313954558,
+        "lower_ms": 1619936779371,
+        "upper_ms": 1658691129745,
+        "confidence": "LOW",
+        "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": null,
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1639313954558,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m701": {
+      "map_id": "m701",
+      "prediction": {
+        "timestamp_ms": 1619166665648,
+        "lower_ms": 1599789490461,
+        "upper_ms": 1638543840834,
+        "confidence": "LOW",
+        "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": null,
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1619166665648,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1008_2": {
+      "map_id": "m1008_2",
+      "prediction": {
+        "timestamp_ms": 1605665064000,
+        "lower_ms": 1605665040000,
+        "upper_ms": 1605665064000,
+        "confidence": "LOW",
+        "reason": "predictor B: 2 contributing observation(s) spanning 24.0 s; contributors: _2-suffix family pool of 2 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1605665064000,
+          1605665040000,
+          1605665064000,
+          2
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1603703621409,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m901": {
+      "map_id": "m901",
+      "prediction": {
+        "timestamp_ms": 1609093021192,
+        "lower_ms": 1589715846005,
+        "upper_ms": 1628470196379,
+        "confidence": "LOW",
+        "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": null,
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1609093021192,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1001": {
+      "map_id": "m1001",
+      "prediction": {
+        "timestamp_ms": 1604056198965,
+        "lower_ms": 1584679023778,
+        "upper_ms": 1623433374151,
+        "confidence": "LOW",
+        "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": null,
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1604056198965,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1101": {
+      "map_id": "m1101",
+      "prediction": {
+        "timestamp_ms": 1599019376737,
+        "lower_ms": 1579642201550,
+        "upper_ms": 1618396551924,
+        "confidence": "LOW",
+        "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": null,
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1599019376737,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1201_1": {
+      "map_id": "m1201_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1593982554509,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1301": {
+      "map_id": "m1301",
+      "prediction": {
+        "timestamp_ms": 1588945732282,
+        "lower_ms": 1569568557095,
+        "upper_ms": 1608322907468,
+        "confidence": "LOW",
+        "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": null,
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1588945732282,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1401": {
+      "map_id": "m1401",
+      "prediction": {
+        "timestamp_ms": 1583908910054,
+        "lower_ms": 1564531734867,
+        "upper_ms": 1603286085241,
+        "confidence": "LOW",
+        "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": null,
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1583908910054,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1501_1": {
+      "map_id": "m1501_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1578872087826,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1601": {
+      "map_id": "m1601",
+      "prediction": {
+        "timestamp_ms": 1573835265599,
+        "lower_ms": 1554458090412,
+        "upper_ms": 1593212440785,
+        "confidence": "LOW",
+        "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": null,
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1573835265599,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1701": {
+      "map_id": "m1701",
+      "prediction": {
+        "timestamp_ms": 1568798443371,
+        "lower_ms": 1549421268184,
+        "upper_ms": 1588175618558,
+        "confidence": "LOW",
+        "reason": "predictor E: 6 contributing observation(s) spanning 38754350.4 s; contributors: OLS regression over 6 points (max residual 3875435.0 s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": null,
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1568798443371,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1018_1": {
+      "map_id": "m1018_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1603199939186,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1019_1": {
+      "map_id": "m1019_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1603149570964,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1020_1": {
+      "map_id": "m1020_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1603099202741,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1021_1": {
+      "map_id": "m1021_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1603048834519,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1022_1": {
+      "map_id": "m1022_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1602998466297,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1023_1": {
+      "map_id": "m1023_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1602948098074,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1024_1": {
+      "map_id": "m1024_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1602897729852,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1025_1": {
+      "map_id": "m1025_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1602847361630,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1026_1": {
+      "map_id": "m1026_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1602796993408,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1027_1": {
+      "map_id": "m1027_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1602746625185,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1028_2": {
+      "map_id": "m1028_2",
+      "prediction": {
+        "timestamp_ms": 1605665064000,
+        "lower_ms": 1605665040000,
+        "upper_ms": 1605665064000,
+        "confidence": "LOW",
+        "reason": "predictor B: 2 contributing observation(s) spanning 24.0 s; contributors: _2-suffix family pool of 2 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1605665064000,
+          1605665040000,
+          1605665064000,
+          2
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1602696256963,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1029_1": {
+      "map_id": "m1029_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1602645888741,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1030_1": {
+      "map_id": "m1030_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1602595520519,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1031_1": {
+      "map_id": "m1031_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1602545152296,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1032_1": {
+      "map_id": "m1032_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1602494784074,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1033_2": {
+      "map_id": "m1033_2",
+      "prediction": {
+        "timestamp_ms": 1605665064000,
+        "lower_ms": 1605665040000,
+        "upper_ms": 1605665064000,
+        "confidence": "LOW",
+        "reason": "predictor B: 2 contributing observation(s) spanning 24.0 s; contributors: _2-suffix family pool of 2 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1605665064000,
+          1605665040000,
+          1605665064000,
+          2
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1602444415852,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1036_1": {
+      "map_id": "m1036_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1602293311185,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1037_1": {
+      "map_id": "m1037_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1602242942963,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1038_1": {
+      "map_id": "m1038_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1602192574740,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1039_1": {
+      "map_id": "m1039_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1602142206518,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1041_2": {
+      "map_id": "m1041_2",
+      "prediction": {
+        "timestamp_ms": 1605665064000,
+        "lower_ms": 1605665040000,
+        "upper_ms": 1605665064000,
+        "confidence": "LOW",
+        "reason": "predictor B: 2 contributing observation(s) spanning 24.0 s; contributors: _2-suffix family pool of 2 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1605665064000,
+          1605665040000,
+          1605665064000,
+          2
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1602041470074,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1042_1": {
+      "map_id": "m1042_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1601991101851,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1043_1": {
+      "map_id": "m1043_1",
+      "prediction": {
+        "timestamp_ms": 1605665064000,
+        "lower_ms": 1605665059000,
+        "upper_ms": 1605665069000,
+        "confidence": "MEDIUM",
+        "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1046_2=2020-11-18 02:04:24"
+      },
+      "predictors": {
+        "A_nearest_related": 1605665064000,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1605665064000,
+          1605665064000,
+          1605665064000,
+          1
+        ],
+        "E_linear_regression": 1601940733629,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1046_2"
+      ]
+    },
+    "m1044_1": {
+      "map_id": "m1044_1",
+      "prediction": {
+        "timestamp_ms": 1605665064000,
+        "lower_ms": 1605665059000,
+        "upper_ms": 1605665069000,
+        "confidence": "MEDIUM",
+        "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1046_2=2020-11-18 02:04:24"
+      },
+      "predictors": {
+        "A_nearest_related": 1605665064000,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1605665064000,
+          1605665064000,
+          1605665064000,
+          1
+        ],
+        "E_linear_regression": 1601890365407,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1046_2"
+      ]
+    },
+    "m1045_1": {
+      "map_id": "m1045_1",
+      "prediction": {
+        "timestamp_ms": 1605665064000,
+        "lower_ms": 1600317824000,
+        "upper_ms": 1605665064000,
+        "confidence": "LOW",
+        "reason": "predictor D: 2 contributing observation(s) spanning 5347240.0 s; contributors: m1046_2=2020-11-18 02:04:24, m1048_1=2020-09-17 04:43:44"
+      },
+      "predictors": {
+        "A_nearest_related": 1605665064000,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1605665064000,
+          1600317824000,
+          1605665064000,
+          2
+        ],
+        "E_linear_regression": 1601839997184,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1046_2",
+        "m1048_1"
+      ]
+    },
+    "m1046_2": {
+      "map_id": "m1046_2",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317819000,
+        "upper_ms": 1600317829000,
+        "confidence": "MEDIUM",
+        "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1048_1=2020-09-17 04:43:44"
+      },
+      "predictors": {
+        "A_nearest_related": 1600317824000,
+        "B_suffix_family": [
+          1605665064000,
+          1605665040000,
+          1605665064000,
+          2
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1600317824000,
+          1600317824000,
+          1600317824000,
+          1
+        ],
+        "E_linear_regression": 1601789628962,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1048_1"
+      ]
+    },
+    "m1047_1": {
+      "map_id": "m1047_1",
+      "prediction": {
+        "timestamp_ms": 1605665064000,
+        "lower_ms": 1600317824000,
+        "upper_ms": 1605665064000,
+        "confidence": "LOW",
+        "reason": "predictor D: 2 contributing observation(s) spanning 5347240.0 s; contributors: m1046_2=2020-11-18 02:04:24, m1048_1=2020-09-17 04:43:44"
+      },
+      "predictors": {
+        "A_nearest_related": 1605665064000,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1605665064000,
+          1600317824000,
+          1605665064000,
+          2
+        ],
+        "E_linear_regression": 1601739260740,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1046_2",
+        "m1048_1"
+      ]
+    },
+    "m1048_1": {
+      "map_id": "m1048_1",
+      "prediction": {
+        "timestamp_ms": 1605665064000,
+        "lower_ms": 1605665059000,
+        "upper_ms": 1605665069000,
+        "confidence": "MEDIUM",
+        "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1046_2=2020-11-18 02:04:24"
+      },
+      "predictors": {
+        "A_nearest_related": 1605665064000,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1605665064000,
+          1605665064000,
+          1605665064000,
+          1
+        ],
+        "E_linear_regression": 1601688892518,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1046_2"
+      ]
+    },
+    "m1049_2": {
+      "map_id": "m1049_2",
+      "prediction": {
+        "timestamp_ms": 1605665064000,
+        "lower_ms": 1600317824000,
+        "upper_ms": 1605665064000,
+        "confidence": "LOW",
+        "reason": "predictor D: 2 contributing observation(s) spanning 5347240.0 s; contributors: m1046_2=2020-11-18 02:04:24, m1048_1=2020-09-17 04:43:44"
+      },
+      "predictors": {
+        "A_nearest_related": 1600317824000,
+        "B_suffix_family": [
+          1605665064000,
+          1605665040000,
+          1605665064000,
+          2
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1605665064000,
+          1600317824000,
+          1605665064000,
+          2
+        ],
+        "E_linear_regression": 1601638524295,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1046_2",
+        "m1048_1"
+      ]
+    },
+    "m1050_1": {
+      "map_id": "m1050_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317819000,
+        "upper_ms": 1600317829000,
+        "confidence": "MEDIUM",
+        "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1048_1=2020-09-17 04:43:44"
+      },
+      "predictors": {
+        "A_nearest_related": 1600317824000,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1600317824000,
+          1600317824000,
+          1600317824000,
+          1
+        ],
+        "E_linear_regression": 1601588156073,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1048_1"
+      ]
+    },
+    "m1051_1": {
+      "map_id": "m1051_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317819000,
+        "upper_ms": 1600317829000,
+        "confidence": "MEDIUM",
+        "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1048_1=2020-09-17 04:43:44"
+      },
+      "predictors": {
+        "A_nearest_related": 1600317824000,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1600317824000,
+          1600317824000,
+          1600317824000,
+          1
+        ],
+        "E_linear_regression": 1601537787851,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1048_1"
+      ]
+    },
+    "m1052_2": {
+      "map_id": "m1052_2",
+      "prediction": {
+        "timestamp_ms": 1605665064000,
+        "lower_ms": 1605665040000,
+        "upper_ms": 1605665064000,
+        "confidence": "LOW",
+        "reason": "predictor B: 2 contributing observation(s) spanning 24.0 s; contributors: _2-suffix family pool of 2 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1605665064000,
+          1605665040000,
+          1605665064000,
+          2
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1601487419628,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1053_1": {
+      "map_id": "m1053_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1601437051406,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1054_1": {
+      "map_id": "m1054_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1601386683184,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1055_1": {
+      "map_id": "m1055_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1601336314962,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1056_1": {
+      "map_id": "m1056_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1601285946739,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1057_1": {
+      "map_id": "m1057_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1601235578517,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m1058_1": {
+      "map_id": "m1058_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317819000,
+        "upper_ms": 1600317829000,
+        "confidence": "MEDIUM",
+        "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1061_1=2020-09-17 04:43:44"
+      },
+      "predictors": {
+        "A_nearest_related": 1600317824000,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1600317824000,
+          1600317824000,
+          1600317824000,
+          1
+        ],
+        "E_linear_regression": 1601185210295,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1061_1"
+      ]
+    },
+    "m1060_1": {
+      "map_id": "m1060_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317824000,
+        "upper_ms": 1600317824000,
+        "confidence": "HIGH",
+        "reason": "predictor D: 2 contributing observation(s) spanning 0.0 s; contributors: m1061_1=2020-09-17 04:43:44, m1062_1=2020-09-17 04:43:44"
+      },
+      "predictors": {
+        "A_nearest_related": 1600317824000,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1600317824000,
+          1600317824000,
+          1600317824000,
+          2
+        ],
+        "E_linear_regression": 1601084473850,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1061_1",
+        "m1062_1"
+      ]
+    },
+    "m1061_1": {
+      "map_id": "m1061_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317819000,
+        "upper_ms": 1600317829000,
+        "confidence": "MEDIUM",
+        "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1062_1=2020-09-17 04:43:44"
+      },
+      "predictors": {
+        "A_nearest_related": 1600317824000,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1600317824000,
+          1600317824000,
+          1600317824000,
+          1
+        ],
+        "E_linear_regression": 1601034105628,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1062_1"
+      ]
+    },
+    "m1062_1": {
+      "map_id": "m1062_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317819000,
+        "upper_ms": 1600317829000,
+        "confidence": "MEDIUM",
+        "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1061_1=2020-09-17 04:43:44"
+      },
+      "predictors": {
+        "A_nearest_related": 1600317824000,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1600317824000,
+          1600317824000,
+          1600317824000,
+          1
+        ],
+        "E_linear_regression": 1600983737406,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1061_1"
+      ]
+    },
+    "m1063_1": {
+      "map_id": "m1063_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317824000,
+        "upper_ms": 1600317824000,
+        "confidence": "HIGH",
+        "reason": "predictor D: 2 contributing observation(s) spanning 0.0 s; contributors: m1061_1=2020-09-17 04:43:44, m1062_1=2020-09-17 04:43:44"
+      },
+      "predictors": {
+        "A_nearest_related": 1600317824000,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1600317824000,
+          1600317824000,
+          1600317824000,
+          2
+        ],
+        "E_linear_regression": 1600933369183,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1061_1",
+        "m1062_1"
+      ]
+    },
+    "m1059_1": {
+      "map_id": "m1059_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317824000,
+        "upper_ms": 1600317824000,
+        "confidence": "HIGH",
+        "reason": "predictor D: 2 contributing observation(s) spanning 0.0 s; contributors: m1061_1=2020-09-17 04:43:44, m1062_1=2020-09-17 04:43:44"
+      },
+      "predictors": {
+        "A_nearest_related": 1600317824000,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1600317824000,
+          1600317824000,
+          1600317824000,
+          2
+        ],
+        "E_linear_regression": 1601134842073,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1061_1",
+        "m1062_1"
+      ]
+    },
+    "m1059_2": {
+      "map_id": "m1059_2",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317824000,
+        "upper_ms": 1600317824000,
+        "confidence": "HIGH",
+        "reason": "predictor D: 2 contributing observation(s) spanning 0.0 s; contributors: m1061_1=2020-09-17 04:43:44, m1062_1=2020-09-17 04:43:44"
+      },
+      "predictors": {
+        "A_nearest_related": 1600317824000,
+        "B_suffix_family": [
+          1605665064000,
+          1605665040000,
+          1605665064000,
+          2
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1600317824000,
+          1600317824000,
+          1600317824000,
+          2
+        ],
+        "E_linear_regression": 1601134842073,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1061_1",
+        "m1062_1"
+      ]
+    },
+    "m1064_1": {
+      "map_id": "m1064_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317824000,
+        "upper_ms": 1600317824000,
+        "confidence": "HIGH",
+        "reason": "predictor D: 2 contributing observation(s) spanning 0.0 s; contributors: m1061_1=2020-09-17 04:43:44, m1062_1=2020-09-17 04:43:44"
+      },
+      "predictors": {
+        "A_nearest_related": 1600317824000,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1600317824000,
+          1600317824000,
+          1600317824000,
+          2
+        ],
+        "E_linear_regression": 1600883000961,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1061_1",
+        "m1062_1"
+      ]
+    },
+    "m1065_1": {
+      "map_id": "m1065_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317819000,
+        "upper_ms": 1600317829000,
+        "confidence": "MEDIUM",
+        "reason": "predictor D: 1 contributing observation(s) spanning 0.0 s; contributors: m1062_1=2020-09-17 04:43:44"
+      },
+      "predictors": {
+        "A_nearest_related": 1600317824000,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": [
+          1600317824000,
+          1600317824000,
+          1600317824000,
+          1
+        ],
+        "E_linear_regression": 1600832632739,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": [
+        "m1062_1"
+      ]
+    },
+    "m3042_1": {
+      "map_id": "m3042_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1501254657298,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m3043_1": {
+      "map_id": "m3043_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1501204289076,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m3044_1": {
+      "map_id": "m3044_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1501153920853,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    },
+    "m3045_1": {
+      "map_id": "m3045_1",
+      "prediction": {
+        "timestamp_ms": 1600317824000,
+        "lower_ms": 1600317822000,
+        "upper_ms": 1600317824000,
+        "confidence": "LOW",
+        "reason": "predictor B: 4 contributing observation(s) spanning 2.0 s; contributors: _1-suffix family pool of 4 observation(s)"
+      },
+      "predictors": {
+        "A_nearest_related": null,
+        "B_suffix_family": [
+          1600317824000,
+          1600317822000,
+          1600317824000,
+          4
+        ],
+        "C_game_family": null,
+        "D_id_neighborhood": null,
+        "E_linear_regression": 1501103552631,
+        "E_ols_params": {
+          "a": 1654474789463.943,
+          "b": -50368222.277,
+          "n": 6,
+          "max_residual_ms": 3875435037.373
+        }
+      },
+      "contributing_ids": []
+    }
+  }
+}

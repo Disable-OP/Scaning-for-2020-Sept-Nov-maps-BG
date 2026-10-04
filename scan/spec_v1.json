@@ -1,0 +1,101 @@
+{
+  "spec_version": 1,
+  "spec_id": "blockman-go-10068-maps-scan-v1",
+  "created_utc": "2026-10-05T00:00:00Z",
+  "host": "staticgs.sandboxol.com",
+  "url_path_fmt": "/sandbox/games/maps/{map_id}.{ts_ms}.zip",
+  "method": "HEAD probe; HTTP 200 triggers direct GET + ZIP structure + CRC + SHA-256 verification",
+  "chunk_size": 20000,
+  "search_scope": "MAPS ONLY (plugins path excluded by investigation constraints)",
+  "granularity": "millisecond-exact (no rounding to seconds)",
+  "anchors_ms": {
+    "S1": 1600317822000,
+    "S1B": 1600317824000,
+    "S2": 1605665040000,
+    "S2B": 1605665064000
+  },
+  "anchors_utc": {
+    "S1": "2020-09-17T04:43:42.000Z",
+    "S1B": "2020-09-17T04:43:44.000Z",
+    "S2": "2020-11-18T02:04:00.000Z",
+    "S2B": "2020-11-18T02:04:24.000Z"
+  },
+  "sentinels": { "S1": "m1014_1", "S2": "m1008_2" },
+  "all_map_ids": [
+    "m1001", "m1001_1", "m1002_1", "m1008_2", "m1018_1", "m1019_1", "m1020_1",
+    "m1021_1", "m1022_1", "m1023_1", "m1024_1", "m1025_1", "m1026_1", "m1027_1",
+    "m1028_2", "m1029_1", "m1030_1", "m1031_1", "m1032_1", "m1033_2", "m1036_1",
+    "m1037_1", "m1038_1", "m1039_1", "m1041_2", "m1042_1", "m1043_1", "m1044_1",
+    "m1045_1", "m1046_2", "m1047_1", "m1048_1", "m1049_2", "m1050_1", "m1051_1",
+    "m1052_2", "m1053_1", "m1054_1", "m1055_1", "m1056_1", "m1057_1", "m1058_1",
+    "m1059_1", "m1059_2", "m1060_1", "m1061_1", "m1062_1", "m1063_1", "m1064_1",
+    "m1065_1", "m1101", "m1201_1", "m1301", "m1401", "m1501_1", "m1601", "m1701",
+    "m301", "m3042_1", "m3043_1", "m3044_1", "m3045_1", "m701", "m901"
+  ],
+  "tiers": [
+    {
+      "tier_id": "t5_fwd_3600_7200s",
+      "priority_rationale": "user priority 1: previously unsearched; natural forward extension of the evidence-based sentinel strategy (build/upload liveness window), ms-dense, bounded to 1h span per sentinel",
+      "ranges": [
+        { "map_id": "m1014_1", "base": 1600317822000, "start_offset_ms": 3600000, "end_offset_ms": 7200000 },
+        { "map_id": "m1008_2", "base": 1605665040000, "start_offset_ms": 3600000, "end_offset_ms": 7200000 }
+      ]
+    },
+    {
+      "tier_id": "t4b_back_600_1800s",
+      "priority_rationale": "user priority 1+3: previously unsearched; backward extension of t4 clock-skew insurance window, ms-dense, bounded",
+      "ranges": [
+        { "map_id": "m1014_1", "base": 1600317822000, "start_offset_ms": -1800000, "end_offset_ms": -600000 },
+        { "map_id": "m1008_2", "base": 1605665040000, "start_offset_ms": -1800000, "end_offset_ms": -600000 }
+      ]
+    },
+    {
+      "tier_id": "t1_retry_fwd_0_300s",
+      "disposition": "retry_range_contains_undetermined",
+      "priority_rationale": "user priority 2: previous v3 scan probed this entire range (contiguous coverage pointers complete) but per-position outcomes were not retained; aggregate 503+timeout was 75,992 of 600,000 attempts, so the undetermined positions can only be retried by re-probing the range. This necessarily re-probes previously-confirmed-404 positions inside the range; that overlap is disclosed and de-duplicated in unique-candidate accounting, never silently converted",
+      "ranges": [
+        { "map_id": "m1014_1", "base": 1600317822000, "start_offset_ms": 0, "end_offset_ms": 300000 },
+        { "map_id": "m1008_2", "base": 1605665040000, "start_offset_ms": 0, "end_offset_ms": 300000 }
+      ]
+    },
+    {
+      "tier_id": "t4_retry_back_0_600s",
+      "disposition": "retry_range_contains_undetermined",
+      "priority_rationale": "user priority 2: same retry logic as t1_retry (aggregate 503+timeout 19,552 of 1,200,000 attempts)",
+      "ranges": [
+        { "map_id": "m1014_1", "base": 1600317822000, "start_offset_ms": -600000, "end_offset_ms": 0 },
+        { "map_id": "m1008_2", "base": 1605665040000, "start_offset_ms": -600000, "end_offset_ms": 0 }
+      ]
+    },
+    {
+      "tier_id": "t2_retry_fwd_300_1800s",
+      "disposition": "retry_range_contains_undetermined",
+      "priority_rationale": "user priority 2: same retry logic as t1_retry (aggregate 503+timeout 8,516 of 3,000,000 attempts)",
+      "ranges": [
+        { "map_id": "m1014_1", "base": 1600317822000, "start_offset_ms": 300000, "end_offset_ms": 1800000 },
+        { "map_id": "m1008_2", "base": 1605665040000, "start_offset_ms": 300000, "end_offset_ms": 1800000 }
+      ]
+    },
+    {
+      "tier_id": "t3_retry_fwd_1800_3600s",
+      "disposition": "retry_range_contains_undetermined",
+      "priority_rationale": "user priority 2: same retry logic as t1_retry (aggregate 503+timeout 133,755 of 3,600,000 attempts)",
+      "ranges": [
+        { "map_id": "m1014_1", "base": 1600317822000, "start_offset_ms": 1800000, "end_offset_ms": 3600000 },
+        { "map_id": "m1008_2", "base": 1605665040000, "start_offset_ms": 1800000, "end_offset_ms": 3600000 }
+      ]
+    },
+    {
+      "tier_id": "t0_anchors_final",
+      "kind": "anchors",
+      "disposition": "confirmed_404_final_consistency_recheck",
+      "priority_rationale": "user priority 4: exact known anchors. All 256 anchor probes were confirmed HTTP 404 in v3, so per the no-blind-rescan rule they are queued last as a final consistency recheck only (252 probes after excluding 4 sentinel x anchor pairs already owned by the t1_retry range - no-overlap guarantee requires exactly one owning chunk per candidate, and those 4 positions sit inside [S,S+300000) so they lose zero coverage)",
+      "map_ids_source": "all_map_ids",
+      "anchors": ["S1", "S1B", "S2", "S2B"],
+      "exclude": [
+        { "map_id": "m1014_1", "anchors": ["S1", "S1B"] },
+        { "map_id": "m1008_2", "anchors": ["S2", "S2B"] }
+      ]
+    }
+  ]
+}

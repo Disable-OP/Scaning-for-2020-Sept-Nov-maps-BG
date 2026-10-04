@@ -1,0 +1,113 @@
+2026-10-04 12:36:42,445 INFO blockman_map_scanner v1.0 starting (host=staticgs.sandboxol.com)
+2026-10-04 12:36:42,446 INFO No checkpoint found; starting fresh
+2026-10-04 12:36:42,508 INFO DNS OK for staticgs.sandboxol.com: 43.174.127.245
+2026-10-04 12:36:43,465 INFO phase0 done: scheme=https head_supported=True robots=404
+2026-10-04 12:36:44,237 INFO scanner exit
+2026-10-04 12:41:27,687 INFO blockman_map_scanner v1.0 starting (host=staticgs.sandboxol.com)
+2026-10-04 12:41:27,688 INFO No checkpoint found; starting fresh
+2026-10-04 12:41:27,697 INFO DNS OK for staticgs.sandboxol.com: 43.174.127.245
+2026-10-04 12:41:28,396 INFO phase0 done: scheme=https head_supported=True robots=404
+2026-10-04 12:41:28,396 INFO phase 1: six known anchors, window [S, S+2000) ms
+2026-10-04 12:50:34,830 INFO blockman_map_scanner v1.0 starting (host=staticgs.sandboxol.com)
+2026-10-04 12:50:34,831 INFO No checkpoint found; starting fresh
+2026-10-04 12:50:34,838 INFO DNS OK for staticgs.sandboxol.com: 43.174.127.245
+2026-10-04 12:50:35,527 INFO phase0 done: scheme=https head_supported=True robots=404
+2026-10-04 12:50:35,527 INFO phase 1: six known anchors, window [S, S+2000) ms
+2026-10-04 12:53:18,761 INFO phase phase1 finished: produced=12000 stopped_early=None
+2026-10-04 12:53:18,813 INFO phase 1b: UTC+8 build-time hypothesis for anchors not yet found
+2026-10-04 12:56:03,922 INFO phase phase1b finished: produced=12000 stopped_early=None
+2026-10-04 12:56:04,029 INFO phase 2 skipped: no verified timestamps yet
+2026-10-04 12:56:41,316 INFO blockman_map_scanner v1.0 starting (host=staticgs.sandboxol.com)
+2026-10-04 12:56:41,341 INFO Checkpoint loaded: 24000 probed paths, 0 maps with verified records
+2026-10-04 12:56:41,406 INFO DNS OK for staticgs.sandboxol.com: 43.174.127.245
+2026-10-04 12:56:41,996 INFO phase0 done: scheme=https head_supported=True robots=404
+2026-10-04 12:56:41,996 INFO phase 1: six known anchors, window [S, S+2000) ms
+2026-10-04 12:56:42,005 INFO phase phase1 finished: produced=0 stopped_early=None
+2026-10-04 12:56:42,111 INFO phase 1b: UTC+8 build-time hypothesis for anchors not yet found
+2026-10-04 12:56:42,121 INFO phase phase1b finished: produced=0 stopped_early=None
+2026-10-04 12:56:42,224 INFO phase 2 skipped: no verified timestamps yet
+2026-10-04 12:57:38,699 INFO blockman_map_scanner v1.0 starting (host=staticgs.sandboxol.com)
+2026-10-04 12:57:38,724 INFO Checkpoint loaded: 24000 probed paths, 0 maps with verified records
+2026-10-04 12:57:38,729 INFO DNS OK for staticgs.sandboxol.com: 43.174.127.245
+2026-10-04 12:57:39,564 INFO phase0 done: scheme=https head_supported=True robots=404
+2026-10-04 12:57:39,564 INFO phase 1: six known anchors, window [S, S+2000) ms
+2026-10-04 12:57:39,573 INFO phase phase1 finished: produced=0 stopped_early=None
+2026-10-04 12:57:39,680 INFO phase 1b: UTC+8 build-time hypothesis for anchors not yet found
+2026-10-04 12:57:39,690 INFO phase phase1b finished: produced=0 stopped_early=None
+2026-10-04 12:57:39,792 INFO phase 2 skipped: no verified timestamps yet
+2026-10-04 12:57:39,794 INFO phase 3: prediction-driven bounded ring search (88 blocks scheduled)
+2026-10-04 13:04:33,703 WARNING Stop requested: max-runtime reached (clean chunked exit); flushing and finishing gracefully
+2026-10-04 13:04:33,892 INFO phase phase3 finished: produced=29832 stopped_early=max-runtime reached (clean chunked exit)
+2026-10-04 13:04:36,959 INFO final archive written via gnu-tar: /home/z/my-project/download/blockman_go_10068_maps.tar.xz (209548 bytes)
+2026-10-04 13:04:37,223 INFO scanner exit
+2026-10-04 13:05:39,007 INFO blockman_map_scanner v1.0 starting (host=staticgs.sandboxol.com)
+2026-10-04 13:05:39,063 INFO Checkpoint loaded: 53576 probed paths, 0 maps with verified records
+2026-10-04 13:05:39,073 INFO DNS OK for staticgs.sandboxol.com: 43.174.127.245
+2026-10-04 13:05:39,752 INFO phase0 done: scheme=https head_supported=True robots=404
+2026-10-04 13:05:39,752 INFO phase 1: six known anchors, window [S, S+2000) ms
+2026-10-04 13:05:39,761 INFO phase phase1 finished: produced=0 stopped_early=None
+2026-10-04 13:05:39,988 INFO phase 1b: UTC+8 build-time hypothesis for anchors not yet found
+2026-10-04 13:05:39,998 INFO phase phase1b finished: produced=0 stopped_early=None
+2026-10-04 13:05:40,223 INFO phase 2 skipped: no verified timestamps yet
+2026-10-04 13:05:40,224 INFO phase 3: prediction-driven bounded ring search (88 blocks scheduled)
+2026-10-04 13:12:34,028 WARNING Stop requested: max-runtime reached (clean chunked exit); flushing and finishing gracefully
+2026-10-04 13:12:34,188 INFO phase phase3 finished: produced=29166 stopped_early=max-runtime reached (clean chunked exit)
+2026-10-04 13:12:38,785 INFO final archive written via gnu-tar: /home/z/my-project/download/blockman_go_10068_maps.tar.xz (328208 bytes)
+2026-10-04 13:12:39,175 INFO scanner exit
+2026-10-04 13:13:18,744 INFO blockman_map_scanner v1.0 starting (host=staticgs.sandboxol.com)
+2026-10-04 13:13:18,825 INFO Checkpoint loaded: 82486 probed paths, 0 maps with verified records
+2026-10-04 13:13:18,835 INFO DNS OK for staticgs.sandboxol.com: 43.174.127.245
+2026-10-04 13:13:19,301 INFO phase0 done: scheme=https head_supported=True robots=404
+2026-10-04 13:13:19,301 INFO phase 1: six known anchors, window [S, S+2000) ms
+2026-10-04 13:13:19,310 INFO phase phase1 finished: produced=0 stopped_early=None
+2026-10-04 13:13:19,659 INFO phase 1b: UTC+8 build-time hypothesis for anchors not yet found
+2026-10-04 13:13:19,670 INFO phase phase1b finished: produced=0 stopped_early=None
+2026-10-04 13:13:20,020 INFO phase 2 skipped: no verified timestamps yet
+2026-10-04 13:13:20,022 INFO phase 3: prediction-driven bounded ring search (88 blocks scheduled)
+2026-10-04 13:20:13,753 WARNING Stop requested: max-runtime reached (clean chunked exit); flushing and finishing gracefully
+2026-10-04 13:20:14,493 INFO phase phase3 finished: produced=28575 stopped_early=max-runtime reached (clean chunked exit)
+2026-10-04 13:20:19,593 INFO final archive written via gnu-tar: /home/z/my-project/download/blockman_go_10068_maps.tar.xz (438532 bytes)
+2026-10-04 13:20:20,130 INFO scanner exit
+2026-10-04 13:20:24,627 INFO blockman_map_scanner v1.0 starting (host=staticgs.sandboxol.com)
+2026-10-04 13:20:24,746 INFO Checkpoint loaded: 110805 probed paths, 0 maps with verified records
+2026-10-04 13:20:24,753 INFO DNS OK for staticgs.sandboxol.com: 43.174.127.245
+2026-10-04 13:20:25,708 INFO phase0 done: scheme=https head_supported=True robots=404
+2026-10-04 13:20:25,708 INFO phase 1: six known anchors, window [S, S+2000) ms
+2026-10-04 13:20:25,718 INFO phase phase1 finished: produced=0 stopped_early=None
+2026-10-04 13:20:26,348 INFO phase 1b: UTC+8 build-time hypothesis for anchors not yet found
+2026-10-04 13:20:26,358 INFO phase phase1b finished: produced=0 stopped_early=None
+2026-10-04 13:20:26,832 INFO phase 2 skipped: no verified timestamps yet
+2026-10-04 13:20:26,833 INFO phase 3: prediction-driven bounded ring search (88 blocks scheduled)
+2026-10-04 13:27:19,642 WARNING Stop requested: max-runtime reached (clean chunked exit); flushing and finishing gracefully
+2026-10-04 13:27:19,802 INFO phase phase3 finished: produced=27902 stopped_early=max-runtime reached (clean chunked exit)
+2026-10-04 13:27:25,554 INFO final archive written via gnu-tar: /home/z/my-project/download/blockman_go_10068_maps.tar.xz (555012 bytes)
+2026-10-04 13:27:26,217 INFO scanner exit
+2026-10-04 13:27:35,409 INFO blockman_map_scanner v1.0 starting (host=staticgs.sandboxol.com)
+2026-10-04 13:27:35,573 INFO Checkpoint loaded: 138451 probed paths, 0 maps with verified records
+2026-10-04 13:27:35,581 INFO DNS OK for staticgs.sandboxol.com: 43.174.127.245
+2026-10-04 13:27:36,118 INFO phase0 done: scheme=https head_supported=True robots=404
+2026-10-04 13:27:36,118 INFO phase 1: six known anchors, window [S, S+2000) ms
+2026-10-04 13:27:36,129 INFO phase phase1 finished: produced=0 stopped_early=None
+2026-10-04 13:27:36,726 INFO phase 1b: UTC+8 build-time hypothesis for anchors not yet found
+2026-10-04 13:27:36,737 INFO phase phase1b finished: produced=0 stopped_early=None
+2026-10-04 13:27:37,335 INFO phase 2 skipped: no verified timestamps yet
+2026-10-04 13:27:37,336 INFO phase 3: prediction-driven bounded ring search (88 blocks scheduled)
+2026-10-04 13:34:30,424 WARNING Stop requested: max-runtime reached (clean chunked exit); flushing and finishing gracefully
+2026-10-04 13:34:30,593 INFO phase phase3 finished: produced=27406 stopped_early=max-runtime reached (clean chunked exit)
+2026-10-04 13:34:36,957 INFO final archive written via gnu-tar: /home/z/my-project/download/blockman_go_10068_maps.tar.xz (652260 bytes)
+2026-10-04 13:34:37,740 INFO scanner exit
+2026-10-04 13:34:57,952 INFO blockman_map_scanner v1.0 starting (host=staticgs.sandboxol.com)
+2026-10-04 13:34:58,133 INFO Checkpoint loaded: 165601 probed paths, 0 maps with verified records
+2026-10-04 13:34:58,261 INFO DNS OK for staticgs.sandboxol.com: 43.174.127.245
+2026-10-04 13:34:58,697 INFO phase0 done: scheme=https head_supported=True robots=404
+2026-10-04 13:34:58,697 INFO phase 1: six known anchors, window [S, S+2000) ms
+2026-10-04 13:34:58,707 INFO phase phase1 finished: produced=0 stopped_early=None
+2026-10-04 13:34:59,421 INFO phase 1b: UTC+8 build-time hypothesis for anchors not yet found
+2026-10-04 13:34:59,431 INFO phase phase1b finished: produced=0 stopped_early=None
+2026-10-04 13:35:00,127 INFO phase 2 skipped: no verified timestamps yet
+2026-10-04 13:35:00,128 INFO phase 3: prediction-driven bounded ring search (88 blocks scheduled)
+2026-10-04 13:35:01,805 INFO phase phase3 finished: produced=100 stopped_early=request budget exhausted
+2026-10-04 13:35:02,497 INFO phase 4: discovery IDs, sample path, plugin namespace liveness
+2026-10-04 13:40:12,333 INFO phase phase4 finished: produced=20000 stopped_early=request budget exhausted
+2026-10-04 13:40:19,765 INFO final archive written via gnu-tar: /home/z/my-project/download/blockman_go_10068_maps.tar.xz (740464 bytes)
+2026-10-04 13:40:20,658 INFO scanner exit

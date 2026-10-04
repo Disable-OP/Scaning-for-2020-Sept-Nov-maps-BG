@@ -1,0 +1,91 @@
+{
+ "generated_at": "2026-10-04T13:40:13Z",
+ "engine_context": {
+  "engineVersion": 10068,
+  "useCmd": "true",
+  "logLevel": "debug"
+ },
+ "anchors": [
+  {
+   "map_id": "m1014_1",
+   "evidence_utc": "2020-09-17 04:43:42",
+   "anchor_ms": 1600317822000,
+   "source": "user-supplied release-build filesystem timestamp (second precision)"
+  },
+  {
+   "map_id": "m1048_1",
+   "evidence_utc": "2020-09-17 04:43:44",
+   "anchor_ms": 1600317824000,
+   "source": "user-supplied release-build filesystem timestamp (second precision)"
+  },
+  {
+   "map_id": "m1061_1",
+   "evidence_utc": "2020-09-17 04:43:44",
+   "anchor_ms": 1600317824000,
+   "source": "user-supplied release-build filesystem timestamp (second precision)"
+  },
+  {
+   "map_id": "m1062_1",
+   "evidence_utc": "2020-09-17 04:43:44",
+   "anchor_ms": 1600317824000,
+   "source": "user-supplied release-build filesystem timestamp (second precision)"
+  },
+  {
+   "map_id": "m1008_2",
+   "evidence_utc": "2020-11-18 02:04:00",
+   "anchor_ms": 1605665040000,
+   "source": "user-supplied release-build filesystem timestamp (second precision)"
+  },
+  {
+   "map_id": "m1046_2",
+   "evidence_utc": "2020-11-18 02:04:24",
+   "anchor_ms": 1605665064000,
+   "source": "user-supplied release-build filesystem timestamp (second precision)"
+  }
+ ],
+ "hypotheses": {
+  "H1_naive_utc": "anchor seconds read as UTC (per task statement)",
+  "H2_build_local_utc+8": "zip entry mtimes are builder-local (UTC+8); URL timestamps 8 h earlier on the UTC timeline"
+ },
+ "hypothesis_tests": {
+  "H1_naive_utc_anchor_hits": [],
+  "H2_utc+8_anchor_hits": []
+ },
+ "observations": {
+  "v3_fast_scan": {
+   "kind": "v3_fast_scan_negative_result",
+   "probes_total_incl_t0": 8374673,
+   "granularity": "millisecond-dense, maps path only",
+   "stage_windows": [
+    "t0_anchors",
+    "t1_fwd_0_300s",
+    "t2_fwd_300_1800s",
+    "t3_fwd_1800_3600s",
+    "t4_back_600s"
+   ],
+   "confirmed_404": 1823575,
+   "probed_undetermined_503_or_timeout": 6551098,
+   "undetermined_note": "positions that received HTTP 503 (server load-shedding) or timeout under load instead of a definitive 404; they were probed but not conclusively excluded. 503s clustered in breaker-trip bursts (~2.7% of probes).",
+   "conclusion": "no HTTP 200 in any probed millisecond window",
+   "verified_at_utc": "2026-10-04T16:25:07Z"
+  }
+ },
+ "special_records": [],
+ "v3_fast_scan": {
+  "kind": "v3_fast_scan_negative_result",
+  "probes_total_incl_t0": 8374673,
+  "granularity": "millisecond-dense, maps path only",
+  "stage_windows": [
+   "t0_anchors",
+   "t1_fwd_0_300s",
+   "t2_fwd_300_1800s",
+   "t3_fwd_1800_3600s",
+   "t4_back_600s"
+  ],
+  "confirmed_404": 1823575,
+  "probed_undetermined_503_or_timeout": 6551098,
+  "undetermined_note": "positions that received HTTP 503 (server load-shedding) or timeout under load instead of a definitive 404; they were probed but not conclusively excluded. 503s clustered in breaker-trip bursts (~2.7% of probes).",
+  "conclusion": "no HTTP 200 in any probed millisecond window",
+  "verified_at_utc": "2026-10-04T16:25:07Z"
+ }
+}

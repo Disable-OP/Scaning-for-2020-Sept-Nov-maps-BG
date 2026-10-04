@@ -1,0 +1,242 @@
+{
+ "started_at": "2026-10-04T12:50:34Z",
+ "scanner_version": "1.0",
+ "engine_context": {
+  "engineVersion": 10068,
+  "useCmd": "true",
+  "logLevel": "debug"
+ },
+ "host": "staticgs.sandboxol.com",
+ "requests_total": 185701,
+ "requests_head": 185701,
+ "requests_get": 0,
+ "http_200": 0,
+ "http_404": 185709,
+ "http_403": 0,
+ "http_429": 0,
+ "http_5xx": 0,
+ "http_other": 0,
+ "network_errors": 0,
+ "timeouts": 0,
+ "http_200_invalid_zip": 0,
+ "downloads_ok": 0,
+ "downloads_failed": 0,
+ "bytes_downloaded": 0,
+ "probes_by_phase": {
+  "phase1": 12000,
+  "phase1b": 12000,
+  "phase3": 142981,
+  "phase4": 20000
+ },
+ "phase_started": {
+  "phase0": "2026-10-04T13:34:58Z",
+  "phase1": "2026-10-04T12:50:35Z",
+  "phase1b": "2026-10-04T12:53:18Z",
+  "phase3": "2026-10-04T12:57:39Z",
+  "phase4": "2026-10-04T13:35:02Z"
+ },
+ "phase_ended": {
+  "phase0": "2026-10-04T13:34:58Z",
+  "phase1": "2026-10-04T13:34:58Z",
+  "phase1b": "2026-10-04T13:34:59Z",
+  "phase3": "2026-10-04T13:35:01Z",
+  "phase4": "2026-10-04T13:40:12Z"
+ },
+ "cooldowns": 0,
+ "head_unsupported": false,
+ "hypothesis_tests": {
+  "H1_naive_utc_anchor_hits": [],
+  "H2_utc+8_anchor_hits": []
+ },
+ "finished_at": "2026-10-04T13:40:13Z",
+ "connectivity": {
+  "dns_ok": true,
+  "ips": [
+   "43.174.127.245"
+  ],
+  "robots_status": 404,
+  "robots_blocked": false,
+  "scheme": "https",
+  "head_supported": true,
+  "notes": [],
+  "root_head_status_https": 200,
+  "object_head_status": 404
+ },
+ "phase_info": {
+  "phase1": {
+   "produced": 0,
+   "stopped_early": null
+  },
+  "phase1b": {
+   "produced": 0,
+   "stopped_early": null
+  },
+  "phase3": {
+   "produced": 100,
+   "stopped_early": "request budget exhausted"
+  },
+  "phase4": {
+   "produced": 20000,
+   "stopped_early": "request budget exhausted"
+  }
+ },
+ "summary": {
+  "maps_in_scope": 64,
+  "main_registry_ids": 56,
+  "discovery_ids": 8,
+  "map_ids_investigated": 64,
+  "successful_archives": 0,
+  "distinct_timestamps": 0,
+  "historical_versions": 0,
+  "earliest_verified_ms": null,
+  "latest_verified_ms": null,
+  "earliest_verified_utc": null,
+  "latest_verified_utc": null,
+  "predictions_made": 64,
+  "predictions_verified_in_bounds": 0,
+  "maps_with_verified_records": 0
+ },
+ "stop_reason": null,
+ "elapsed_seconds": 2979.2,
+ "effective_requests_per_second": 62.33,
+ "fast_v3": {
+  "generated_at_utc": "2026-10-04T16:23:59Z",
+  "probes_total": 8374417,
+  "maps_path_only": true,
+  "granularity": "millisecond-dense",
+  "stages": [
+   {
+    "stage": "t0_anchors",
+    "candidates": 256,
+    "probed": 256,
+    "parts_completed": "8/8",
+    "statuses": {
+     "head": 256,
+     "404": 256,
+     "get": 0,
+     "200": 0,
+     "403": 0,
+     "429": 0,
+     "5xx": 0,
+     "timeout": 0,
+     "neterr": 0,
+     "other": 0,
+     "retries": 0,
+     "hits": 0,
+     "hits_zip_invalid": 0,
+     "503": 0
+    },
+    "elapsed_s": 4.0,
+    "note": "report recovered from chunk-1 log after orchestrator crash"
+   },
+   {
+    "stage": "t1_fwd_0_300s",
+    "candidates": 600000,
+    "probed": 574417,
+    "parts_completed": "8/8",
+    "statuses": {
+     "head": 647483,
+     "get": 0,
+     "200": 0,
+     "404": 573665,
+     "403": 0,
+     "429": 0,
+     "5xx": 0,
+     "timeout": 2174,
+     "neterr": 0,
+     "other": 0,
+     "retries": 75240,
+     "hits": 0,
+     "hits_zip_invalid": 0,
+     "503": 73818
+    },
+    "elapsed_s": 4110.5
+   },
+   {
+    "stage": "t2_fwd_300_1800s",
+    "candidates": 3000000,
+    "probed": 3000000,
+    "parts_completed": "8/8",
+    "statuses": {
+     "head": 78534,
+     "get": 0,
+     "200": 0,
+     "404": 72105,
+     "403": 0,
+     "429": 0,
+     "5xx": 0,
+     "timeout": 2087,
+     "neterr": 0,
+     "other": 0,
+     "retries": 8453,
+     "hits": 0,
+     "hits_zip_invalid": 0,
+     "503": 6429
+    },
+    "elapsed_s": 4110.8
+   },
+   {
+    "stage": "t3_fwd_1800_3600s",
+    "candidates": 3600000,
+    "probed": 3600000,
+    "parts_completed": "8/8",
+    "statuses": {
+     "head": 1154075,
+     "get": 0,
+     "200": 0,
+     "404": 1022819,
+     "403": 0,
+     "429": 0,
+     "5xx": 0,
+     "timeout": 2499,
+     "neterr": 0,
+     "other": 0,
+     "retries": 132126,
+     "hits": 0,
+     "hits_zip_invalid": 0,
+     "503": 131256
+    },
+    "elapsed_s": 4111.3
+   },
+   {
+    "stage": "t4_back_600s",
+    "candidates": 1200000,
+    "probed": 1200000,
+    "parts_completed": "8/8",
+    "statuses": {
+     "head": 182366,
+     "get": 0,
+     "200": 0,
+     "404": 164986,
+     "403": 0,
+     "429": 0,
+     "5xx": 0,
+     "timeout": 2172,
+     "neterr": 0,
+     "other": 0,
+     "retries": 19237,
+     "hits": 0,
+     "hits_zip_invalid": 0,
+     "503": 17380
+    },
+    "elapsed_s": 4111.7
+   }
+  ],
+  "http_200": 0,
+  "http_404": 1833575,
+  "http_403": 0,
+  "http_429": 0,
+  "verified_hits": 0,
+  "probes_total_incl_t0": 8374673,
+  "confirmed_404": 1823575,
+  "probed_undetermined_503_or_timeout": 6551098,
+  "http_503": 228883,
+  "proxy_lane": {
+   "enabled": true,
+   "pool_validated": 119,
+   "pool_tested": 3901,
+   "probes_contributed": 13514,
+   "note": "free-proxy discovery lane; every hit would have been re-verified directly before acceptance; yielded ~12 rps (CDN largely refuses datacenter proxy IPs) so direct lane did the work"
+  }
+ }
+}
