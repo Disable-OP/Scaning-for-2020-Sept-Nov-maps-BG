@@ -709,26 +709,26 @@
    "stale_note": "claim_age_min=31 run_active=False"
   },
   "chunk-000054": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
-   "dispatch_token": "b2c8bf4ed237",
-   "dispatched_at": "2026-10-04T18:35:12Z",
-   "attempt": 1,
+   "dispatch_token": "837f17a3b9d4",
+   "dispatched_at": "2026-10-04T19:30:33Z",
+   "attempt": 2,
    "not_before": 1791141653.958006,
    "stale_note": "claim_age_min=31 run_active=False"
   },
   "chunk-000055": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
-   "dispatch_token": "aa4a6511f1e4",
-   "dispatched_at": "2026-10-04T18:35:13Z",
-   "attempt": 1,
+   "dispatch_token": "f7c76d760f15",
+   "dispatched_at": "2026-10-04T19:30:35Z",
+   "attempt": 2,
    "not_before": 1791141653.9580321,
    "stale_note": "claim_age_min=31 run_active=False"
   },
@@ -750,50 +750,50 @@
    "undetermined": 0
   },
   "chunk-000057": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
-   "dispatch_token": "23385fd97f8f",
-   "dispatched_at": "2026-10-04T18:35:16Z",
-   "attempt": 1,
+   "dispatch_token": "80311d0560e4",
+   "dispatched_at": "2026-10-04T19:30:36Z",
+   "attempt": 2,
    "not_before": 1791141653.9580593,
    "stale_note": "claim_age_min=31 run_active=False"
   },
   "chunk-000058": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
-   "dispatch_token": "a60a29774b13",
-   "dispatched_at": "2026-10-04T18:35:17Z",
-   "attempt": 1,
+   "dispatch_token": "a751bca6460c",
+   "dispatched_at": "2026-10-04T19:30:37Z",
+   "attempt": 2,
    "not_before": 1791141653.9580982,
    "stale_note": "claim_age_min=31 run_active=False"
   },
   "chunk-000059": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
-   "dispatch_token": "b4937fae8116",
-   "dispatched_at": "2026-10-04T18:35:18Z",
-   "attempt": 1,
+   "dispatch_token": "f4489b877399",
+   "dispatched_at": "2026-10-04T19:30:39Z",
+   "attempt": 2,
    "not_before": 1791141653.9581294,
    "stale_note": "claim_age_min=31 run_active=False"
   },
   "chunk-000060": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 1,
-   "attempt_seq": 1,
+   "attempt_seq": 2,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
-   "dispatch_token": "81e4fab33744",
-   "dispatched_at": "2026-10-04T18:35:19Z",
-   "attempt": 1,
+   "dispatch_token": "910da542ffec",
+   "dispatched_at": "2026-10-04T19:30:40Z",
+   "attempt": 2,
    "not_before": 1791141653.9581559,
    "stale_note": "claim_age_min=31 run_active=False"
   },
@@ -2688,7 +2688,7 @@
    "stale_note": "claim_age_min=30 run_active=False"
   },
   "chunk-000183": {
-   "status": "RETRY",
+   "status": "COMPLETED",
    "job_attempts": 1,
    "attempt_seq": 1,
    "kind": "spec",
@@ -2697,10 +2697,15 @@
    "dispatched_at": "2026-10-04T18:54:23Z",
    "attempt": 1,
    "not_before": 1791142818.8925037,
-   "stale_note": "claim_age_min=31 run_active=False"
+   "stale_note": "claim_age_min=31 run_active=False",
+   "completed_at": "2026-10-04T19:29:59Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000184": {
-   "status": "RETRY",
+   "status": "COMPLETED",
    "job_attempts": 1,
    "attempt_seq": 1,
    "kind": "spec",
@@ -2709,10 +2714,15 @@
    "dispatched_at": "2026-10-04T18:54:24Z",
    "attempt": 1,
    "not_before": 1791142818.8925624,
-   "stale_note": "claim_age_min=31 run_active=False"
+   "stale_note": "claim_age_min=31 run_active=False",
+   "completed_at": "2026-10-04T19:29:52Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000185": {
-   "status": "RETRY",
+   "status": "COMPLETED",
    "job_attempts": 1,
    "attempt_seq": 1,
    "kind": "spec",
@@ -2721,10 +2731,15 @@
    "dispatched_at": "2026-10-04T18:54:26Z",
    "attempt": 1,
    "not_before": 1791142818.892582,
-   "stale_note": "claim_age_min=31 run_active=False"
+   "stale_note": "claim_age_min=31 run_active=False",
+   "completed_at": "2026-10-04T19:30:01Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000186": {
-   "status": "RETRY",
+   "status": "COMPLETED",
    "job_attempts": 1,
    "attempt_seq": 1,
    "kind": "spec",
@@ -2733,10 +2748,15 @@
    "dispatched_at": "2026-10-04T18:54:27Z",
    "attempt": 1,
    "not_before": 1791142818.892598,
-   "stale_note": "claim_age_min=31 run_active=False"
+   "stale_note": "claim_age_min=31 run_active=False",
+   "completed_at": "2026-10-04T19:30:03Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000187": {
-   "status": "RETRY",
+   "status": "COMPLETED",
    "job_attempts": 1,
    "attempt_seq": 1,
    "kind": "spec",
@@ -2745,7 +2765,12 @@
    "dispatched_at": "2026-10-04T18:54:28Z",
    "attempt": 1,
    "not_before": 1791142818.8926125,
-   "stale_note": "claim_age_min=31 run_active=False"
+   "stale_note": "claim_age_min=31 run_active=False",
+   "completed_at": "2026-10-04T19:30:10Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000188": {
    "status": "RETRY",
@@ -2760,7 +2785,7 @@
    "stale_note": "claim_age_min=31 run_active=False"
   },
   "chunk-000189": {
-   "status": "RETRY",
+   "status": "COMPLETED",
    "job_attempts": 1,
    "attempt_seq": 1,
    "kind": "spec",
@@ -2769,7 +2794,12 @@
    "dispatched_at": "2026-10-04T18:54:32Z",
    "attempt": 1,
    "not_before": 1791142818.8926518,
-   "stale_note": "claim_age_min=31 run_active=False"
+   "stale_note": "claim_age_min=31 run_active=False",
+   "completed_at": "2026-10-04T19:30:15Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000190": {
    "status": "RETRY",
@@ -7937,10 +7967,10 @@
  "batches_seq": 0,
  "peak_active_workers": 99,
  "counts": {
-  "RUNNING": 88,
-  "COMPLETED": 122,
-  "RETRY": 35,
+  "RUNNING": 94,
+  "COMPLETED": 128,
+  "RETRY": 23,
   "PENDING": 656
  },
- "updated_utc": "2026-10-04T19:29:12Z"
+ "updated_utc": "2026-10-04T19:30:42Z"
 }
