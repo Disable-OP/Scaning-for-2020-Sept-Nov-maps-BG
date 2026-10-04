@@ -276,6 +276,10 @@ def main() -> int:
     files["SHA256SUMS"] = ("\n".join(
         f"{h}  {name}" for name, h in sorted(existing_sums.items())) + "\n").encode()
 
+    if os.environ.get("AGG_DRYRUN"):
+        print("DRYRUN: skipping commits; accounting computed:")
+        print(json.dumps({k: v for k, v in accounting.items() if k != "chunks"}, indent=1))
+        return 0
     gh.commit_files("main", files,
                     f"final aggregation: probed_unique={total_probed_unique} "
                     f"404={uniq['confirmed_404']} found={uniq['found_200']} "
