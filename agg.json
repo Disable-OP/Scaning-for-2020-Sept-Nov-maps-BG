@@ -9591,6 +9591,195 @@
   "_reingest_note": {
    "note": "keys re-added for post-fix ingestion of retry batches",
    "fixed_utc": "2026-10-04T21:26:00Z"
+  },
+  "chunk-000450": {
+   "outcome": "COMPLETED_WITH_UNDETERMINED",
+   "statuses": {
+    "404": 19999,
+    "TIMEOUT": 1
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20004,
+   "rps_mean": 81.85,
+   "p50": 319.1,
+   "p95": 453.8,
+   "finished_utc": "2026-10-04T20:52:23Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000569": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.88,
+   "p50": 326.4,
+   "p95": 450.4,
+   "finished_utc": "2026-10-04T21:23:29Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000570": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.89,
+   "p50": 329.8,
+   "p95": 454.2,
+   "finished_utc": "2026-10-04T21:23:41Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000571": {
+   "outcome": "COMPLETED_WITH_UNDETERMINED",
+   "statuses": {
+    "404": 19999,
+    "TIMEOUT": 1
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20001,
+   "rps_mean": 81.91,
+   "p50": 318.2,
+   "p95": 453.6,
+   "finished_utc": "2026-10-04T21:23:51Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000572": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.97,
+   "p50": 335.0,
+   "p95": 451.7,
+   "finished_utc": "2026-10-04T21:24:13Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000573": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.86,
+   "p50": 347.9,
+   "p95": 424.1,
+   "finished_utc": "2026-10-04T21:24:38Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000574": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.8,
+   "p50": 347.9,
+   "p95": 424.4,
+   "finished_utc": "2026-10-04T21:24:26Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000575": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.69,
+   "p50": 324.1,
+   "p95": 421.6,
+   "finished_utc": "2026-10-04T21:25:04Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000576": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.77,
+   "p50": 334.6,
+   "p95": 444.6,
+   "finished_utc": "2026-10-04T21:25:21Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000578": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.71,
+   "p50": 339.6,
+   "p95": 430.6,
+   "finished_utc": "2026-10-04T21:25:36Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000579": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.75,
+   "p50": 317.9,
+   "p95": 433.7,
+   "finished_utc": "2026-10-04T21:25:45Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
   }
  },
  "found_ledger": {},
