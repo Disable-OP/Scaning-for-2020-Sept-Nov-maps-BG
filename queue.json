@@ -8299,24 +8299,34 @@
    "undetermined": 0
   },
   "chunk-000535": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "b4ab94c0beaf",
    "dispatched_at": "2026-10-04T20:49:54Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T21:14:43Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000536": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "2655a2c974f0",
    "dispatched_at": "2026-10-04T20:50:49Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T21:14:51Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000537": {
    "status": "RUNNING",
@@ -9279,18 +9289,24 @@
    "attempt": 1
   },
   "chunk-000633": {
-   "status": "PENDING",
+   "status": "RUNNING",
    "job_attempts": 0,
-   "attempt_seq": 0,
+   "attempt_seq": 1,
    "kind": "spec",
-   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982"
+   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
+   "dispatch_token": "181c9c7f5987",
+   "dispatched_at": "2026-10-04T21:15:25Z",
+   "attempt": 1
   },
   "chunk-000634": {
-   "status": "PENDING",
+   "status": "RUNNING",
    "job_attempts": 0,
-   "attempt_seq": 0,
+   "attempt_seq": 1,
    "kind": "spec",
-   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982"
+   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
+   "dispatch_token": "3b1c3b21d54d",
+   "dispatched_at": "2026-10-04T21:15:27Z",
+   "attempt": 1
   },
   "chunk-000635": {
    "status": "PENDING",
@@ -11158,10 +11174,10 @@
  "batches_seq": 0,
  "peak_active_workers": 99,
  "counts": {
-  "COMPLETED": 532,
+  "COMPLETED": 534,
   "RETRY": 2,
   "RUNNING": 99,
-  "PENDING": 268
+  "PENDING": 266
  },
- "updated_utc": "2026-10-04T21:14:46Z"
+ "updated_utc": "2026-10-04T21:15:28Z"
 }
