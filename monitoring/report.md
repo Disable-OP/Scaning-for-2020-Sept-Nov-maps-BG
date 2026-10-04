@@ -1,12 +1,12 @@
 # Distributed MAPS scan — live status
-_Cycle completed 2026-10-04T23:24:41Z (cycle 3.3s, 15 API calls)_
+_Cycle completed 2026-10-04T23:37:03Z (cycle 5.4s, 14 API calls)_
 
 ## Workers
 - Active workers: **0** (peak 99, cap 100)
-- Dispatched this cycle: 0
+- Dispatched this cycle: 2
 
 ## Chunks
-- Completed **902** / running **0** / pending **0** / retry **2** / failed **1** (total 905)
+- Completed **902** / running **2** / pending **0** / retry **1** / failed **0** (total 905)
 
 ## Candidates (unique)
 - Scheduled total: 18000252
@@ -17,11 +17,11 @@ _Cycle completed 2026-10-04T23:24:41Z (cycle 3.3s, 15 API calls)_
 
 ## Rate & latency (measured)
 - Global budget: 16000.0 rps — bad=0.000<1% raise x1.15
-- Measured mean worker rps (recent window): 27.6 over 6 results
-- Rolling latency p50/p95: 969.6 / 1019.0 ms
+- Measured mean worker rps (recent window): 0.5 over 4 results
+- Rolling latency p50/p95: 1284.9 / 1284.9 ms
 - Recent bad-status fraction (503+timeout+other): 0.0000
 
 ## Retry
-- Retry batches: 4 (candidate probe-round cap 3, failed chunks 1)
+- Retry batches: 4 (candidate probe-round cap 3, failed chunks 0)
 
 Rule: HTTP 503 is UNDETERMINED and is never reported as a miss; a map exists only after direct ZIP + CRC + SHA-256 verification.
