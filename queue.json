@@ -4452,7 +4452,7 @@
    "undetermined": 0
   },
   "chunk-000278": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
@@ -4462,7 +4462,12 @@
    "attempt": 1,
    "not_before": 0,
    "stale_note": null,
-   "reset_note": "reset after pre-fix rejection storm; fresh dispatch with current code"
+   "reset_note": "reset after pre-fix rejection storm; fresh dispatch with current code",
+   "completed_at": "2026-10-04T23:41:22Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000279": {
    "status": "COMPLETED",
@@ -8747,7 +8752,7 @@
    "undetermined": 0
   },
   "chunk-000564": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 2,
    "attempt_seq": 3,
    "kind": "spec",
@@ -8756,7 +8761,12 @@
    "dispatched_at": "2026-10-04T23:37:02Z",
    "attempt": 3,
    "not_before": 1791156332.989702,
-   "stale_note": "claim_age_min=68 run_active=False"
+   "stale_note": "claim_age_min=68 run_active=False",
+   "completed_at": "2026-10-04T23:41:25Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000565": {
    "status": "COMPLETED",
@@ -11896,14 +11906,14 @@
    "undetermined": 0
   },
   "chunk-000774": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "job_attempts": 2,
-   "attempt_seq": 2,
+   "attempt_seq": 3,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
-   "dispatch_token": "52c41e2482f9",
-   "dispatched_at": "2026-10-04T22:36:13Z",
-   "attempt": 2,
+   "dispatch_token": "379a7686c5d8",
+   "dispatched_at": "2026-10-04T23:41:38Z",
+   "attempt": 3,
    "not_before": 1791157101.9653807,
    "stale_note": "claim_age_min=26 run_active=False"
   },
@@ -13881,9 +13891,8 @@
  "batches_seq": 4,
  "peak_active_workers": 99,
  "counts": {
-  "COMPLETED": 902,
-  "RUNNING": 2,
-  "RETRY": 1
+  "COMPLETED": 904,
+  "RUNNING": 1
  },
- "updated_utc": "2026-10-04T23:37:03Z"
+ "updated_utc": "2026-10-04T23:41:39Z"
 }
