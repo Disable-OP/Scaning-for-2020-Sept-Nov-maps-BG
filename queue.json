@@ -3117,14 +3117,19 @@
    "undetermined": 0
   },
   "chunk-000211": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "7c80fb19ae77",
    "dispatched_at": "2026-10-04T19:03:15Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T19:35:28Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000212": {
    "status": "RUNNING",
@@ -3137,34 +3142,49 @@
    "attempt": 1
   },
   "chunk-000213": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "6a3b90b7f1e5",
    "dispatched_at": "2026-10-04T19:05:56Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T19:35:55Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000214": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "ebe496385aa8",
    "dispatched_at": "2026-10-04T19:08:18Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T19:35:48Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000215": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "a3f9b9297e95",
    "dispatched_at": "2026-10-04T19:08:19Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T19:35:47Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000216": {
    "status": "RUNNING",
@@ -3557,32 +3577,44 @@
    "attempt": 1
   },
   "chunk-000255": {
-   "status": "PENDING",
+   "status": "RUNNING",
    "job_attempts": 0,
-   "attempt_seq": 0,
+   "attempt_seq": 1,
    "kind": "spec",
-   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982"
+   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
+   "dispatch_token": "611560b399b4",
+   "dispatched_at": "2026-10-04T19:36:18Z",
+   "attempt": 1
   },
   "chunk-000256": {
-   "status": "PENDING",
+   "status": "RUNNING",
    "job_attempts": 0,
-   "attempt_seq": 0,
+   "attempt_seq": 1,
    "kind": "spec",
-   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982"
+   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
+   "dispatch_token": "8610d962b022",
+   "dispatched_at": "2026-10-04T19:36:19Z",
+   "attempt": 1
   },
   "chunk-000257": {
-   "status": "PENDING",
+   "status": "RUNNING",
    "job_attempts": 0,
-   "attempt_seq": 0,
+   "attempt_seq": 1,
    "kind": "spec",
-   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982"
+   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
+   "dispatch_token": "6295b9a4b2f6",
+   "dispatched_at": "2026-10-04T19:36:21Z",
+   "attempt": 1
   },
   "chunk-000258": {
-   "status": "PENDING",
+   "status": "RUNNING",
    "job_attempts": 0,
-   "attempt_seq": 0,
+   "attempt_seq": 1,
    "kind": "spec",
-   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982"
+   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
+   "dispatch_token": "550c38b7d8b1",
+   "dispatched_at": "2026-10-04T19:36:22Z",
+   "attempt": 1
   },
   "chunk-000259": {
    "status": "PENDING",
@@ -8083,9 +8115,9 @@
  "peak_active_workers": 99,
  "counts": {
   "RUNNING": 99,
-  "COMPLETED": 145,
+  "COMPLETED": 149,
   "RETRY": 11,
-  "PENDING": 646
+  "PENDING": 642
  },
- "updated_utc": "2026-10-04T19:35:39Z"
+ "updated_utc": "2026-10-04T19:36:24Z"
 }
