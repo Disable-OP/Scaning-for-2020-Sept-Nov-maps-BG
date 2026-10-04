@@ -214,8 +214,9 @@ async def run(args) -> int:
     gh = GH(os.environ.get("GITHUB_TOKEN", ""), owner, repo)
     branch = args.state_branch
 
+    batch_stem = Path(args.retry_batch).stem if args.retry_batch else ""
     key = (("test-" if args.mode == "test" else "")
-           + (f"batch-{Path(args.retry_batch).stem}" if args.retry_batch
+           + (batch_stem if args.retry_batch
               else f"chunk-{args.chunk_id:06d}"))
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
