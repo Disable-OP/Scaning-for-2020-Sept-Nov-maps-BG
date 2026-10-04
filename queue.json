@@ -4452,16 +4452,16 @@
    "undetermined": 0
   },
   "chunk-000278": {
-   "status": "RUNNING",
-   "job_attempts": 1,
+   "status": "RETRY",
+   "job_attempts": 2,
    "attempt_seq": 2,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "bc10efc2768d",
    "dispatched_at": "2026-10-04T21:12:52Z",
    "attempt": 2,
-   "not_before": 1791148283.0856695,
-   "stale_note": "claim_age_min=51 run_active=False"
+   "not_before": 1791152025.114476,
+   "stale_note": "claim_age_min=69 run_active=False"
   },
   "chunk-000279": {
    "status": "COMPLETED",
@@ -8204,44 +8204,64 @@
    "undetermined": 0
   },
   "chunk-000529": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "7f4076fd3640",
    "dispatched_at": "2026-10-04T20:48:28Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T21:12:40Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000530": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "5cf76a5b03a9",
    "dispatched_at": "2026-10-04T20:48:29Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T21:12:45Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000531": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "fda3fb24c7f3",
    "dispatched_at": "2026-10-04T20:49:00Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T21:12:49Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000532": {
-   "status": "RUNNING",
+   "status": "COMPLETED",
    "job_attempts": 0,
    "attempt_seq": 1,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
    "dispatch_token": "ca83571bc99a",
    "dispatched_at": "2026-10-04T20:49:01Z",
-   "attempt": 1
+   "attempt": 1,
+   "completed_at": "2026-10-04T21:13:19Z",
+   "statuses": {
+    "404": 20000
+   },
+   "undetermined": 0
   },
   "chunk-000533": {
    "status": "RUNNING",
@@ -9174,32 +9194,44 @@
    "attempt": 1
   },
   "chunk-000626": {
-   "status": "PENDING",
+   "status": "RUNNING",
    "job_attempts": 0,
-   "attempt_seq": 0,
+   "attempt_seq": 1,
    "kind": "spec",
-   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982"
+   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
+   "dispatch_token": "6f4df1914083",
+   "dispatched_at": "2026-10-04T21:13:48Z",
+   "attempt": 1
   },
   "chunk-000627": {
-   "status": "PENDING",
+   "status": "RUNNING",
    "job_attempts": 0,
-   "attempt_seq": 0,
+   "attempt_seq": 1,
    "kind": "spec",
-   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982"
+   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
+   "dispatch_token": "f72903a8aa5f",
+   "dispatched_at": "2026-10-04T21:13:50Z",
+   "attempt": 1
   },
   "chunk-000628": {
-   "status": "PENDING",
+   "status": "RUNNING",
    "job_attempts": 0,
-   "attempt_seq": 0,
+   "attempt_seq": 1,
    "kind": "spec",
-   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982"
+   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
+   "dispatch_token": "d38122f8e6b1",
+   "dispatched_at": "2026-10-04T21:13:51Z",
+   "attempt": 1
   },
   "chunk-000629": {
-   "status": "PENDING",
+   "status": "RUNNING",
    "job_attempts": 0,
-   "attempt_seq": 0,
+   "attempt_seq": 1,
    "kind": "spec",
-   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982"
+   "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
+   "dispatch_token": "cfef57b6250a",
+   "dispatched_at": "2026-10-04T21:13:52Z",
+   "attempt": 1
   },
   "chunk-000630": {
    "status": "PENDING",
@@ -11102,10 +11134,10 @@
  "batches_seq": 0,
  "peak_active_workers": 99,
  "counts": {
-  "COMPLETED": 525,
-  "RUNNING": 100,
-  "RETRY": 1,
-  "PENDING": 275
+  "COMPLETED": 529,
+  "RETRY": 2,
+  "RUNNING": 99,
+  "PENDING": 271
  },
- "updated_utc": "2026-10-04T21:13:02Z"
+ "updated_utc": "2026-10-04T21:13:53Z"
 }
