@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-10-04T22:46:25Z",
+ "updated_utc": "2026-10-04T22:46:56Z",
  "workflows": {
   "active_workers": 0,
   "peak_active_workers": 99,
@@ -31,17 +31,17 @@
   "measured_rps_recent": 82.9,
   "bad_frac_recent": 0.0,
   "reason": "bad=0.000<1% raise x1.15",
-  "recent_window_results": 102
+  "recent_window_results": 99
  },
  "latency_ms_recent": {
-  "p50": 339.9,
-  "p95": 443.3
+  "p50": 340.0,
+  "p95": 443.4
  },
  "found": {
   "candidates": 0,
   "verified": 0,
   "rejected": 0
  },
- "cycle_seconds": 14.9,
- "github_api_calls": 15
+ "cycle_seconds": 10.1,
+ "github_api_calls": 13
 }
