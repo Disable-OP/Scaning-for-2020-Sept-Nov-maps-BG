@@ -15272,6 +15272,23 @@
    "found": 0,
    "attempt": 3,
    "source": "spec"
+  },
+  "batch-0001": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 1
+   },
+   "probed": 1,
+   "scheduled": 1,
+   "head_attempts": 1,
+   "rps_mean": 0.5,
+   "p50": 1363.5,
+   "p95": 1363.5,
+   "finished_utc": "2026-10-04T23:23:52Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 2,
+   "source": "retry_batch:retry_batches/batch-0001.json"
   }
  },
  "found_ledger": {},
