@@ -4452,16 +4452,17 @@
    "undetermined": 0
   },
   "chunk-000278": {
-   "status": "FAILED",
-   "job_attempts": 4,
-   "attempt_seq": 4,
+   "status": "PENDING",
+   "job_attempts": 0,
+   "attempt_seq": 0,
    "kind": "spec",
    "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
-   "dispatch_token": "ec21cae65f27",
+   "dispatch_token": "",
    "dispatched_at": "2026-10-04T23:23:32Z",
    "attempt": 4,
-   "not_before": 1791155760.2997243,
-   "stale_note": "claim_age_min=199 run_active=False"
+   "not_before": 0,
+   "stale_note": null,
+   "reset_note": "reset after pre-fix rejection storm; fresh dispatch with current code"
   },
   "chunk-000279": {
    "status": "COMPLETED",
