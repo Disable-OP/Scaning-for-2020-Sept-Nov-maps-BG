@@ -1,0 +1,16 @@
+{
+ "batch_id": "batch-0000",
+ "created_utc": "2026-10-04T21:24:24Z",
+ "count": 1,
+ "retry_level": 2,
+ "parent_result": "chunk-000571",
+ "candidates": [
+  {
+   "map_id": "m1014_1",
+   "ts_ms": 1600318143774,
+   "source_key": "chunk-000571",
+   "source_ordinal": 1774,
+   "prior_status": "TIMEOUT"
+  }
+ ]
+}
