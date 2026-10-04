@@ -1,0 +1,25 @@
+{
+ "distributed_v4": {
+  "generated_utc": "2026-10-04T23:50:24Z",
+  "architecture": "GitHub Actions: controller + up to 100 adaptive workers",
+  "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
+  "unique_candidates_scheduled": 18000252,
+  "unique_candidates_probed": 18000252,
+  "unique_unsearched": 0,
+  "canonical_unique": {
+   "found_200": 0,
+   "found_invalid": 0,
+   "confirmed_404": 18000252,
+   "undetermined": 0,
+   "other": 0
+  },
+  "head_attempts_total": 18000373,
+  "duplicate_probes": 121,
+  "verified_maps": 0,
+  "honesty_rules": [
+   "503/timeout never converted to 404",
+   "duplicate probes never counted as unique coverage",
+   "map existence claimed only after direct ZIP+CRC+SHA-256 verification"
+  ]
+ }
+}
