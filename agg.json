@@ -8194,6 +8194,74 @@
    "found": 0,
    "attempt": 1,
    "source": "spec"
+  },
+  "chunk-000486": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.95,
+   "p50": 335.9,
+   "p95": 447.2,
+   "finished_utc": "2026-10-04T21:02:12Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000487": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.79,
+   "p50": 357.2,
+   "p95": 445.5,
+   "finished_utc": "2026-10-04T21:02:26Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000488": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20000,
+   "rps_mean": 81.84,
+   "p50": 353.7,
+   "p95": 425.8,
+   "finished_utc": "2026-10-04T21:02:31Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
+  },
+  "chunk-000489": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 20000
+   },
+   "probed": 20000,
+   "scheduled": 20000,
+   "head_attempts": 20001,
+   "rps_mean": 81.87,
+   "p50": 318.1,
+   "p95": 456.8,
+   "finished_utc": "2026-10-04T21:02:40Z",
+   "mode": "full",
+   "found": 0,
+   "attempt": 1,
+   "source": "spec"
   }
  },
  "found_ledger": {},
