@@ -225,8 +225,20 @@ async def run(args) -> int:
     if args.skip_ownership:
         print("LOCAL-TEST MODE: ownership checks skipped", flush=True)
     else:
-        queue = gh.get_file_json("queue.json", branch) or {"chunks": {}}
-        entry = (queue.get("chunks") or {}).get(key, {})
+        entry = {}
+        for attempt_read in range(3):
+            queue = gh.get_file_json("queue.json", branch) or {"chunks": {}}
+            entry = (queue.get("chunks") or {}).get(key, {})
+            if entry.get("status") == "RUNNING" and \
+               entry.get("dispatch_token") == args.dispatch_token:
+                break
+            if entry.get("status") == "PENDING" and attempt_read < 2:
+                # possible controller commit lag (dispatch -> queue commit);
+                # re-read briefly. A RUNNING entry with a foreign token or an
+                # existing result file is still rejected immediately below.
+                time.sleep(15)
+                continue
+            break
         if entry.get("status") != "RUNNING" or entry.get("dispatch_token") != args.dispatch_token:
             print(f"OWNERSHIP-REJECTED: {key} status={entry.get('status')} "
                   f"token_match={entry.get('dispatch_token') == args.dispatch_token}",

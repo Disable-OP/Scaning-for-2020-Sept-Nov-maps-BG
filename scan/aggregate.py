@@ -62,7 +62,7 @@ def main() -> int:
                     and e["path"].endswith(".result.json")]
     results = {}
     for p in result_paths:
-        key = p.split("/", 1)[1].rsplit(".", 1)[0]
+        key = p.split("/", 1)[1][:-len(".result.json")]
         try:
             r = gh.get_file_json(p, STATE)
         except Exception:

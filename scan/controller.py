@@ -151,7 +151,7 @@ def main() -> int:
     st, tree, _h = gh.api("GET", f"/repos/{owner}/{repo}/git/trees/{head_sha}?recursive=1")
     paths = [e["path"] for e in tree.get("tree", [])
              if e["type"] == "blob" and e["path"].startswith(("results/", "claims/"))]
-    result_keys = {p.split("/", 1)[1].rsplit(".", 1)[0]
+    result_keys = {p.split("/", 1)[1][:-len(".result.json")]
                    for p in paths if p.startswith("results/") and p.endswith(".result.json")}
     claim_keys = {p.split("/", 1)[1].rsplit(".", 1)[0]
                   for p in paths if p.startswith("claims/") and p.endswith(".json")}
