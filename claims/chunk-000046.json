@@ -1,0 +1,12 @@
+{
+ "key": "chunk-000046",
+ "run_id": 37228436310,
+ "run_url": "https://github.com/Disable-OP/Scaning-for-2020-Sept-Nov-maps-BG/actions/runs/37228436310",
+ "dispatch_token": "49d8e2a091c6",
+ "attempt": 2,
+ "mode": "full",
+ "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
+ "candidates": 20000,
+ "started_utc": "2026-10-04T19:50:07Z",
+ "resume_note": null
+}
