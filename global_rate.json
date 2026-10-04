@@ -1,7 +1,7 @@
 {
- "budget_rps": 1725.0,
+ "budget_rps": 1983.7,
  "active_hint": 98,
- "updated_utc": "2026-10-04T19:02:27Z",
+ "updated_utc": "2026-10-04T19:03:15Z",
  "reason": "bad=0.000<1% raise x1.15",
  "history": [
   {
@@ -65,6 +65,14 @@
    "budget_rps": 1725.0,
    "bad_frac": 0.0,
    "recent_probes": 1240000,
+   "reason": "bad=0.000<1% raise x1.15",
+   "active": 98
+  },
+  {
+   "utc": "2026-10-04T19:03:15Z",
+   "budget_rps": 1983.7,
+   "bad_frac": 0.0,
+   "recent_probes": 1280000,
    "reason": "bad=0.000<1% raise x1.15",
    "active": 98
   }
