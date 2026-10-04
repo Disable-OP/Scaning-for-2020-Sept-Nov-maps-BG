@@ -1,24 +1,24 @@
 # Distributed MAPS scan — live status
-_Cycle completed 2026-10-04T20:32:29Z (cycle 18.0s, 39 API calls)_
+_Cycle completed 2026-10-04T20:33:37Z (cycle 25.0s, 39 API calls)_
 
 ## Workers
-- Active workers: **96** (peak 99, cap 100)
-- Dispatched this cycle: 4
+- Active workers: **95** (peak 99, cap 100)
+- Dispatched this cycle: 5
 
 ## Chunks
-- Completed **368** / running **101** / pending **432** / retry **0** / failed **0** (total 901)
+- Completed **372** / running **101** / pending **427** / retry **1** / failed **0** (total 901)
 
 ## Candidates (unique)
 - Scheduled total: 18000252
-- Confirmed 404: 7360000
+- Confirmed 404: 7440000
 - FOUND 200: **0** (independently verified maps: **0**)
 - Undetermined 503/timeout (never counted as misses): 0
-- Remaining unsearched: 10640252
+- Remaining unsearched: 10560252
 
 ## Rate & latency (measured)
 - Global budget: 16000.0 rps — bad=0.000<1% raise x1.15
-- Measured mean worker rps (recent window): 81.8 over 96 results
-- Rolling latency p50/p95: 341.9 / 439.1 ms
+- Measured mean worker rps (recent window): 81.8 over 97 results
+- Rolling latency p50/p95: 340.8 / 438.4 ms
 - Recent bad-status fraction (503+timeout+other): 0.0000
 
 ## Retry
