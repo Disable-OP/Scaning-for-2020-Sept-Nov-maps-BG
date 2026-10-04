@@ -1,0 +1,36 @@
+{
+ "schema": 1,
+ "key": "batch-0003",
+ "chunk_id": null,
+ "attempt": 2,
+ "mode": "full",
+ "spec_sha256": "a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982",
+ "run_id": 37243591497,
+ "candidate_source": "retry_batch:retry_batches/batch-0003.json",
+ "started_utc": "2026-10-04T23:24:10Z",
+ "finished_utc": "2026-10-04T23:24:12Z",
+ "duration_s": 2.2,
+ "candidates_scheduled": 1,
+ "candidates_probed_unique": 1,
+ "head_attempts_total": 1,
+ "statuses": {
+  "404": 1
+ },
+ "default_status": "404",
+ "exceptions": [],
+ "found": [],
+ "rate": {
+  "rps_mean": 0.46,
+  "rps_final": 25.0,
+  "local_cap": 250.0,
+  "budget_rps": 16000.0,
+  "active_hint": 1
+ },
+ "latency_ms": {
+  "p50": 1182.4,
+  "p95": 1182.4
+ },
+ "windows": [],
+ "outcome": "COMPLETED",
+ "notes": []
+}
