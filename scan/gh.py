@@ -168,18 +168,19 @@ class GH:
         return st == 204
 
     def list_runs(self, workflow_file: str, statuses=("queued", "in_progress"),
-                  per_page=100, max_pages=3) -> list[dict]:
+                  per_page=100, max_pages=5) -> list[dict]:
         out = []
-        for page in range(1, max_pages + 1):
-            st, d, _ = self.api("GET",
-                                f"/repos/{self.owner}/{self.repo}/actions/workflows/{workflow_file}/runs"
-                                f"?per_page={per_page}&page={page}")
-            if st != 200:
-                break
-            runs = d.get("workflow_runs", [])
-            out.extend(r for r in runs if r["status"] in statuses)
-            if len(runs) < per_page:
-                break
+        for status in statuses:
+            for page in range(1, max_pages + 1):
+                st, d, _ = self.api("GET",
+                                    f"/repos/{self.owner}/{self.repo}/actions/workflows/{workflow_file}/runs"
+                                    f"?status={status}&per_page={per_page}&page={page}")
+                if st != 200:
+                    break
+                runs = d.get("workflow_runs", [])
+                out.extend(runs)
+                if len(runs) < per_page:
+                    break
         return out
 
     def all_recent_runs(self, workflow_file: str, per_page=100, max_pages=1) -> list[dict]:

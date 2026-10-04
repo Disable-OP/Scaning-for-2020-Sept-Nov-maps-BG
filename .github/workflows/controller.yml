@@ -37,16 +37,22 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Skip if another controller run is already queued
+      - name: Skip if a real controller cycle just completed (< 2 min ago)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          Q=$(gh run list --workflow=controller.yml --status=queued --limit 5 \
-              --json databaseId --jq 'length')
-          echo "queued controller runs: $Q"
-          if [ "$Q" -gt 1 ]; then
-            echo "another controller is already queued; exiting to avoid pile-up"
-            exit 0
+          LAST=$(gh run list --workflow=controller.yml --status=completed \
+                 --limit 1 --json updatedAt --jq '.[0].updatedAt')
+          echo "last completed controller at: $LAST"
+          if [ -n "$LAST" ]; then
+            NOW=$(date -u +%s)
+            LASTTS=$(date -u -d "$LAST" +%s)
+            AGE=$(( NOW - LASTTS ))
+            echo "age seconds: $AGE"
+            if [ "$AGE" -lt 120 ]; then
+              echo "a controller cycle just ran; exiting to avoid duplicate work"
+              exit 0
+            fi
           fi
 
       - name: Reconcile queue, dispatch workers, tune global rate, monitor
