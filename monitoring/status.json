@@ -1,15 +1,15 @@
 {
- "updated_utc": "2026-10-05T18:50:48Z",
+ "updated_utc": "2026-10-05T18:53:06Z",
  "campaign": "deep-scan-v5",
  "workflows": {
-  "active_workers": 96,
+  "active_workers": 94,
   "peak_active_workers": 96,
   "max_allowed": 100,
-  "dispatched_this_cycle": 4
+  "dispatched_this_cycle": 6
  },
  "frontier": {
   "next_epoch": 3,
-  "next_chunk": 197,
+  "next_chunk": 201,
   "exhausted": false,
   "epochs_committed": {
    "1": {
@@ -28,7 +28,7 @@
     "sha256": "cd84475244f4551e"
    }
   },
-  "candidates_scheduled": 29993748,
+  "candidates_scheduled": 30193748,
   "tallies_by_epoch": {
    "3": {
     "found_200": 0,
@@ -39,25 +39,36 @@
     "probed": 200000,
     "chunks_done": 4,
     "head_attempts": 200000
+   },
+   "2": {
+    "found_200": 0,
+    "found_invalid": 0,
+    "confirmed_404": 300000,
+    "undetermined": 0,
+    "other": 0,
+    "probed": 300000,
+    "chunks_done": 6,
+    "head_attempts": 300000
    }
   },
   "tallies_total": {
    "found_200": 0,
    "found_invalid": 0,
-   "confirmed_404": 200000,
+   "confirmed_404": 500000,
    "undetermined": 0,
    "other": 0,
-   "probed": 200000
+   "probed": 500000
   }
  },
  "chunks": {
-  "retry": 477,
-  "running": 119,
-  "total": 596
+  "retry": 495,
+  "running": 95,
+  "pending": 4,
+  "total": 594
  },
  "candidates_live": {
-  "scheduled_total": 29993748,
-  "unique_confirmed_404": 200000,
+  "scheduled_total": 30193748,
+  "unique_confirmed_404": 500000,
   "unique_found_200": 0,
   "unique_found_invalid": 0,
   "unique_undetermined": 0,
@@ -75,16 +86,16 @@
   "abandoned_chunks": 0
  },
  "rate": {
-  "global_budget_rps": 1500.0,
-  "measured_rps_recent": 0.0,
+  "global_budget_rps": 1725.0,
+  "measured_rps_recent": 70.8,
   "bad_frac_recent": 0.0,
-  "reason": "insufficient data",
-  "recent_window_results": 0
+  "reason": "bad=0.000<1% raise x1.15",
+  "recent_window_results": 4
  },
  "latency_ms_recent": {
-  "p50": 0.0,
-  "p95": 0.0
+  "p50": 347.7,
+  "p95": 440.6
  },
- "cycle_seconds": 23.2,
- "github_api_calls": 41
+ "cycle_seconds": 27.0,
+ "github_api_calls": 45
 }
