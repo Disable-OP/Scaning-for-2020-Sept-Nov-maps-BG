@@ -80,6 +80,38 @@ checkpoints); every chunk is independently restartable; duplicate ownership is
 rejected via tokens; incomplete chunks are never marked completed (PARTIAL
 results resume by skipping already-confirmed ordinals).
 
+## FINAL RESULT (2026-10-05)
+
+The distributed v4 scan **completed with 100% coverage of the frozen universe**:
+
+| metric | value |
+|---|---|
+| unique candidates scheduled (spec v1) | 18,000,252 |
+| unique candidates actually probed | **18,000,252** |
+| remaining unsearched | **0** (coverage_fraction 1.0) |
+| canonical confirmed HTTP 404 | **18,000,252** |
+| canonical FOUND 200 / verified maps | **0** |
+| undetermined after all bounded retries | **0** |
+| head attempts total (dup probes excluded from coverage) | 18,000,373 (121 duplicates) |
+| worker workflow runs | 1,474 (931 success, 373 ownership-rejections [exit 3, no probe], 170 superseded-queued cancellations) |
+| peak simultaneous workers | 99 (cap 100) |
+| measured aggregate throughput | ~950 rps average over 5h17m; ~7,800 rps instantaneous at the 16,000 rps global-budget cap |
+| global rate controller | adaptive 1,500 -> 16,000 rps (AIMD on measured bad-frac; 0.0000 over 17.9M probes) |
+| per-worker rate control | start 25 rps, +5/stable-window, x0.5 + bounded exp backoff on 503/timeout |
+| 403 / 429 responses | 0 |
+| proxies / IP rotation / bypass | none (disallowed) |
+
+`results/final/unique_accounting.json` is the authoritative machine-readable
+accounting; `scan_complete.json` on the `scan-state` branch marks the drain.
+
+**Truthful conclusion:** within the evidence-defined candidate universe (both
+2020-09-17 and 2020-11-18 anchor clusters, millisecond-exact, maps path only),
+no map archive exists on the live CDN as of 2026-10-05: every one of the
+18,000,252 candidates returned HTTP 404 on direct probes, and the handful of
+transient 503/timeout observations were re-probed to confirmed 404 within the
+bounded retry rounds. Nothing was fabricated; 503 was never counted as a miss;
+duplicates were never counted as unique coverage.
+
 ## Live status
 
 - `results/monitoring/report.md` (updated every controller cycle)
