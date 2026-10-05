@@ -36,7 +36,7 @@
   "tallies": {},
   "candidates_scheduled": 29993748,
   "batches_seq": 0,
-  "monitor_seq": 11
+  "monitor_seq": 12
  },
  "chunks": {
   "e1-chunk-000000": {
@@ -7844,5 +7844,5 @@
  "counts": {
   "RUNNING": 600
  },
- "updated_utc": "2026-10-05T17:36:38Z"
+ "updated_utc": "2026-10-05T17:36:58Z"
 }

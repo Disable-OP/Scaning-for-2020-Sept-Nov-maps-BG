@@ -1,11 +1,11 @@
 {
- "updated_utc": "2026-10-05T17:36:38Z",
+ "updated_utc": "2026-10-05T17:37:00Z",
  "campaign": "deep-scan-v5",
  "workflows": {
-  "active_workers": 0,
+  "active_workers": 2,
   "peak_active_workers": 3,
   "max_allowed": 100,
-  "dispatched_this_cycle": 54
+  "dispatched_this_cycle": 0
  },
  "frontier": {
   "next_epoch": 3,
@@ -73,6 +73,6 @@
   "p50": 0.0,
   "p95": 0.0
  },
- "cycle_seconds": 84.5,
- "github_api_calls": 69
+ "cycle_seconds": 6.9,
+ "github_api_calls": 15
 }
