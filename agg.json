@@ -659,6 +659,18 @@
    "rps_mean": 70.85,
    "p50": 340.7,
    "p95": 477.8
+  },
+  "e1-chunk-000097": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 50000
+   },
+   "probed": 50000,
+   "finished_utc": "2026-10-05T20:52:11Z",
+   "mode": "full",
+   "rps_mean": 70.73,
+   "p50": 341.0,
+   "p95": 465.1
   }
  },
  "found_ledger": {},
