@@ -1,11 +1,11 @@
 {
- "updated_utc": "2026-10-05T20:31:17Z",
+ "updated_utc": "2026-10-05T20:33:08Z",
  "campaign": "deep-scan-v5",
  "workflows": {
-  "active_workers": 90,
+  "active_workers": 92,
   "peak_active_workers": 100,
   "max_allowed": 100,
-  "dispatched_this_cycle": 10
+  "dispatched_this_cycle": 8
  },
  "frontier": {
   "next_epoch": 3,
@@ -53,32 +53,32 @@
    "1": {
     "found_200": 0,
     "found_invalid": 0,
-    "confirmed_404": 100000,
+    "confirmed_404": 150000,
     "undetermined": 0,
     "other": 0,
-    "probed": 100000,
-    "chunks_done": 2,
-    "head_attempts": 100000
+    "probed": 150000,
+    "chunks_done": 3,
+    "head_attempts": 150000
    }
   },
   "tallies_total": {
    "found_200": 0,
    "found_invalid": 0,
-   "confirmed_404": 2700000,
+   "confirmed_404": 2750000,
    "undetermined": 0,
    "other": 0,
-   "probed": 2700000
+   "probed": 2750000
   }
  },
  "chunks": {
-  "pending": 206,
-  "running": 34,
-  "retry": 360,
-  "total": 600
+  "pending": 209,
+  "running": 38,
+  "retry": 352,
+  "total": 599
  },
  "candidates_live": {
   "scheduled_total": 32693748,
-  "unique_confirmed_404": 2700000,
+  "unique_confirmed_404": 2750000,
   "unique_found_200": 0,
   "unique_found_invalid": 0,
   "unique_undetermined": 0,
@@ -106,6 +106,6 @@
   "p50": 0.0,
   "p95": 0.0
  },
- "cycle_seconds": 20.6,
- "github_api_calls": 26
+ "cycle_seconds": 17.2,
+ "github_api_calls": 24
 }
