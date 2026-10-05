@@ -1,11 +1,11 @@
 {
- "updated_utc": "2026-10-05T20:29:21Z",
+ "updated_utc": "2026-10-05T20:31:17Z",
  "campaign": "deep-scan-v5",
  "workflows": {
-  "active_workers": 93,
+  "active_workers": 90,
   "peak_active_workers": 100,
   "max_allowed": 100,
-  "dispatched_this_cycle": 7
+  "dispatched_this_cycle": 10
  },
  "frontier": {
   "next_epoch": 3,
@@ -71,9 +71,9 @@
   }
  },
  "chunks": {
-  "pending": 205,
-  "running": 25,
-  "retry": 370,
+  "pending": 206,
+  "running": 34,
+  "retry": 360,
   "total": 600
  },
  "candidates_live": {
@@ -106,6 +106,6 @@
   "p50": 0.0,
   "p95": 0.0
  },
- "cycle_seconds": 17.7,
- "github_api_calls": 23
+ "cycle_seconds": 20.6,
+ "github_api_calls": 26
 }
