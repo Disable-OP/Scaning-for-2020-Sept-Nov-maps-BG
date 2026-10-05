@@ -5,7 +5,7 @@
  "chunk_size": 50000,
  "frontier": {
   "next_epoch": 3,
-  "next_chunk": 250,
+  "next_chunk": 251,
   "exhausted": false,
   "epochs": {
    "1": {
@@ -65,9 +65,9 @@
     "head_attempts": 100000
    }
   },
-  "candidates_scheduled": 32643748,
+  "candidates_scheduled": 32693748,
   "batches_seq": 0,
-  "monitor_seq": 62
+  "monitor_seq": 63
  },
  "chunks": {
   "e1-chunk-000000": {
@@ -491,17 +491,17 @@
    "stale_note": "claim_age_min=10 run_active=False"
   },
   "e1-chunk-000029": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "kind": "epoch",
    "epoch": 1,
    "spec_sha256": "fdeab9d3997d4fd5dbb70b8283d3ee17f3b315ed6eec3b3b9a083ad88cf698f0",
    "size": 50000,
    "job_attempts": 3,
-   "attempt_seq": 3,
+   "attempt_seq": 4,
    "requeues": 0,
-   "dispatch_token": "d32e830c6746",
-   "dispatched_at": "2026-10-05T19:21:09Z",
-   "attempt": 3,
+   "dispatch_token": "c343c5b28e8c",
+   "dispatched_at": "2026-10-05T20:03:04Z",
+   "attempt": 4,
    "not_before": 1791228767.447313,
    "stale_note": "claim_age_min=10 run_active=False"
   },
@@ -8789,13 +8789,23 @@
    "job_attempts": 0,
    "attempt_seq": 0,
    "requeues": 0
+  },
+  "e3-chunk-000250": {
+   "status": "PENDING",
+   "kind": "epoch",
+   "epoch": 3,
+   "spec_sha256": "cd84475244f4551e86f5787ebd20e0a4a3a943aa1bbc0406ba00930a814c2bcc",
+   "size": 50000,
+   "job_attempts": 0,
+   "attempt_seq": 0,
+   "requeues": 0
   }
  },
  "peak_active_workers": 100,
  "counts": {
-  "PENDING": 159,
-  "RUNNING": 20,
-  "RETRY": 420
+  "PENDING": 160,
+  "RUNNING": 21,
+  "RETRY": 419
  },
- "updated_utc": "2026-10-05T20:01:22Z"
+ "updated_utc": "2026-10-05T20:03:05Z"
 }

@@ -1,15 +1,15 @@
 {
- "updated_utc": "2026-10-05T20:01:23Z",
+ "updated_utc": "2026-10-05T20:03:06Z",
  "campaign": "deep-scan-v5",
  "workflows": {
-  "active_workers": 98,
+  "active_workers": 99,
   "peak_active_workers": 100,
   "max_allowed": 100,
-  "dispatched_this_cycle": 2
+  "dispatched_this_cycle": 1
  },
  "frontier": {
   "next_epoch": 3,
-  "next_chunk": 250,
+  "next_chunk": 251,
   "exhausted": false,
   "epochs_committed": {
    "1": {
@@ -28,7 +28,7 @@
     "sha256": "cd84475244f4551e"
    }
   },
-  "candidates_scheduled": 32643748,
+  "candidates_scheduled": 32693748,
   "tallies_by_epoch": {
    "3": {
     "found_200": 0,
@@ -71,13 +71,13 @@
   }
  },
  "chunks": {
-  "pending": 159,
-  "running": 20,
-  "retry": 420,
-  "total": 599
+  "pending": 160,
+  "running": 21,
+  "retry": 419,
+  "total": 600
  },
  "candidates_live": {
-  "scheduled_total": 32643748,
+  "scheduled_total": 32693748,
   "unique_confirmed_404": 2700000,
   "unique_found_200": 0,
   "unique_found_invalid": 0,
@@ -100,12 +100,12 @@
   "measured_rps_recent": 70.8,
   "bad_frac_recent": 0.0,
   "reason": "bad=0.000<1% raise x1.15",
-  "recent_window_results": 1
+  "recent_window_results": 2
  },
  "latency_ms_recent": {
-  "p50": 336.1,
-  "p95": 492.1
+  "p50": 343.5,
+  "p95": 468.9
  },
- "cycle_seconds": 9.5,
- "github_api_calls": 18
+ "cycle_seconds": 9.0,
+ "github_api_calls": 16
 }
