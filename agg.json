@@ -311,6 +311,30 @@
    "rps_mean": 70.87,
    "p50": 359.0,
    "p95": 434.5
+  },
+  "e3-chunk-000050": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 50000
+   },
+   "probed": 50000,
+   "finished_utc": "2026-10-05T19:03:47Z",
+   "mode": "full",
+   "rps_mean": 70.82,
+   "p50": 361.4,
+   "p95": 442.8
+  },
+  "e3-chunk-000054": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 50000
+   },
+   "probed": 50000,
+   "finished_utc": "2026-10-05T19:03:36Z",
+   "mode": "full",
+   "rps_mean": 70.81,
+   "p50": 343.6,
+   "p95": 427.3
   }
  },
  "found_ledger": {},
