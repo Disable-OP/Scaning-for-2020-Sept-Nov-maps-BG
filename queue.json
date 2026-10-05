@@ -67,7 +67,7 @@
   },
   "candidates_scheduled": 32693748,
   "batches_seq": 0,
-  "monitor_seq": 64
+  "monitor_seq": 65
  },
  "chunks": {
   "e1-chunk-000000": {
@@ -506,17 +506,17 @@
    "stale_note": "claim_age_min=10 run_active=False"
   },
   "e1-chunk-000030": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "kind": "epoch",
    "epoch": 1,
    "spec_sha256": "fdeab9d3997d4fd5dbb70b8283d3ee17f3b315ed6eec3b3b9a083ad88cf698f0",
    "size": 50000,
    "job_attempts": 3,
-   "attempt_seq": 3,
+   "attempt_seq": 4,
    "requeues": 0,
-   "dispatch_token": "41965cc4c9de",
-   "dispatched_at": "2026-10-05T19:21:11Z",
-   "attempt": 3,
+   "dispatch_token": "3f04fb590956",
+   "dispatched_at": "2026-10-05T20:06:26Z",
+   "attempt": 4,
    "not_before": 1791228767.447351,
    "stale_note": "claim_age_min=10 run_active=False"
   },
@@ -8804,8 +8804,8 @@
  "peak_active_workers": 100,
  "counts": {
   "PENDING": 178,
-  "RUNNING": 3,
-  "RETRY": 419
+  "RUNNING": 4,
+  "RETRY": 418
  },
- "updated_utc": "2026-10-05T20:04:46Z"
+ "updated_utc": "2026-10-05T20:06:27Z"
 }
