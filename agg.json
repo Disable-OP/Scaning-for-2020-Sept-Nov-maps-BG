@@ -1,5 +1,54 @@
 {
- "ingested": {},
+ "ingested": {
+  "e3-chunk-000128": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 50000
+   },
+   "probed": 50000,
+   "finished_utc": "2026-10-05T18:47:47Z",
+   "mode": "full",
+   "rps_mean": 70.85,
+   "p50": 348.2,
+   "p95": 442.6
+  },
+  "e3-chunk-000130": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 50000
+   },
+   "probed": 50000,
+   "finished_utc": "2026-10-05T18:47:52Z",
+   "mode": "full",
+   "rps_mean": 70.79,
+   "p50": 364.8,
+   "p95": 445.0
+  },
+  "e3-chunk-000131": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 50000
+   },
+   "probed": 50000,
+   "finished_utc": "2026-10-05T18:47:55Z",
+   "mode": "full",
+   "rps_mean": 70.88,
+   "p50": 358.2,
+   "p95": 430.9
+  },
+  "e3-chunk-000132": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 50000
+   },
+   "probed": 50000,
+   "finished_utc": "2026-10-05T18:48:05Z",
+   "mode": "full",
+   "rps_mean": 70.78,
+   "p50": 319.5,
+   "p95": 444.1
+  }
+ },
  "found_ledger": {},
  "verified": {}
 }
