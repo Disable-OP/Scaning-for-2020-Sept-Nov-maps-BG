@@ -1,16 +1,16 @@
 # Deep MAPS scan v5 - live status (unattended)
-_Cycle completed 2026-10-05T18:06:54Z (cycle 114.7s, 75 API calls)_
+_Cycle completed 2026-10-05T18:10:17Z (cycle 104.0s, 74 API calls)_
 
 ## Frontier (unbounded deep universe)
 - Next epoch/chunk: **3 / 197** - ladder exhausted: **False**
 - Epochs committed: 3 - candidates scheduled so far: 29,993,748
 
 ## Workers
-- Active workers: **0** (peak 3, cap 100)
-- Dispatched this cycle: 60
+- Active workers: **41** (peak 3, cap 100)
+- Dispatched this cycle: 59
 
 ## Materialized chunks (sliding window)
-- Running **60** / pending **0** / retry **540** / abandoned **0** (total in window 600)
+- Running **119** / pending **0** / retry **481** / abandoned **0** (total in window 600)
 - Completed (pruned to tallies): **0**
 
 ## Candidates (unique, exact tallies)
