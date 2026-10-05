@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-10-05T17:56:39Z",
+ "updated_utc": "2026-10-05T17:58:20Z",
  "campaign": "deep-scan-v5",
  "workflows": {
   "active_workers": 0,
@@ -73,6 +73,6 @@
   "p50": 0.0,
   "p95": 0.0
  },
- "cycle_seconds": 5.7,
+ "cycle_seconds": 5.9,
  "github_api_calls": 15
 }
