@@ -1,16 +1,16 @@
 # Deep MAPS scan v5 - live status (unattended)
-_Cycle completed 2026-10-05T19:27:13Z (cycle 8.5s, 15 API calls)_
+_Cycle completed 2026-10-05T19:29:02Z (cycle 13.8s, 18 API calls)_
 
 ## Frontier (unbounded deep universe)
 - Next epoch/chunk: **3 / 249** - ladder exhausted: **False**
 - Epochs committed: 3 - candidates scheduled so far: 32,593,748
 
 ## Workers
-- Active workers: **100** (peak 100, cap 100)
-- Dispatched this cycle: 0
+- Active workers: **97** (peak 100, cap 100)
+- Dispatched this cycle: 3
 
 ## Materialized chunks (sliding window)
-- Running **45** / pending **150** / retry **405** / abandoned **0** (total in window 600)
+- Running **41** / pending **150** / retry **409** / abandoned **0** (total in window 600)
 - Completed (pruned to tallies): **0**
 
 ## Candidates (unique, exact tallies)
@@ -21,8 +21,8 @@ _Cycle completed 2026-10-05T19:27:13Z (cycle 8.5s, 15 API calls)_
 
 ## Rate & latency (measured)
 - Global budget: 1725.0 rps - bad=0.000<1% raise x1.15
-- Measured mean worker rps (recent window): 70.8 over 30 results
-- Rolling latency p50/p95: 339.4 / 455.5 ms
+- Measured mean worker rps (recent window): 70.8 over 24 results
+- Rolling latency p50/p95: 335.1 / 454.9 ms
 - Recent bad-status fraction (503+timeout+other): 0.0000
 
 Rule: HTTP 503 is UNDETERMINED and is never reported as a miss; a map exists only after direct ZIP + CRC + SHA-256 verification; all v1-confirmed candidates are excluded, never re-probed.
