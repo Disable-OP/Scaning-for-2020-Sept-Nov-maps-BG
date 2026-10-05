@@ -1,27 +1,28 @@
-# Distributed MAPS scan — live status
-_Cycle completed 2026-10-04T23:46:13Z (cycle 5.7s, 13 API calls)_
+# Deep MAPS scan v5 - live status (unattended)
+_Cycle completed 2026-10-05T17:26:58Z (cycle 95.6s, 75 API calls)_
+
+## Frontier (unbounded deep universe)
+- Next epoch/chunk: **3 / 197** - ladder exhausted: **False**
+- Epochs committed: 3 - candidates scheduled so far: 29,993,748
 
 ## Workers
-- Active workers: **0** (peak 99, cap 100)
-- Dispatched this cycle: 0
+- Active workers: **1** (peak 3, cap 100)
+- Dispatched this cycle: 60
 
-## Chunks
-- Completed **905** / running **0** / pending **0** / retry **0** / failed **0** (total 905)
+## Materialized chunks (sliding window)
+- Running **306** / pending **294** / retry **0** / abandoned **0** (total in window 600)
+- Completed (pruned to tallies): **0**
 
-## Candidates (unique)
-- Scheduled total: 18000252
-- Confirmed 404: 18000253
+## Candidates (unique, exact tallies)
+- Confirmed 404: 0
 - FOUND 200: **0** (independently verified maps: **0**)
-- Undetermined 503/timeout (never counted as misses): 3
-- Remaining unsearched: 0
+- Undetermined 503/timeout (never counted as misses): 0
+- Other errors: 0
 
 ## Rate & latency (measured)
-- Global budget: 16000.0 rps — bad=0.000<1% raise x1.15
-- Measured mean worker rps (recent window): 35.3 over 7 results
-- Rolling latency p50/p95: 875.8 / 926.4 ms
+- Global budget: 1500.0 rps - insufficient data
+- Measured mean worker rps (recent window): 0.0 over 0 results
+- Rolling latency p50/p95: 0.0 / 0.0 ms
 - Recent bad-status fraction (503+timeout+other): 0.0000
 
-## Retry
-- Retry batches: 4 (candidate probe-round cap 3, failed chunks 0)
-
-Rule: HTTP 503 is UNDETERMINED and is never reported as a miss; a map exists only after direct ZIP + CRC + SHA-256 verification.
+Rule: HTTP 503 is UNDETERMINED and is never reported as a miss; a map exists only after direct ZIP + CRC + SHA-256 verification; all v1-confirmed candidates are excluded, never re-probed.
