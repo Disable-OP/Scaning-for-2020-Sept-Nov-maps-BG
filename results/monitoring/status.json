@@ -1,11 +1,11 @@
 {
- "updated_utc": "2026-10-05T20:18:41Z",
+ "updated_utc": "2026-10-05T20:29:21Z",
  "campaign": "deep-scan-v5",
  "workflows": {
-  "active_workers": 99,
+  "active_workers": 93,
   "peak_active_workers": 100,
   "max_allowed": 100,
-  "dispatched_this_cycle": 1
+  "dispatched_this_cycle": 7
  },
  "frontier": {
   "next_epoch": 3,
@@ -71,9 +71,9 @@
   }
  },
  "chunks": {
-  "pending": 182,
-  "running": 23,
-  "retry": 395,
+  "pending": 205,
+  "running": 25,
+  "retry": 370,
   "total": 600
  },
  "candidates_live": {
@@ -96,16 +96,16 @@
   "abandoned_chunks": 0
  },
  "rate": {
-  "global_budget_rps": 1725.0,
-  "measured_rps_recent": 70.8,
+  "global_budget_rps": 1500.0,
+  "measured_rps_recent": 0.0,
   "bad_frac_recent": 0.0,
-  "reason": "bad=0.000<1% raise x1.15",
-  "recent_window_results": 1
+  "reason": "insufficient data",
+  "recent_window_results": 0
  },
  "latency_ms_recent": {
-  "p50": 350.8,
-  "p95": 445.7
+  "p50": 0.0,
+  "p95": 0.0
  },
- "cycle_seconds": 7.5,
- "github_api_calls": 16
+ "cycle_seconds": 17.7,
+ "github_api_calls": 23
 }
