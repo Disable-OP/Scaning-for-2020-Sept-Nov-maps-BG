@@ -67,7 +67,7 @@
   },
   "candidates_scheduled": 32693748,
   "batches_seq": 0,
-  "monitor_seq": 68
+  "monitor_seq": 69
  },
  "chunks": {
   "e1-chunk-000000": {
@@ -611,47 +611,47 @@
    "stale_note": "claim_age_min=9 run_active=False"
   },
   "e1-chunk-000037": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "kind": "epoch",
    "epoch": 1,
    "spec_sha256": "fdeab9d3997d4fd5dbb70b8283d3ee17f3b315ed6eec3b3b9a083ad88cf698f0",
    "size": 50000,
    "job_attempts": 3,
-   "attempt_seq": 3,
+   "attempt_seq": 4,
    "requeues": 0,
-   "dispatch_token": "b22d23e96b1e",
-   "dispatched_at": "2026-10-05T19:21:22Z",
-   "attempt": 3,
+   "dispatch_token": "e049e63b9ed3",
+   "dispatched_at": "2026-10-05T20:13:17Z",
+   "attempt": 4,
    "not_before": 1791228767.4476593,
    "stale_note": "claim_age_min=9 run_active=False"
   },
   "e1-chunk-000038": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "kind": "epoch",
    "epoch": 1,
    "spec_sha256": "fdeab9d3997d4fd5dbb70b8283d3ee17f3b315ed6eec3b3b9a083ad88cf698f0",
    "size": 50000,
    "job_attempts": 3,
-   "attempt_seq": 3,
+   "attempt_seq": 4,
    "requeues": 0,
-   "dispatch_token": "9566beff2a60",
-   "dispatched_at": "2026-10-05T19:23:07Z",
-   "attempt": 3,
+   "dispatch_token": "f5f0d6fad919",
+   "dispatched_at": "2026-10-05T20:13:19Z",
+   "attempt": 4,
    "not_before": 1791228883.2666798,
    "stale_note": "claim_age_min=10 run_active=False"
   },
   "e1-chunk-000039": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "kind": "epoch",
    "epoch": 1,
    "spec_sha256": "fdeab9d3997d4fd5dbb70b8283d3ee17f3b315ed6eec3b3b9a083ad88cf698f0",
    "size": 50000,
    "job_attempts": 3,
-   "attempt_seq": 3,
+   "attempt_seq": 4,
    "requeues": 0,
-   "dispatch_token": "2696ef978736",
-   "dispatched_at": "2026-10-05T19:23:09Z",
-   "attempt": 3,
+   "dispatch_token": "45181c400af9",
+   "dispatched_at": "2026-10-05T20:13:20Z",
+   "attempt": 4,
    "not_before": 1791228883.2667284,
    "stale_note": "claim_age_min=10 run_active=False"
   },
@@ -8804,8 +8804,8 @@
  "peak_active_workers": 100,
  "counts": {
   "PENDING": 181,
-  "RUNNING": 7,
-  "RETRY": 412
+  "RUNNING": 10,
+  "RETRY": 409
  },
- "updated_utc": "2026-10-05T20:11:38Z"
+ "updated_utc": "2026-10-05T20:13:22Z"
 }
