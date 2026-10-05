@@ -218,10 +218,14 @@ async def run(args) -> int:
                 print(f"FATAL: epochs/epoch_{args.epoch}.json not found on {branch}",
                       flush=True)
                 return 5
+            if isinstance(raw, dict):
+                raw = json.dumps(raw)  # defensive: already-parsed body
             if isinstance(raw, bytes):
-                raw = raw.decode()
-            spec_path = ".epoch_spec.json"
-            Path(spec_path).write_text(raw)
+                spec_path = ".epoch_spec.json"
+                Path(spec_path).write_bytes(raw)
+            else:
+                spec_path = ".epoch_spec.json"
+                Path(spec_path).write_text(str(raw))
     else:
         spec_path = args.spec or "scan/spec_v1.json"
     spec = G.load_spec(spec_path)

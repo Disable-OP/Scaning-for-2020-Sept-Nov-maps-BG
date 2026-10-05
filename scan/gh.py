@@ -26,7 +26,7 @@ class GH:
 
     # ------------------------------------------------------------------ core
     def _req(self, method: str, url: str, *, body=None, headers=None,
-             timeout=60, retries=4):
+             timeout=60, retries=4, parse=True):
         h = {"Authorization": f"Bearer {self.token}",
              "Accept": "application/vnd.github+json",
              "User-Agent": "blockman-scan-controller/1.0"}
@@ -43,6 +43,8 @@ class GH:
                 self.calls += 1
                 with urllib.request.urlopen(req, timeout=timeout) as r:
                     payload = r.read()
+                    if not parse:
+                        return r.status, payload, dict(r.headers)
                     try:
                         parsed = json.loads(payload) if payload else None
                     except (ValueError, UnicodeDecodeError):
@@ -50,6 +52,8 @@ class GH:
                     return r.status, parsed, dict(r.headers)
             except urllib.error.HTTPError as e:
                 payload = e.read()
+                if not parse:
+                    return e.code, payload, dict(e.headers or {})
                 try:
                     parsed = json.loads(payload) if payload else None
                 except (ValueError, UnicodeDecodeError):
@@ -67,9 +71,11 @@ class GH:
                 raise
         raise last  # pragma: no cover
 
-    def api(self, method: str, path: str, *, body=None, headers=None, timeout=60):
+    def api(self, method: str, path: str, *, body=None, headers=None, timeout=60,
+            parse=True):
         url = path if path.startswith("http") else f"{API}{path}"
-        return self._req(method, url, body=body, headers=headers, timeout=timeout)
+        return self._req(method, url, body=body, headers=headers, timeout=timeout,
+                         parse=parse)
 
     # ----------------------------------------------------------------- repos
     def get_ref(self, branch: str):
@@ -88,14 +94,15 @@ class GH:
         return st == 201
 
     def get_file(self, path: str, branch: str):
+        """Raw file bytes (or None). Never JSON-parses: callers that want
+        objects use get_file_json."""
         from urllib.parse import quote
         st, d, _ = self.api("GET",
                             f"/repos/{self.owner}/{self.repo}/contents/{quote(path)}?ref={quote(branch)}",
                             headers={"Accept": "application/vnd.github.raw"},
-                            body=None)
+                            body=None, parse=False)
         if st == 200:
-            resp = d
-            return resp
+            return d  # raw bytes
         if st == 404:
             return None
         raise RuntimeError(f"get_file {path} -> {st}")
@@ -105,7 +112,7 @@ class GH:
         if raw is None:
             return None
         if isinstance(raw, (dict, list)):
-            return raw  # API already parsed the JSON body
+            return raw  # defensive: already-parsed body
         if isinstance(raw, bytes):
             raw = raw.decode()
         return json.loads(raw)
