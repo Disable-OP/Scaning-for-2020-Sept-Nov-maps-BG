@@ -1,15 +1,15 @@
 {
- "updated_utc": "2026-10-05T18:45:37Z",
+ "updated_utc": "2026-10-05T18:59:16Z",
  "campaign": "deep-scan-v5",
  "workflows": {
-  "active_workers": 39,
-  "peak_active_workers": 15,
+  "active_workers": 90,
+  "peak_active_workers": 99,
   "max_allowed": 100,
-  "dispatched_this_cycle": 60
+  "dispatched_this_cycle": 10
  },
  "frontier": {
   "next_epoch": 3,
-  "next_chunk": 197,
+  "next_chunk": 212,
   "exhausted": false,
   "epochs_committed": {
    "1": {
@@ -28,25 +28,47 @@
     "sha256": "cd84475244f4551e"
    }
   },
-  "candidates_scheduled": 29993748,
-  "tallies_by_epoch": {},
+  "candidates_scheduled": 30743748,
+  "tallies_by_epoch": {
+   "3": {
+    "found_200": 0,
+    "found_invalid": 0,
+    "confirmed_404": 600000,
+    "undetermined": 0,
+    "other": 0,
+    "probed": 600000,
+    "chunks_done": 12,
+    "head_attempts": 600000
+   },
+   "2": {
+    "found_200": 0,
+    "found_invalid": 0,
+    "confirmed_404": 300000,
+    "undetermined": 0,
+    "other": 0,
+    "probed": 300000,
+    "chunks_done": 6,
+    "head_attempts": 300000
+   }
+  },
   "tallies_total": {
    "found_200": 0,
    "found_invalid": 0,
-   "confirmed_404": 0,
+   "confirmed_404": 900000,
    "undetermined": 0,
    "other": 0,
-   "probed": 0
+   "probed": 900000
   }
  },
  "chunks": {
-  "retry": 429,
-  "running": 171,
-  "total": 600
+  "retry": 542,
+  "pending": 19,
+  "running": 36,
+  "total": 597
  },
  "candidates_live": {
-  "scheduled_total": 29993748,
-  "unique_confirmed_404": 0,
+  "scheduled_total": 30743748,
+  "unique_confirmed_404": 900000,
   "unique_found_200": 0,
   "unique_found_invalid": 0,
   "unique_undetermined": 0,
@@ -64,16 +86,16 @@
   "abandoned_chunks": 0
  },
  "rate": {
-  "global_budget_rps": 1500.0,
-  "measured_rps_recent": 0.0,
+  "global_budget_rps": 1725.0,
+  "measured_rps_recent": 70.8,
   "bad_frac_recent": 0.0,
-  "reason": "insufficient data",
-  "recent_window_results": 0
+  "reason": "bad=0.000<1% raise x1.15",
+  "recent_window_results": 15
  },
  "latency_ms_recent": {
-  "p50": 0.0,
-  "p95": 0.0
+  "p50": 342.3,
+  "p95": 439.4
  },
- "cycle_seconds": 110.8,
- "github_api_calls": 90
+ "cycle_seconds": 29.3,
+ "github_api_calls": 38
 }
