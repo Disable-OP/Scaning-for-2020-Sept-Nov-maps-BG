@@ -37,20 +37,22 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Skip if a real controller cycle just completed (< 2 min ago)
+      - name: Skip if a controller cycle is already active or just ran
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          LAST=$(gh run list --workflow=controller.yml --status=completed \
-                 --limit 1 --json updatedAt --jq '.[0].updatedAt')
-          echo "last completed controller at: $LAST"
-          if [ -n "$LAST" ]; then
+          LAST=$(gh run list --workflow=controller.yml --limit 1 \
+                 --json createdAt,updatedAt,status,conclusion)
+          echo "latest controller run: $LAST"
+          CREATED=$(echo "$LAST" | jq -r '.[0].createdAt // empty')
+          if [ -n "$CREATED" ]; then
             NOW=$(date -u +%s)
-            LASTTS=$(date -u -d "$LAST" +%s)
-            AGE=$(( NOW - LASTTS ))
-            echo "age seconds: $AGE"
-            if [ "$AGE" -lt 120 ]; then
-              echo "a controller cycle just ran; exiting to avoid duplicate work"
+            CREATEDTS=$(date -u -d "$CREATED" +%s)
+            AGE=$(( NOW - CREATEDTS ))
+            echo "age since latest run creation: $AGE s"
+            if [ "$AGE" -lt 150 ]; then
+              echo "a controller run was created < 150s ago (active or just finished);"
+              echo "skipping to avoid dispatch storm / duplicate work"
               exit 0
             fi
           fi

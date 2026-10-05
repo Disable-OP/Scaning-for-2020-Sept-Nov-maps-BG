@@ -56,7 +56,7 @@ MAX_ACTIVE_WORKERS = int(os.environ.get("MAX_ACTIVE_WORKERS", "100"))
 MAX_DISPATCH_PER_CYCLE = int(os.environ.get("MAX_DISPATCH_PER_CYCLE", "60"))
 QUEUE_WINDOW = int(os.environ.get("DEEP_QUEUE_WINDOW", "600"))
 CHUNK_DEADLINE_MIN = 100
-CLAIM_GRACE_MIN = 30
+CLAIM_GRACE_MIN = 8            # dispatched-but-no-claim grace window
 JOB_ATTEMPT_CAP = 4
 CHUNK_REQUEUE_CAP = 3       # requeues after FAILED before ABANDONED
 CANDIDATE_MAX_ROUNDS = 3
@@ -460,8 +460,20 @@ def main() -> int:
     log(f"global rate: {gr_out['budget_rps']} rps ({reason})")
 
     # ------------------------------------------------------- dispatching ----
+    # Run-listing can lag behind dispatches (eventual consistency); treat
+    # recently-dispatched RUNNING entries as presumed active so a listing lag
+    # can never cause an over-dispatch storm.
+    presumed_active = active_now
+    recent_running = sum(
+        1 for e in chunks.values()
+        if e.get("status") == "RUNNING"
+        and now() - parse_utc(e.get("dispatched_at", "")) < 180)
+    if recent_running > presumed_active:
+        presumed_active = recent_running
+        log(f"dispatch capacity: runs listed {active_now}, "
+            f"recent dispatches {recent_running} -> using {presumed_active}")
     dispatched = []
-    if active_now < MAX_ACTIVE_WORKERS:
+    if presumed_active < MAX_ACTIVE_WORKERS:
         def dispatchable(k, e):
             return (e.get("status") in ("PENDING", "RETRY")
                     and e.get("job_attempts", 0) < JOB_ATTEMPT_CAP
@@ -471,7 +483,7 @@ def main() -> int:
         batch_keys = sorted(k for k, e in chunks.items()
                             if dispatchable(k, e) and e["kind"] == "retry_batch")
         for key in spec_keys + batch_keys:
-            if active_now + len(dispatched) >= MAX_ACTIVE_WORKERS:
+            if presumed_active + len(dispatched) >= MAX_ACTIVE_WORKERS:
                 break
             if len(dispatched) >= MAX_DISPATCH_PER_CYCLE:
                 break
@@ -503,7 +515,7 @@ def main() -> int:
                 log(f"dispatch API failed for {key}; left PENDING")
         if dispatched:
             log(f"dispatched {len(dispatched)} workers "
-                f"(active {active_now} -> {active_now + len(dispatched)})")
+                f"(active {presumed_active} -> {presumed_active + len(dispatched)})")
     for key in pruned_keys:
         if key in claim_keys:
             commit[f"claims/{key}.json"] = None  # tombstone -> delete
@@ -592,7 +604,7 @@ def main() -> int:
     commit["agg.json"] = json.dumps(agg, indent=1) + "\n"
 
     # ------------------------------------------------------- monitoring -----
-    status = build_status(queue, frontier, counts, active_now, dispatched,
+    status = build_status(queue, frontier, counts, presumed_active, dispatched,
                           gr_out, bad_frac, recent, agg, gh, t_cycle0)
     commit["monitoring/status.json"] = json.dumps(status, indent=1) + "\n"
     report = render_report(status)

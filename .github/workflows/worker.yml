@@ -90,7 +90,7 @@ jobs:
           if-no-files-found: ignore
 
       - name: Trigger controller refill (frees the slot immediately)
-        if: always()
+        if: success()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh workflow run controller.yml -f trigger=worker-done || true
