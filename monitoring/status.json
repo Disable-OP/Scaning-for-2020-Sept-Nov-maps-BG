@@ -1,11 +1,11 @@
 {
- "updated_utc": "2026-10-05T19:23:35Z",
+ "updated_utc": "2026-10-05T19:25:25Z",
  "campaign": "deep-scan-v5",
  "workflows": {
-  "active_workers": 83,
+  "active_workers": 96,
   "peak_active_workers": 100,
   "max_allowed": 100,
-  "dispatched_this_cycle": 17
+  "dispatched_this_cycle": 4
  },
  "frontier": {
   "next_epoch": 3,
@@ -61,8 +61,8 @@
   }
  },
  "chunks": {
-  "running": 55,
-  "retry": 395,
+  "retry": 393,
+  "running": 57,
   "pending": 150,
   "total": 600
  },
@@ -90,12 +90,12 @@
   "measured_rps_recent": 70.8,
   "bad_frac_recent": 0.0,
   "reason": "bad=0.000<1% raise x1.15",
-  "recent_window_results": 34
+  "recent_window_results": 31
  },
  "latency_ms_recent": {
-  "p50": 341.2,
-  "p95": 454.0
+  "p50": 339.8,
+  "p95": 455.1
  },
- "cycle_seconds": 34.7,
- "github_api_calls": 32
+ "cycle_seconds": 15.1,
+ "github_api_calls": 19
 }
