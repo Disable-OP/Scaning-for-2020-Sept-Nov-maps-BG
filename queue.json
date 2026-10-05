@@ -67,7 +67,7 @@
   },
   "candidates_scheduled": 32643748,
   "batches_seq": 0,
-  "monitor_seq": 60
+  "monitor_seq": 61
  },
  "chunks": {
   "e1-chunk-000000": {
@@ -8812,5 +8812,5 @@
   "RUNNING": 19,
   "RETRY": 422
  },
- "updated_utc": "2026-10-05T19:57:57Z"
+ "updated_utc": "2026-10-05T19:59:39Z"
 }
