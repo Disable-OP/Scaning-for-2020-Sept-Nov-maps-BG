@@ -37,29 +37,46 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Skip if a controller cycle is already active or just ran
+      - name: Skip if another controller cycle is already active or just ran
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          LAST=$(gh run list --workflow=controller.yml --limit 1 \
-                 --json createdAt,updatedAt,status,conclusion)
-          echo "latest controller run: $LAST"
-          CREATED=$(echo "$LAST" | jq -r '.[0].createdAt // empty')
+          LAST=$(gh run list --workflow=controller.yml --limit 6 \
+                 --json databaseId,createdAt,status,conclusion | \
+                 jq -c '[.[] | select(.databaseId != '"${{ github.run_id }}"')][0]')
+          echo "latest other controller run: $LAST"
+          CREATED=$(echo "$LAST" | jq -r '.createdAt // empty')
           if [ -n "$CREATED" ]; then
             NOW=$(date -u +%s)
             CREATEDTS=$(date -u -d "$CREATED" +%s)
             AGE=$(( NOW - CREATEDTS ))
-            echo "age since latest run creation: $AGE s"
+            echo "age since latest other run creation: $AGE s"
             if [ "$AGE" -lt 150 ]; then
-              echo "a controller run was created < 150s ago (active or just finished);"
-              echo "skipping to avoid dispatch storm / duplicate work"
+              echo "another controller run was created < 150s ago; skipping"
               exit 0
             fi
           fi
 
-      - name: Reconcile queue, dispatch workers, tune global rate, monitor
+      - name: Reconcile loop (ingest, dispatch, tune rate; ~45 min per run)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MAX_ACTIVE_WORKERS: ${{ github.event.inputs.max_workers || '100' }}
           MAX_DISPATCH_PER_CYCLE: '60'
-        run: python scan/controller.py
+        run: |
+          for i in $(seq 1 28); do
+            echo "=== controller cycle $i/28 ==="
+            python scan/controller.py || exit 1
+            sleep 90
+          done
+
+      - name: Hand off orchestration (unattended self-chain)
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh workflow run controller.yml -f trigger=self-chain; then
+            echo "next controller run dispatched"
+          else
+            echo "self-chain dispatch failed; cron */5 remains as fallback" >&2
+            exit 1
+          fi
