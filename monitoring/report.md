@@ -1,5 +1,5 @@
 # Deep MAPS scan v5 - live status (unattended)
-_Cycle completed 2026-10-05T17:49:51Z (cycle 6.7s, 15 API calls)_
+_Cycle completed 2026-10-05T17:51:32Z (cycle 5.6s, 15 API calls)_
 
 ## Frontier (unbounded deep universe)
 - Next epoch/chunk: **3 / 197** - ladder exhausted: **False**
