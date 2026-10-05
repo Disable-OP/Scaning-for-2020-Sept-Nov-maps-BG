@@ -73,9 +73,11 @@ def num_chunks(spec: dict) -> int:
 
 
 def candidate_at(spec: dict, ordinal: int) -> tuple[str, int, str]:
-    """Return (map_id, ts_ms, tier_id) for stream ordinal. O(#tiers*log(range))"""
+    """Return (map_id, ts_ms, tier_id) for stream ordinal. O(#tiers*log(range))
+    via a per-tier cumulative-offset cache; falls back to linear scan."""
     if ordinal < 0 or ordinal >= total_candidates(spec):
         raise IndexError(f"ordinal {ordinal} outside universe")
+    import bisect
     for t in spec["tiers"]:
         c = tier_count(t, spec)
         if ordinal < c:
@@ -83,14 +85,35 @@ def candidate_at(spec: dict, ordinal: int) -> tuple[str, int, str]:
                 items = list(_tier_items(t, spec))
                 _kind, m, a = items[ordinal]
                 return m, a, t["tier_id"]
-            for r in t["ranges"]:
-                span = r["end_offset_ms"] - r["start_offset_ms"]
-                if ordinal < span:
-                    return r["map_id"], r["base"] + r["start_offset_ms"] + ordinal, t["tier_id"]
-                ordinal -= span
-            raise IndexError("unreachable")
+            starts, acc, _tot, spans = _tier_prefix(t)
+            i = bisect.bisect_right(acc, ordinal) - 1
+            while i >= 0 and spans[i] <= 0:
+                i -= 1
+            if i < 0:
+                raise IndexError("unreachable")
+            r = t["ranges"][i]
+            return (r["map_id"],
+                    r["base"] + r["start_offset_ms"] + (ordinal - acc[i]),
+                    t["tier_id"])
         ordinal -= c
     raise IndexError("unreachable")
+
+
+def _tier_prefix(tier: dict):
+    """(range_starts, cumulative_offsets, total, spans) cached on the tier.
+    acc is strictly usable for bisect regardless of range order."""
+    c = tier.get("_prefix_cache")
+    if c is None:
+        starts, acc, spans = [], [], []
+        tot = 0
+        for r in tier["ranges"]:
+            starts.append(r["base"] + r["start_offset_ms"])
+            acc.append(tot)
+            spans.append(max(0, r["end_offset_ms"] - r["start_offset_ms"]))
+            tot += spans[-1]
+        c = (starts, acc, tot, spans)
+        tier["_prefix_cache"] = c
+    return c
 
 
 def iter_chunk(spec: dict, chunk_id: int):

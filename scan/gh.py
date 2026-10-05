@@ -121,8 +121,9 @@ class GH:
     # --------------------------------------------------- atomic multi-commit
     def commit_files(self, branch: str, files: dict, message: str,
                      max_rounds: int = 6) -> str:
-        """Atomically commit {path: bytes|str} to branch via Git Data API.
-        Retries on ref-update races (409/422) by rebasing onto fresh head."""
+        """Atomically commit {path: bytes|str|None} to branch via Git Data API.
+        None deletes the path (tombstone). Retries on ref-update races
+        (409/422) by rebasing onto fresh head."""
         norm = {}
         for p, content in files.items():
             norm[p] = content.encode() if isinstance(content, str) else content
@@ -137,6 +138,11 @@ class GH:
             base_tree = base_commit["tree"]["sha"]
             tree_entries = []
             for p, content in norm.items():
+                if content is None:
+                    # deletion entry: blob sha null removes the path
+                    tree_entries.append({"path": p, "mode": "100644",
+                                         "type": "blob", "sha": None})
+                    continue
                 st, blob, _ = self.api("POST", f"/repos/{self.owner}/{self.repo}/git/blobs",
                                        body={"content": base64.b64encode(content).decode(),
                                              "encoding": "base64"})
@@ -144,6 +150,8 @@ class GH:
                     raise RuntimeError(f"blob create failed {p} ({st})")
                 tree_entries.append({"path": p, "mode": "100644",
                                      "type": "blob", "sha": blob["sha"]})
+            if not tree_entries:
+                return head_sha
             st, tree, _ = self.api("POST", f"/repos/{self.owner}/{self.repo}/git/trees",
                                    body={"base_tree": base_tree, "tree": tree_entries})
             if st != 201:

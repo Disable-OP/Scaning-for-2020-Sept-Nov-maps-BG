@@ -4,9 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       chunk_id:
-        description: 'Spec chunk ordinal (0-based)'
+        description: 'Chunk ordinal inside its epoch (0-based)'
         required: false
         default: '0'
+      epoch:
+        description: 'Deep-scan epoch number (0 = legacy v1 spec)'
+        required: false
+        default: '1'
       dispatch_token:
         description: 'Ownership token issued by the controller'
         required: true
@@ -24,7 +28,11 @@ on:
         required: false
         default: '0'
       retry_batch:
-        description: 'Retry-batch path inside the scan-state branch (empty = spec chunk)'
+        description: 'Retry-batch path inside the scan-state branch (empty = epoch chunk)'
+        required: false
+        default: ''
+      resume_from_result:
+        description: 'PARTIAL result path to resume from (set by controller)'
         required: false
         default: ''
 
@@ -33,13 +41,13 @@ permissions:
   actions: write
 
 concurrency:
-  group: worker-${{ github.event.inputs.chunk_id }}-${{ github.event.inputs.retry_batch }}-${{ github.run_id }}
+  group: worker-${{ github.event.inputs.epoch }}-${{ github.event.inputs.chunk_id }}-${{ github.event.inputs.retry_batch }}-${{ github.run_id }}
   cancel-in-progress: false
 
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 50
+    timeout-minutes: 55
     steps:
       - name: Checkout scan code
         uses: actions/checkout@v4
@@ -62,11 +70,13 @@ jobs:
         run: |
           python scan/scan_worker.py \
             --chunk-id "${{ github.event.inputs.chunk_id }}" \
+            --epoch "${{ github.event.inputs.epoch }}" \
             --dispatch-token "${{ github.event.inputs.dispatch_token }}" \
             --attempt "${{ github.event.inputs.attempt }}" \
             --mode "${{ github.event.inputs.mode }}" \
             --max-probes "${{ github.event.inputs.max_probes }}" \
             --retry-batch "${{ github.event.inputs.retry_batch }}" \
+            --resume-from-result "${{ github.event.inputs.resume_from_result }}" \
             --state-branch scan-state \
             --out-dir worker_out
 

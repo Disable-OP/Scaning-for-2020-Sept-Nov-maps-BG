@@ -37,7 +37,7 @@ from zipcheck import verify_zip_bytes  # noqa: E402
 
 HOST = "staticgs.sandboxol.com"
 URL_FMT = "https://{host}/sandbox/games/maps/{{map_id}}.{{ts_ms}}.zip".format(host=HOST)
-UA = "blockman-go-archival-scan/4.0 (maps-path existence research; adaptive rate; no bypass)"
+UA = "blockman-go-archival-scan/5.0 (maps-path deep-scan research; adaptive rate; no bypass)"
 
 MIN_RPS = 12.0
 START_RPS = 25.0
@@ -121,7 +121,7 @@ def build_candidates(spec: dict, args) -> tuple[list[tuple[int, str, int]], str]
     out = [(o, m, ts) for o, m, ts, _t in G.iter_chunk(spec, args.chunk_id)]
     if args.max_probes:
         out = out[:args.max_probes]
-    return out, "spec"
+    return out, (f"epoch:{args.epoch}" if args.epoch > 0 else "spec")
 
 
 async def download_and_verify(session, url: str, map_id: str, ts_ms: int,
@@ -203,26 +203,46 @@ async def probe_one(session, map_id: str, ts_ms: int, aimd: AIMD,
 
 
 async def run(args) -> int:
-    spec = G.load_spec(args.spec)
-    if args.spec_sha and spec["_sha256"] != args.spec_sha:
-        print(f"FATAL: spec digest mismatch {spec['_sha256']} != {args.spec_sha}",
-              flush=True)
-        return 5
-
     from gh import GH
     owner, repo = os.environ.get("GITHUB_REPOSITORY", "local/local").split("/")
     gh = GH(os.environ.get("GITHUB_TOKEN", ""), owner, repo)
     branch = args.state_branch
 
+    # ---- spec resolution: v1 spec (epoch 0) or committed deep epoch spec ----
+    if args.epoch > 0:
+        if args.spec:
+            spec_path = args.spec  # local-testing override
+        else:
+            raw = gh.get_file(f"epochs/epoch_{args.epoch}.json", branch)
+            if raw is None:
+                print(f"FATAL: epochs/epoch_{args.epoch}.json not found on {branch}",
+                      flush=True)
+                return 5
+            if isinstance(raw, bytes):
+                raw = raw.decode()
+            spec_path = ".epoch_spec.json"
+            Path(spec_path).write_text(raw)
+    else:
+        spec_path = args.spec or "scan/spec_v1.json"
+    spec = G.load_spec(spec_path)
+    if args.spec_sha and spec["_sha256"] != args.spec_sha:
+        print(f"FATAL: spec digest mismatch {spec['_sha256']} != {args.spec_sha}",
+              flush=True)
+        return 5
+
     batch_stem = Path(args.retry_batch).stem if args.retry_batch else ""
-    key = (("test-" if args.mode == "test" else "")
-           + (batch_stem if args.retry_batch
-              else f"chunk-{args.chunk_id:06d}"))
+    chunk_key = (batch_stem if args.retry_batch else
+                 (f"e{args.epoch}-chunk-{args.chunk_id:06d}" if args.epoch > 0
+                  else f"chunk-{args.chunk_id:06d}"))
+    key = (("test-" if args.mode == "test" else "") + chunk_key)
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     found_dir = out_dir / "found"
 
     # -------- ownership validation (reject duplicate ownership) ------------
+    # A re-run is allowed ONLY to resume from an earlier PARTIAL result of the
+    # same queue entry (attempt <= current); a full/other result rejects.
+    prior_result = None
     if args.skip_ownership:
         print("LOCAL-TEST MODE: ownership checks skipped", flush=True)
     else:
@@ -236,7 +256,7 @@ async def run(args) -> int:
             if entry.get("status") == "PENDING" and attempt_read < 2:
                 # possible controller commit lag (dispatch -> queue commit);
                 # re-read briefly. A RUNNING entry with a foreign token or an
-                # existing result file is still rejected immediately below.
+                # existing full result file is still rejected immediately below.
                 time.sleep(15)
                 continue
             break
@@ -245,8 +265,13 @@ async def run(args) -> int:
                   f"token_match={entry.get('dispatch_token') == args.dispatch_token}",
                   flush=True)
             return 3
-        if gh.get_file(f"results/{key}.result.json", branch) is not None:
-            print(f"OWNERSHIP-REJECTED: {key} already has a result file", flush=True)
+        prior_result = gh.get_file_json(f"results/{key}.result.json", branch)
+        if prior_result is not None and (
+                prior_result.get("outcome") != "PARTIAL"
+                or int(prior_result.get("attempt", 0)) > int(args.attempt)):
+            print(f"OWNERSHIP-REJECTED: {key} has result file "
+                  f"outcome={prior_result.get('outcome')} "
+                  f"attempt={prior_result.get('attempt')}", flush=True)
             return 3
         if entry.get("spec_sha256") not in (None, spec["_sha256"]):
             print("FATAL: queue spec digest mismatch", flush=True)
@@ -263,30 +288,55 @@ async def run(args) -> int:
         Path(args.retry_batch).write_text(json.dumps(rb))
 
     candidates, cand_source = build_candidates(spec, args)
+    scheduled_full = len(candidates)  # full scheduled count (before resume skip)
     # -------- resume support: skip ordinals already confirmed in PARTIAL ----
+    # Auto-resume from the entry's own PARTIAL result (or explicit path).
     resume_note = None
-    if args.resume_from_result:
+    carried_head_attempts = 0
+    carried: dict[int, tuple[str, dict | None]] = {}
+    prior = prior_result
+    if prior is None and args.resume_from_result:
         try:
             prior = gh.get_file_json(args.resume_from_result, branch)
-            if prior and prior.get("outcome") == "PARTIAL" and prior.get("default_status"):
+        except Exception:
+            prior = None
+    if prior is not None:
+        try:
+            if prior.get("outcome") == "PARTIAL" and prior.get("default_status"):
                 pdef = prior["default_status"]
-                # worker exception keys are GLOBAL ordinals for spec chunks
+                src = prior.get("candidate_source") or ""
                 off = (prior.get("chunk_id") or 0) * spec["chunk_size"] \
-                    if prior.get("candidate_source") == "spec" else 0
+                    if (src == "spec" or src.startswith("epoch:")) else 0
                 prior_status = {}
                 for pos in range(prior.get("candidates_scheduled", 0)):
                     prior_status[pos] = pdef
                 for pos, st in prior.get("exceptions", []):
                     prior_status[int(pos) - off] = st
+                prior_found_by_url = {f["url"]: f for f in prior.get("found", [])}
                 skip = {pos for pos, st in prior_status.items()
                         if st in (ST404, ST200)}
-                prior_found_urls = {f["url"] for f in prior.get("found", [])}
+                skip_g = {pos + off for pos in skip}  # candidates carry GLOBAL ordinals
                 before = len(candidates)
-                candidates = [(p, m, t) for (p, m, t) in candidates
-                              if p not in skip
-                              and URL_FMT.format(map_id=m, ts_ms=t) not in prior_found_urls]
-                resume_note = (f"resume: skipped {before - len(candidates)} candidates "
-                               f"already confirmed/found in prior partial")
+                kept = []
+                for (p, m, t) in candidates:
+                    u = URL_FMT.format(map_id=m, ts_ms=t)
+                    if p in skip_g or u in prior_found_by_url:
+                        st = prior_status.get(p - off)
+                        rec = prior_found_by_url.get(u)
+                        if u in prior_found_by_url:
+                            st = ST200 if (rec or {}).get("zip_ok") else STINV
+                        carried[p] = (st, rec)
+                    else:
+                        kept.append((p, m, t))
+                candidates = kept
+                carried_head_attempts = int(prior.get("head_attempts_total", 0))
+                resume_note = (f"resume from attempt {prior.get('attempt')}: "
+                               f"skipped {before - len(candidates)} "
+                               f"confirmed/found, carrying them into accounting")
+            elif prior_result is not None:
+                print(f"OWNERSHIP-REJECTED: {key} prior result not resumable",
+                      flush=True)
+                return 3
         except Exception as e:
             resume_note = f"resume load failed ({e}); full re-probe"
 
@@ -404,8 +454,11 @@ async def run(args) -> int:
 
     # -------- aggregate result ----------------------------------------------
     dur = time.monotonic() - started
+    for p, (st, rec) in carried.items():
+        if p not in results:
+            results[p] = (st, rec)  # confirmed/found positions from the prior partial
     probed = len(results)
-    scheduled = len(candidates)
+    scheduled = scheduled_full
     status_counter = collections.Counter(st for st, _ in results.values())
     default_status = (status_counter.most_common(1)[0][0] if probed else None)
     exceptions = []
@@ -426,6 +479,7 @@ async def run(args) -> int:
     result = {
         "schema": 1, "key": key,
         "chunk_id": None if args.retry_batch else args.chunk_id,
+        "epoch": args.epoch,
         "attempt": args.attempt, "mode": args.mode,
         "spec_sha256": spec["_sha256"],
         "run_id": int(os.environ.get("GITHUB_RUN_ID", 0)),
@@ -434,7 +488,7 @@ async def run(args) -> int:
         "duration_s": round(dur, 1),
         "candidates_scheduled": scheduled,
         "candidates_probed_unique": probed,
-        "head_attempts_total": head_attempts[0],
+        "head_attempts_total": head_attempts[0] + carried_head_attempts,
         "statuses": dict(status_counter),
         "default_status": default_status,
         "exceptions": exceptions,
@@ -480,7 +534,11 @@ async def run(args) -> int:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--spec", default="scan/spec_v1.json")
+    ap.add_argument("--spec", default="",
+                    help="spec path override (default: spec_v1 for epoch 0, "
+                         "committed epochs/epoch_N.json for epoch > 0)")
+    ap.add_argument("--epoch", type=int, default=0,
+                    help="deep-scan epoch number (0 = legacy v1 spec)")
     ap.add_argument("--spec-sha", default="",
                     help="expected spec digest; verified against queue entry")
     ap.add_argument("--chunk-id", type=int, default=0)

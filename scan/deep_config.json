@@ -1,0 +1,108 @@
+{
+  "config_version": 5,
+  "campaign_id": "deep-scan-v5",
+  "created_utc": "2026-10-05T00:00:00Z",
+  "host": "staticgs.sandboxol.com",
+  "url_path_fmt": "/sandbox/games/maps/{map_id}.{ts_ms}.zip",
+  "search_scope": "MAPS ONLY (plugins path excluded by investigation constraints)",
+  "granularity": "millisecond-exact (no rounding to seconds)",
+  "provenance": "Continues from the drained v1 universe (scan/spec_v1.json, sha a83ec705fd7bea3cdb1e061df292036d3c4d86c7b5632ffbe30befc47b261982; 901/901 chunks completed 2026-10-04, canonical confirmed_404=18000252, found=0, undetermined=0). Every v1-probed candidate is excluded from this campaign by exact interval arithmetic and is never re-probed. v1 bookkeeping disclosure: spec_v1 all_map_ids omitted sentinel m1014_1, so its t0 anchor points were absent (its S1/S1B neighborhood was fully covered by v1 range tiers anyway); and the t0 stream iterated 254 items against 252 formula ordinals, dropping m901xS2 and m901xS2B from v1 (both were probed as 404 in the v3 local sweep's 256-point t0 pass). Consequences handled here: (a) this campaign's map ID set adds m1014_1 (65 IDs) so its never-probed S2/S2B neighborhoods are covered by epoch 1; (b) m901xS2/S2B are NOT excluded, so epoch 1 re-probes those two points (disclosed duplicate probes vs v3, closing the loop with direct evidence).",
+  "chunk_size": 50000,
+  "queue_window": 600,
+  "ingest_lookback": 3000,
+  "all_map_ids": [
+    "m1001", "m1001_1", "m1002_1", "m1008_2", "m1018_1", "m1019_1", "m1020_1",
+    "m1021_1", "m1022_1", "m1023_1", "m1024_1", "m1025_1", "m1026_1", "m1027_1",
+    "m1028_2", "m1029_1", "m1030_1", "m1031_1", "m1032_1", "m1033_2", "m1036_1",
+    "m1037_1", "m1038_1", "m1039_1", "m1041_2", "m1042_1", "m1043_1", "m1044_1",
+    "m1045_1", "m1046_2", "m1047_1", "m1048_1", "m1049_2", "m1050_1", "m1051_1",
+    "m1052_2", "m1053_1", "m1054_1", "m1055_1", "m1056_1", "m1057_1", "m1058_1",
+    "m1059_1", "m1059_2", "m1060_1", "m1061_1", "m1062_1", "m1063_1", "m1064_1",
+    "m1065_1", "m1101", "m1201_1", "m1301", "m1401", "m1501_1", "m1601", "m1701",
+    "m301", "m3042_1", "m3043_1", "m3044_1", "m3045_1", "m701", "m901",
+    "m1014_1"
+  ],
+  "anchors_ms": {
+    "S1": 1600317822000,
+    "S1B": 1600317824000,
+    "S2": 1605665040000,
+    "S2B": 1605665064000
+  },
+  "anchor_order": ["S1", "S1B", "S2", "S2B"],
+  "sentinel_pairs": [
+    { "map_id": "m1014_1", "anchor": "S1" },
+    { "map_id": "m1008_2", "anchor": "S2" }
+  ],
+  "epoch_ladder": [
+    {
+      "epoch": 1, "kind": "family",
+      "basis": "map-family build-cluster hypothesis (direct evidence: m1048_1/m1061_1/m1062_1 share S1B=S1+2000ms with m1014_1, m1046_2 shares S2B=S2+24000ms with m1008_2): ms-dense +/-30s windows for every map ID around every anchor",
+      "fwd_s": [0, 30], "back_s": [-30, 0]
+    },
+    {
+      "epoch": 2, "kind": "sentinel",
+      "basis": "deeper backward extension of the sentinel upload-liveness window (v1 covered back to -1800s only)",
+      "back_s": [-7200, -1800]
+    },
+    {
+      "epoch": 3, "kind": "family",
+      "basis": "systematic widening of family windows, forward (+30s..+300s); ring disclosed as hypothesis-driven",
+      "fwd_s": [30, 300]
+    },
+    {
+      "epoch": 4, "kind": "family",
+      "basis": "systematic widening of family windows, backward (-300s..-30s); ring disclosed as hypothesis-driven",
+      "back_s": [-300, -30]
+    },
+    {
+      "epoch": 5, "kind": "sentinel",
+      "basis": "deeper forward sentinel liveness window (+2h..+4h)",
+      "fwd_s": [7200, 14400]
+    },
+    {
+      "epoch": 6, "kind": "sentinel",
+      "basis": "deeper backward sentinel liveness window (-4h..-2h)",
+      "back_s": [-14400, -7200]
+    },
+    {
+      "epoch": 7, "kind": "family",
+      "basis": "systematic widening, no direct evidence (disclosed): family forward +300s..+900s",
+      "fwd_s": [300, 900]
+    },
+    {
+      "epoch": 8, "kind": "family",
+      "basis": "systematic widening, no direct evidence (disclosed): family backward -900s..-300s",
+      "back_s": [-900, -300]
+    },
+    {
+      "epoch": 9, "kind": "sentinel",
+      "basis": "systematic widening, no direct evidence (disclosed): sentinel forward +4h..+12h",
+      "fwd_s": [14400, 43200]
+    },
+    {
+      "epoch": 10, "kind": "sentinel",
+      "basis": "systematic widening, no direct evidence (disclosed): sentinel backward -12h..-4h",
+      "back_s": [-43200, -14400]
+    },
+    {
+      "epoch": 11, "kind": "family",
+      "basis": "systematic widening, no direct evidence (disclosed): family forward +900s..+1800s",
+      "fwd_s": [900, 1800]
+    },
+    {
+      "epoch": 12, "kind": "family",
+      "basis": "systematic widening, no direct evidence (disclosed): family backward -1800s..-900s",
+      "back_s": [-1800, -900]
+    },
+    {
+      "epoch": 13, "kind": "sentinel",
+      "basis": "systematic widening, no direct evidence (disclosed): sentinel forward +12h..+24h",
+      "fwd_s": [43200, 86400]
+    },
+    {
+      "epoch": 14, "kind": "sentinel",
+      "basis": "systematic widening, no direct evidence (disclosed): sentinel backward -24h..-12h",
+      "back_s": [-86400, -43200]
+    }
+  ]
+}

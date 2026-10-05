@@ -3,3 +3,10 @@ __pycache__/
 worker_out/
 verify_out/
 .secrets/
+worker_out/
+verify_out/
+.simroot/
+.agg_state/
+.epoch_*.tmp
+.epoch_spec.json
+state_dump/

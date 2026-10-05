@@ -8,7 +8,65 @@ Archival existence research for map ZIPs served by `staticgs.sandboxol.com` at
 No proxy/IP-rotation, no bypass of access controls, adaptive rate control at
 worker and global level.
 
-## Current phase: distributed re-scan + undetermined retry (v4)
+## Current phase: deep scan v5 — unattended, unbounded epoch ladder (ACTIVE)
+
+The v4 campaign drained its frozen 18,000,252-candidate universe on 2026-10-04
+(coverage 1.0, canonical confirmed-404 = 18,000,252, FOUND-200 = 0,
+undetermined-after-retries = 0, zero 403/429). v5 continues from that evidence
+into an open-ended, automatically expanding universe:
+
+- **Universe**: 14 deterministic epochs (`scan/deep_config.json`) built by
+  `scan/deep_universe.py` — ms-dense windows for all 65 map IDs (the v1 list
+  plus sentinel `m1014_1`) around the four anchors, plus ever-wider sentinel
+  rings (back to -24h, forward to +24h) and family rings (to +/-30min).
+  Total: **790,063,748 candidates / 15,803 chunks** — and the frontier design
+  means the chunk queue has **no cap**: the controller materializes new chunks
+  automatically as workers drain them.
+- **Exclusion (never re-probe)**: every v1-confirmed candidate is subtracted by
+  exact integer interval arithmetic before any epoch is emitted. Two v1
+  bookkeeping artifacts are handled explicitly and disclosed in the config
+  provenance: `m1014_1` was missing from v1's `all_map_ids` (its never-probed
+  S2/S2B neighborhoods are covered by epoch 1), and two v1 stream anchor
+  points (`m901`xS2/S2B) were dropped by an ordinal-count mismatch (epoch 1
+  re-probes them; v3 already probed them as 404 - the duplicates are disclosed).
+- **Unattended operation**: `controller.yml` runs on cron */5 and is also
+  re-triggered by every finishing worker; workers claim chunks, probe with
+  per-worker AIMD + global rate budget, commit results atomically, and the
+  controller prunes completed entries into exact live tallies, builds bounded
+  retry batches for undetermined observations (round cap 3), requeues stale
+  runs, and - when the ladder is exhausted and the queue drains - runs the
+  final aggregation, commits the accounting to `main` and publishes the
+  `deep-scan-v5-final` GitHub Release. No human or agent step is required.
+- **Crash safety**: every state mutation is an atomic git commit on the
+  `scan-state` branch; PARTIAL results are resumable (confirmed positions are
+  carried, never silently re-probed); repeated failures requeue, then become
+  disclosed ABANDONED (unsearched) entries.
+- **Honesty rules (unchanged)**: 503/timeout = UNDETERMINED, never a miss;
+  duplicate probes disclosed; map existence only after direct GET + ZIP
+  structure + CRC + SHA-256 verification; no proxy/IP rotation.
+- **Kill switch**: commit a file named `STOP` to the `scan-state` branch (or
+  disable the workflows) to halt all dispatching.
+
+## Completed phase: distributed re-scan + undetermined retry (v4)
+
+The earlier single-host scans established:
+
+| metric (v1 + v3 direct scans) | value |
+|---|---|
+| millisecond-exact probes | 8,374,673 |
+| sustained direct throughput | ~2,037 rps (per-IP ceiling observed) |
+| confirmed HTTP 404 | 1,823,575 |
+| probed-undetermined (HTTP 503 / timeout) | ~6,551,098 |
+| free-proxy lane contribution | ~12 rps (deprecated; disallowed for v4) |
+| verified archives | **0** |
+
+The ~6.55M undetermined responses are **not** treated as missing files.
+v3 stored only aggregate outcome counts plus contiguous coverage pointers, so
+individual 503 positions cannot be enumerated; the only honest retry is to
+re-probe the known probed ranges, which necessarily re-probes confirmed-404
+positions inside them. That overlap is disclosed here and is de-duplicated in
+all unique-candidate accounting (duplicate probes are counted separately and
+never inflate coverage).
 
 The earlier single-host scans established:
 
