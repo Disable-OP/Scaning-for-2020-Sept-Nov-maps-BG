@@ -1,0 +1,79 @@
+{
+ "updated_utc": "2026-10-05T17:17:12Z",
+ "campaign": "deep-scan-v5",
+ "workflows": {
+  "active_workers": 0,
+  "peak_active_workers": 0,
+  "max_allowed": 6,
+  "dispatched_this_cycle": 6
+ },
+ "frontier": {
+  "next_epoch": 3,
+  "next_chunk": 197,
+  "exhausted": false,
+  "epochs_committed": {
+   "1": {
+    "candidates": 9343748,
+    "chunks": 187,
+    "sha256": "fdeab9d3997d4fd5"
+   },
+   "2": {
+    "candidates": 10800000,
+    "chunks": 216,
+    "sha256": "39579ba69dc8bc2a"
+   },
+   "3": {
+    "candidates": 34560000,
+    "chunks": 692,
+    "sha256": "cd84475244f4551e"
+   }
+  },
+  "candidates_scheduled": 29993748,
+  "tallies_by_epoch": {},
+  "tallies_total": {
+   "found_200": 0,
+   "found_invalid": 0,
+   "confirmed_404": 0,
+   "undetermined": 0,
+   "other": 0,
+   "probed": 0
+  }
+ },
+ "chunks": {
+  "running": 6,
+  "pending": 594,
+  "total": 600
+ },
+ "candidates_live": {
+  "scheduled_total": 29993748,
+  "unique_confirmed_404": 0,
+  "unique_found_200": 0,
+  "unique_found_invalid": 0,
+  "unique_undetermined": 0,
+  "unique_other": 0
+ },
+ "found": {
+  "candidates": 0,
+  "verified": 0,
+  "rejected": 0
+ },
+ "retries": {
+  "batches_seq": 0,
+  "retry_level_cap": 3,
+  "failed_chunks": 0,
+  "abandoned_chunks": 0
+ },
+ "rate": {
+  "global_budget_rps": 1500.0,
+  "measured_rps_recent": 0.0,
+  "bad_frac_recent": 0.0,
+  "reason": "insufficient data",
+  "recent_window_results": 0
+ },
+ "latency_ms_recent": {
+  "p50": 0.0,
+  "p95": 0.0
+ },
+ "cycle_seconds": 17.0,
+ "github_api_calls": 22
+}
