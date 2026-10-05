@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-10-05T20:18:41Z",
+ "updated_utc": "2026-10-05T20:20:26Z",
  "campaign": "deep-scan-v5",
  "workflows": {
   "active_workers": 99,
@@ -71,9 +71,9 @@
   }
  },
  "chunks": {
-  "pending": 182,
-  "running": 23,
-  "retry": 395,
+  "pending": 188,
+  "running": 18,
+  "retry": 394,
   "total": 600
  },
  "candidates_live": {
@@ -106,6 +106,6 @@
   "p50": 350.8,
   "p95": 445.7
  },
- "cycle_seconds": 7.5,
+ "cycle_seconds": 8.4,
  "github_api_calls": 16
 }
