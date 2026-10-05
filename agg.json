@@ -263,6 +263,54 @@
    "rps_mean": 70.88,
    "p50": 359.2,
    "p95": 430.4
+  },
+  "e3-chunk-000048": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 50000
+   },
+   "probed": 50000,
+   "finished_utc": "2026-10-05T19:03:16Z",
+   "mode": "full",
+   "rps_mean": 70.81,
+   "p50": 417.2,
+   "p95": 509.5
+  },
+  "e3-chunk-000049": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 50000
+   },
+   "probed": 50000,
+   "finished_utc": "2026-10-05T19:03:04Z",
+   "mode": "full",
+   "rps_mean": 70.85,
+   "p50": 328.0,
+   "p95": 463.3
+  },
+  "e3-chunk-000051": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 50000
+   },
+   "probed": 50000,
+   "finished_utc": "2026-10-05T19:03:11Z",
+   "mode": "full",
+   "rps_mean": 70.87,
+   "p50": 331.1,
+   "p95": 469.5
+  },
+  "e3-chunk-000052": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 50000
+   },
+   "probed": 50000,
+   "finished_utc": "2026-10-05T19:03:27Z",
+   "mode": "full",
+   "rps_mean": 70.87,
+   "p50": 359.0,
+   "p95": 434.5
   }
  },
  "found_ledger": {},
