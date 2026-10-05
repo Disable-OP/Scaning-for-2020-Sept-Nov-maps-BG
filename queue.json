@@ -67,7 +67,7 @@
   },
   "candidates_scheduled": 32693748,
   "batches_seq": 0,
-  "monitor_seq": 73
+  "monitor_seq": 74
  },
  "chunks": {
   "e1-chunk-000000": {
@@ -611,18 +611,18 @@
    "stale_note": "claim_age_min=9 run_active=False"
   },
   "e1-chunk-000037": {
-   "status": "RUNNING",
+   "status": "PENDING",
    "kind": "epoch",
    "epoch": 1,
    "spec_sha256": "fdeab9d3997d4fd5dbb70b8283d3ee17f3b315ed6eec3b3b9a083ad88cf698f0",
    "size": 50000,
-   "job_attempts": 3,
+   "job_attempts": 4,
    "attempt_seq": 4,
-   "requeues": 0,
+   "requeues": 1,
    "dispatch_token": "e049e63b9ed3",
    "dispatched_at": "2026-10-05T20:13:17Z",
    "attempt": 4,
-   "not_before": 1791228767.4476593,
+   "not_before": 1791238926.3886776,
    "stale_note": "claim_age_min=9 run_active=False"
   },
   "e1-chunk-000038": {
@@ -641,19 +641,19 @@
    "stale_note": "claim_age_min=10 run_active=False"
   },
   "e1-chunk-000039": {
-   "status": "RUNNING",
+   "status": "PENDING",
    "kind": "epoch",
    "epoch": 1,
    "spec_sha256": "fdeab9d3997d4fd5dbb70b8283d3ee17f3b315ed6eec3b3b9a083ad88cf698f0",
    "size": 50000,
-   "job_attempts": 3,
+   "job_attempts": 4,
    "attempt_seq": 4,
-   "requeues": 0,
+   "requeues": 1,
    "dispatch_token": "45181c400af9",
    "dispatched_at": "2026-10-05T20:13:20Z",
    "attempt": 4,
-   "not_before": 1791228883.2667284,
-   "stale_note": "claim_age_min=10 run_active=False"
+   "not_before": 1791238926.568747,
+   "stale_note": "claim_age_min=9 run_active=False"
   },
   "e1-chunk-000040": {
    "status": "RUNNING",
@@ -881,17 +881,17 @@
    "stale_note": "claim_age_min=9 run_active=False"
   },
   "e1-chunk-000055": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "kind": "epoch",
    "epoch": 1,
    "spec_sha256": "fdeab9d3997d4fd5dbb70b8283d3ee17f3b315ed6eec3b3b9a083ad88cf698f0",
    "size": 50000,
    "job_attempts": 3,
-   "attempt_seq": 3,
+   "attempt_seq": 4,
    "requeues": 0,
-   "dispatch_token": "3de8753d2235",
-   "dispatched_at": "2026-10-05T19:25:18Z",
-   "attempt": 3,
+   "dispatch_token": "9d58e815a243",
+   "dispatched_at": "2026-10-05T20:22:06Z",
+   "attempt": 4,
    "not_before": 1791230269.9796112,
    "stale_note": "claim_age_min=31 run_active=False"
   },
@@ -8803,9 +8803,9 @@
  },
  "peak_active_workers": 100,
  "counts": {
-  "PENDING": 188,
-  "RUNNING": 18,
-  "RETRY": 394
+  "PENDING": 190,
+  "RUNNING": 17,
+  "RETRY": 393
  },
- "updated_utc": "2026-10-05T20:20:26Z"
+ "updated_utc": "2026-10-05T20:22:07Z"
 }
