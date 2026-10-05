@@ -335,6 +335,66 @@
    "rps_mean": 70.81,
    "p50": 343.6,
    "p95": 427.3
+  },
+  "e3-chunk-000059": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 50000
+   },
+   "probed": 50000,
+   "finished_utc": "2026-10-05T19:06:44Z",
+   "mode": "full",
+   "rps_mean": 70.81,
+   "p50": 339.6,
+   "p95": 591.7
+  },
+  "e3-chunk-000060": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 50000
+   },
+   "probed": 50000,
+   "finished_utc": "2026-10-05T19:06:47Z",
+   "mode": "full",
+   "rps_mean": 70.81,
+   "p50": 334.3,
+   "p95": 455.4
+  },
+  "e3-chunk-000061": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 50000
+   },
+   "probed": 50000,
+   "finished_utc": "2026-10-05T19:06:59Z",
+   "mode": "full",
+   "rps_mean": 70.82,
+   "p50": 348.3,
+   "p95": 422.2
+  },
+  "e3-chunk-000062": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 50000
+   },
+   "probed": 50000,
+   "finished_utc": "2026-10-05T19:07:04Z",
+   "mode": "full",
+   "rps_mean": 70.81,
+   "p50": 335.8,
+   "p95": 425.4
+  },
+  "e3-chunk-000063": {
+   "outcome": "COMPLETED",
+   "statuses": {
+    "404": 50000
+   },
+   "probed": 50000,
+   "finished_utc": "2026-10-05T19:06:53Z",
+   "mode": "full",
+   "rps_mean": 70.83,
+   "p50": 337.3,
+   "p95": 464.3
   }
  },
  "found_ledger": {},
