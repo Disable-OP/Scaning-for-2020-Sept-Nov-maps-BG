@@ -61,6 +61,7 @@ JOB_ATTEMPT_CAP = 4
 CHUNK_REQUEUE_CAP = 3       # requeues after FAILED before ABANDONED
 CANDIDATE_MAX_ROUNDS = 3
 RETRY_DELAYS_MIN = {2: 15, 3: 60}
+STALE_RETRY_DELAY_MIN = 2   # no-claim stale requeue: short delay (run never started)
 BUDGET_START = float(os.environ.get("BUDGET_START_RPS", "1500"))
 BUDGET_MIN = float(os.environ.get("BUDGET_MIN_RPS", "150"))
 BUDGET_MAX = float(os.environ.get("BUDGET_MAX_RPS", "16000"))
@@ -364,8 +365,7 @@ def main() -> int:
                 _requeue_or_abandon(chunks, key, ent, "stale running")
             else:
                 ent["status"] = "RETRY"
-                ent["not_before"] = now() + RETRY_DELAYS_MIN.get(
-                    ent["job_attempts"] + 1, 60) * 60
+                ent["not_before"] = now() + STALE_RETRY_DELAY_MIN * 60
             ent["stale_note"] = (f"claim_age_min={age_min:.0f} "
                                  f"run_active={claim.get('run_id') in active_run_ids}")
             log(f"stale RUNNING -> {ent['status']}: {key}")
