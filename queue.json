@@ -57,17 +57,17 @@
    "1": {
     "found_200": 0,
     "found_invalid": 0,
-    "confirmed_404": 50000,
+    "confirmed_404": 100000,
     "undetermined": 0,
     "other": 0,
-    "probed": 50000,
-    "chunks_done": 1,
-    "head_attempts": 50000
+    "probed": 100000,
+    "chunks_done": 2,
+    "head_attempts": 100000
    }
   },
   "candidates_scheduled": 32643748,
   "batches_seq": 0,
-  "monitor_seq": 61
+  "monitor_seq": 62
  },
  "chunks": {
   "e1-chunk-000000": {
@@ -461,32 +461,32 @@
    "stale_note": "claim_age_min=10 run_active=False"
   },
   "e1-chunk-000027": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "kind": "epoch",
    "epoch": 1,
    "spec_sha256": "fdeab9d3997d4fd5dbb70b8283d3ee17f3b315ed6eec3b3b9a083ad88cf698f0",
    "size": 50000,
    "job_attempts": 3,
-   "attempt_seq": 3,
+   "attempt_seq": 4,
    "requeues": 0,
-   "dispatch_token": "9246aebb2516",
-   "dispatched_at": "2026-10-05T19:21:06Z",
-   "attempt": 3,
+   "dispatch_token": "ba9d46829a85",
+   "dispatched_at": "2026-10-05T20:01:19Z",
+   "attempt": 4,
    "not_before": 1791228767.4472382,
    "stale_note": "claim_age_min=10 run_active=False"
   },
   "e1-chunk-000028": {
-   "status": "RETRY",
+   "status": "RUNNING",
    "kind": "epoch",
    "epoch": 1,
    "spec_sha256": "fdeab9d3997d4fd5dbb70b8283d3ee17f3b315ed6eec3b3b9a083ad88cf698f0",
    "size": 50000,
    "job_attempts": 3,
-   "attempt_seq": 3,
+   "attempt_seq": 4,
    "requeues": 0,
-   "dispatch_token": "043a644cb8ee",
-   "dispatched_at": "2026-10-05T19:21:08Z",
-   "attempt": 3,
+   "dispatch_token": "b42ad8589310",
+   "dispatched_at": "2026-10-05T20:01:20Z",
+   "attempt": 4,
    "not_before": 1791228767.4472897,
    "stale_note": "claim_age_min=10 run_active=False"
   },
@@ -939,21 +939,6 @@
    "attempt": 3,
    "not_before": 1791230269.9796875,
    "stale_note": "claim_age_min=30 run_active=False"
-  },
-  "e1-chunk-000059": {
-   "status": "RUNNING",
-   "kind": "epoch",
-   "epoch": 1,
-   "spec_sha256": "fdeab9d3997d4fd5dbb70b8283d3ee17f3b315ed6eec3b3b9a083ad88cf698f0",
-   "size": 50000,
-   "job_attempts": 2,
-   "attempt_seq": 3,
-   "requeues": 0,
-   "dispatch_token": "b770dd811951",
-   "dispatched_at": "2026-10-05T19:28:59Z",
-   "attempt": 3,
-   "not_before": 1791227700.463069,
-   "stale_note": "claim_age_min=8 run_active=False"
   },
   "e1-chunk-000060": {
    "status": "RETRY",
@@ -8809,8 +8794,8 @@
  "peak_active_workers": 100,
  "counts": {
   "PENDING": 159,
-  "RUNNING": 19,
-  "RETRY": 422
+  "RUNNING": 20,
+  "RETRY": 420
  },
- "updated_utc": "2026-10-05T19:59:39Z"
+ "updated_utc": "2026-10-05T20:01:22Z"
 }
