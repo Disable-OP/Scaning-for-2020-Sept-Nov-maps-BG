@@ -1,0 +1,13 @@
+{
+ "worker": "w10-38313806075",
+ "index": 10,
+ "run_id": "38313806075",
+ "heartbeat_utc": "2026-10-12T21:59:18Z",
+ "updated_utc": "2026-10-12T21:59:18Z",
+ "current_pid": "b00014",
+ "probed_total": 0,
+ "rps_ema": 600.0,
+ "windows_tail": [],
+ "packages": {},
+ "hits": []
+}
