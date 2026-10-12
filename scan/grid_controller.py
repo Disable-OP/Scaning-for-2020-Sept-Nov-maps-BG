@@ -314,39 +314,8 @@ def main() -> int:
     commit({COVERAGE_PATH: json.dumps(coverage, indent=1) + "\n"},
            f"coverage: {len(done_sorted)}/{len(all_pids)} packages done")
 
-    # ---- 6. budget governor ------------------------------------------------
-    budget = read_json("global_rate.json") or {}
-    cur_budget = float(budget.get("budget_rps", 60000.0))
-    active_n = len(fresh_workers)
-    if fleet_bad[1] >= 2000:
-        frac = fleet_bad[0] / fleet_bad[1]
-        if frac < 0.003:
-            new_budget = min(cur_budget * 1.15, BUDGET_MAX)
-        elif frac > 0.015:
-            new_budget = max(cur_budget * 0.7, BUDGET_MIN)
-        else:
-            new_budget = cur_budget
-        if abs(new_budget - cur_budget) > 1:
-            commit({"global_rate.json": json.dumps({
-                "budget_rps": round(new_budget, 1),
-                "active_hint": max(1, active_n),
-                "updated_utc": now_utc(),
-                "note": "grid v3 governor (5xx/err fraction driven)",
-            }, indent=1) + "\n"}, f"budget {cur_budget:.0f} -> {new_budget:.0f} rps "
-               f"(bad_frac={frac:.4f})")
-            cur_budget = new_budget
-        log(f"governor: bad_frac={frac:.4f} budget={cur_budget:.0f} "
-            f"active={active_n}")
-    else:
-        # keep active_hint fresh even without telemetry
-        commit({"global_rate.json": json.dumps({
-            "budget_rps": round(cur_budget, 1),
-            "active_hint": max(1, active_n),
-            "updated_utc": now_utc(),
-            "note": "grid v3 governor (no telemetry yet)",
-        }, indent=1) + "\n"}, f"budget hint active={active_n}")
-
-    # ---- 7. dispatch decision ----------------------------------------------
+    # ---- 6. dispatch decision (runs BEFORE the governor so the budget hint
+    #         reflects the fleet size we are about to launch) ---------------
     def live_grid_runs() -> list[dict]:
         """in_progress runs + recently queued runs. A queued run that has
         been waiting > 30 min is a zombie (planted while repo Actions was
@@ -394,6 +363,45 @@ def main() -> int:
     else:
         log(f"no dispatch: active_runs={len(active_runs)} recent={recent_run} "
             f"pending={len(pending)} fresh_cascade={fresh_cascade}")
+
+    # ---- 7. budget governor ------------------------------------------------
+    # active_hint must reflect the fleet the WORKERS should assume: observed
+    # fresh workers, or the fleet we just dispatched (workers read the hint at
+    # their first claim, before any of them has heartbeated). Without this,
+    # a lone stale hint of 1 lets all 20 workers each claim the full budget.
+    budget = read_json("global_rate.json") or {}
+    cur_budget = float(budget.get("budget_rps", 60000.0))
+    active_n = len(fresh_workers)
+    hint = max(active_n, dispatched, 1)
+    if fleet_bad[1] >= 2000:
+        frac = fleet_bad[0] / fleet_bad[1]
+        if frac < 0.003:
+            new_budget = min(cur_budget * 1.15, BUDGET_MAX)
+        elif frac > 0.015:
+            new_budget = max(cur_budget * 0.7, BUDGET_MIN)
+        else:
+            new_budget = cur_budget
+        if abs(new_budget - cur_budget) > 1 or hint != int(
+                budget.get("active_hint", 0)):
+            commit({"global_rate.json": json.dumps({
+                "budget_rps": round(new_budget, 1),
+                "active_hint": hint,
+                "updated_utc": now_utc(),
+                "note": "grid v3 governor (5xx/err fraction driven)",
+            }, indent=1) + "\n"}, f"budget {cur_budget:.0f} -> {new_budget:.0f} rps "
+               f"(bad_frac={frac:.4f}) hint={hint}")
+            cur_budget = new_budget
+        log(f"governor: bad_frac={frac:.4f} budget={cur_budget:.0f} "
+            f"active={active_n} hint={hint}")
+    else:
+        # keep active_hint fresh even without telemetry
+        if hint != int(budget.get("active_hint", 0)):
+            commit({"global_rate.json": json.dumps({
+                "budget_rps": round(cur_budget, 1),
+                "active_hint": hint,
+                "updated_utc": now_utc(),
+                "note": "grid v3 governor (no telemetry yet)",
+            }, indent=1) + "\n"}, f"budget hint -> {hint}")
 
     # ---- 8. monitoring -------------------------------------------------------
     per_tier_done: dict[str, int] = collections.Counter()
