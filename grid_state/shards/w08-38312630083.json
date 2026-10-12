@@ -1,0 +1,13 @@
+{
+ "worker": "w08-38312630083",
+ "index": 8,
+ "run_id": "38312630083",
+ "heartbeat_utc": "2026-10-12T21:47:53Z",
+ "updated_utc": "2026-10-12T21:47:53Z",
+ "current_pid": "b00036",
+ "probed_total": 0,
+ "rps_ema": 600.0,
+ "windows_tail": [],
+ "packages": {},
+ "hits": []
+}
