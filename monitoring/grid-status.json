@@ -1,0 +1,71 @@
+{
+ "updated_utc": "2026-10-12T20:55:23Z",
+ "campaign": "halloween-2021",
+ "budget_rps": 14949.999999999998,
+ "active_workers": 1,
+ "fleet_rps_ema": 3000.0,
+ "probed_total_shards": 155649,
+ "packages": {
+  "done": 0,
+  "pending": 1584,
+  "total": 1584
+ },
+ "candidates": {
+  "done": 0,
+  "pending": 28512000000,
+  "total": 28512000000
+ },
+ "eta_hours_at_budget": 529.77,
+ "tier_progress": {
+  "h1a_family_map_packs": {
+   "done": 0,
+   "total": 1080000000
+  },
+  "h1b_family_plugins": {
+   "done": 0,
+   "total": 1296000000
+  },
+  "h1c_family_map_bundles": {
+   "done": 0,
+   "total": 1080000000
+  },
+  "h1d_engine10082_appres": {
+   "done": 0,
+   "total": 432000000
+  },
+  "h2a_other_map_packs_2021": {
+   "done": 0,
+   "total": 1512000000
+  },
+  "h2b_other_bundles_2021": {
+   "done": 0,
+   "total": 4968000000
+  },
+  "h2c_other_plugins_2021": {
+   "done": 0,
+   "total": 11232000000
+  },
+  "h2d_engine10078_appres_fallback": {
+   "done": 0,
+   "total": 432000000
+  },
+  "h3a_inactive_map_packs": {
+   "done": 0,
+   "total": 2592000000
+  },
+  "h3b_inactive_bundles": {
+   "done": 0,
+   "total": 1944000000
+  },
+  "h3c_inactive_plugins": {
+   "done": 0,
+   "total": 1944000000
+  }
+ },
+ "verified_hits": [],
+ "cascade": {
+  "revision": 0,
+  "packages": 0
+ },
+ "dispatched_now": 0
+}
