@@ -13,9 +13,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import grid_plan as GP  # noqa: E402
-from grid_worker import AIMD3, OrdinalStream, SecondsTracker  # noqa: E402
+from grid_worker import AIMD3, OrdinalStream  # noqa: E402
 from grid_controller import (build_cascade, claim_sort_key,  # noqa: E402
-                             cut_cascade)
+                             cut_cascade, merge_partials, merge_ranges)
 
 PASS = 0
 FAIL = 0
@@ -113,36 +113,43 @@ def test_real_plan() -> None:
 
 
 def test_seconds_tracker() -> None:
-    print("SecondsTracker:")
-    # 5 blocks of 1000
-    t = SecondsTracker([1000] * 5, 0)
-    for o in range(2500):
-        t.complete(o, True)
-    check("cursor mid-block", t.probed_through_local() == 2000)
-    for o in range(2500, 5000):
-        t.complete(o, True)
-    check("cursor complete", t.probed_through_local() == 5000)
+    print("CompletionTracker:")
+    from grid_worker import CompletionTracker, DIRTY_CAP
 
-    # 5xx in second 1 blocks the cursor
-    t = SecondsTracker([1000] * 4, 0)
-    for o in range(0, 4000):
-        t.complete(o, o != 1500)  # one 503 in block 1
-    check("5xx blocks cursor", t.probed_through_local() == 1000,
-          f"cursor={t.probed_through_local()}")
-
-    # resume skips fully-clean prefix only
-    t2 = SecondsTracker([1000] * 4, 1000)
-    check("resume cursor", t2.probed_through_local() == 1000)
-    for o in range(1000, 4000):
-        t2.complete(o, True)
-    check("resume completes", t2.probed_through_local() == 4000)
-
-    # ragged tail block
-    t = SecondsTracker([1000, 1000, 372], 0)
-    for o in range(2372):
+    # clean prefix + recorded dirt does not block the cursor
+    t = CompletionTracker(5000, 0)
+    for o in range(0, 3000):
         t.complete(o, True)
-    check("ragged tail", t.probed_through_local() == 2372)
-    check("block_of ragged", t.block_of(2300) == 2)
+    check("clean prefix", t.probed_through_local() == 3000)
+    t.complete(3000, False, "503")          # recorded dirt -> accounted
+    t.complete(3001, True)
+    check("cursor passes recorded dirt", t.probed_through_local() == 3002)
+
+    # unrecorded dirt (cap reached) stalls the cursor exactly there
+    tail = 10
+    t3 = CompletionTracker(1000 + DIRTY_CAP + tail, 0)
+    for o in range(0, 1000):
+        t3.complete(o, True)
+    # DIRTY_CAP+1 dirty ordinals: the last one cannot be recorded
+    for o in range(1000, 1000 + DIRTY_CAP + 1):
+        t3.complete(o, False, "503")
+    check("cap stalls cursor", t3.probed_through_local() == 1000 + DIRTY_CAP,
+          f"ptr={t3.probed_through_local()}")
+
+    # dirty_ranges compression
+    d = {10: "503", 11: "503", 12: "503", 99: "TIMEOUT", 7: "503"}
+    rs = CompletionTracker.dirty_ranges(d)
+    check("dirty ranges", rs == [[7, 7], [10, 12], [99, 99]], f"{rs}")
+    check("expand roundtrip",
+          sorted(CompletionTracker.expand_ranges(rs)) == sorted(d))
+
+    # retry debt below the cursor survives via dirty dict (worker path)
+    t4 = CompletionTracker(100, 0)
+    for o in range(100):
+        t4.complete(o, True)
+    t4.dirty[50] = "503"
+    check("below-cursor debt kept",
+          [50, 50] in CompletionTracker.dirty_ranges(t4.dirty))
 
 
 def test_ordinal_stream() -> None:
@@ -254,6 +261,26 @@ def test_claim_order() -> None:
                                     "b000002", "b000010"], f"got={got}")
 
 
+def test_merge_partials() -> None:
+    print("partial merge (dirty debt carry-over):")
+    a = {"probed_through": 5_000_000, "dirty_ranges": [[2_000_000, 2_000_010]]}
+    b = {"probed_through": 8_000_000, "dirty_ranges": [[6_000_000, 6_000_005]]}
+    m = merge_partials([a, b])
+    check("max through wins", m["through"] == 8_000_000)
+    # the max claimant's own recorded debt (below its cursor) is kept...
+    check("max claimant's debt kept", [6_000_000, 6_000_005] in m["dirty"])
+    # ...while a superseded claimant's dirt below the prefix is dropped
+    # (the max claimant completed those ordinals itself)
+    check("superseded dirt dropped", [2_000_000, 2_000_010] not in m["dirty"])
+    c = {"probed_through": 3_000_000, "dirty_ranges":
+         [[7_900_000, 8_100_000]]}  # crosses the 8M prefix
+    m2 = merge_partials([b, c])
+    check("crossing dirt clipped to prefix",
+          [8_000_000, 8_100_000] in m2["dirty"], f"{m2['dirty']}")
+    check("merge_ranges coalesces",
+          merge_ranges([[1, 3], [2, 5], [7, 7]]) == [[1, 5], [7, 7]])
+
+
 def test_cut_cascade_cap() -> None:
     print("cascade packaging cap:")
     items = [{"map_id": f"g{i}", "path_fmt": "https://h/{map_id}.{ts_ms}.zip",
@@ -272,6 +299,7 @@ if __name__ == "__main__":
     test_aimd()
     test_cascade()
     test_claim_order()
+    test_merge_partials()
     test_cut_cascade_cap()
     print(f"\n{PASS} passed, {FAIL} failed")
     raise SystemExit(1 if FAIL else 0)

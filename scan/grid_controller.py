@@ -82,6 +82,41 @@ def parse_pid(pid: str) -> tuple[str, int]:
     return (kind, int(n))
 
 
+def merge_ranges(rs: list) -> list[list[int]]:
+    """Normalize [[a,b],...] into sorted, coalesced ranges."""
+    out: list[list[int]] = []
+    for a, b in sorted((int(x), int(y)) for x, y in (rs or [])):
+        if out and a <= out[-1][1] + 1:
+            out[-1][1] = max(out[-1][1], b)
+        else:
+            out.append([a, b])
+    return out
+
+
+def merge_partials(recs: list[dict]) -> dict:
+    """Merge partial results for one pid from multiple worker shards.
+
+    The claimant with the highest probed_through defines the covered prefix
+    (its own recorded dirt stays as retry debt). Other claimants' dirt is
+    kept only where it lies beyond that prefix (clipped), because the prefix
+    ordinals were already completed by the max claimant.
+    """
+    if not recs:
+        return {"through": 0, "dirty": []}
+    best = max(recs, key=lambda r: int(r.get("probed_through", 0)))
+    through = int(best.get("probed_through", 0))
+    dirty = [list(r) for r in (best.get("dirty_ranges") or [])]
+    for r in recs:
+        if r is best:
+            continue
+        for a, b in (r.get("dirty_ranges") or []):
+            a, b = int(a), int(b)
+            a2 = max(a, through)
+            if a2 <= b:
+                dirty.append([a2, b])
+    return {"through": through, "dirty": merge_ranges(dirty)}
+
+
 def claim_sort_key(pid: str):
     kind, n = parse_pid(pid)
     # cascade first (c1 before c2), then base plan order
@@ -213,10 +248,7 @@ def main() -> int:
                  if e.get("type") == "blob"]
     shard_paths = [p for p in paths if p.startswith(SHARD_DIR + "/")
                    and p.endswith(".json")]
-    claim_paths = [p for p in paths if p.startswith(CLAIM_DIR + "/")
-                   and p.endswith(".json")]
-    log(f"state tree: {len(paths)} blobs, {len(shard_paths)} shards, "
-        f"{len(claim_paths)} claims")
+    log(f"state tree: {len(paths)} blobs, {len(shard_paths)} shards")
 
     # ---- 2. aggregate shards --------------------------------------------
     shards = []
@@ -228,7 +260,7 @@ def main() -> int:
     now = time.time()
     fresh_workers = []
     covered_done: set[str] = set()
-    partial: dict[str, int] = {}
+    partial_recs: dict[str, list[dict]] = {}
     verified_hits: list[dict] = []
     probed_total = 0
     fleet_bad = [0, 0]  # bad, all
@@ -242,9 +274,8 @@ def main() -> int:
                 continue
             if rec.get("status") == "done":
                 covered_done.add(pid)
-            pt = int(rec.get("probed_through", 0))
-            if pt > partial.get(pid, 0):
-                partial[pid] = pt
+            else:
+                partial_recs.setdefault(pid, []).append(rec)
             probed_total += int(rec.get("probed_unique", 0))
             for h in rec.get("found") or []:
                 if h.get("zip_ok") and h.get("zip_crc_ok"):
@@ -261,18 +292,30 @@ def main() -> int:
     prune = [sh["_path"] for sh in shards
              if now - (parse_utc(sh.get("heartbeat_utc", "")) or 0) > SHARD_PRUNE_S]
 
-    # ---- 3. release stale claims ----------------------------------------
-    # Claims are ephemeral coordination tokens; coverage is truth. Release any
-    # claim no fresh worker is currently scanning (done pids and abandoned
-    # partials alike - the coverage.partial cursor carries the resume state).
+    # ---- 3. release stale claims (git refs; atomic CAS tokens) -----------
+    # Claims are refs/claims/grid/{pid} created by workers (201=won). They are
+    # ephemeral: release (delete) refs whose pid is done or that no fresh
+    # worker is currently scanning. Coverage is truth; a released claim that a
+    # live worker just won causes at worst a bounded duplicate scan.
     busy_pids = {sh.get("current_pid") for sh in fresh_workers
                  if sh.get("current_pid")}
-    release = sorted({f"{CLAIM_DIR}/{pid}.json" for pid in
-                      (p[len(CLAIM_DIR) + 1:-5] for p in claim_paths)
-                      if pid not in busy_pids})
-    if release:
-        commit({p: None for p in release},
-               f"release {len(release)} claims (not busy)")
+    st, refs, _ = gh.api("GET",
+                         f"/repos/{owner}/{repo}/git/matching-refs/claims/grid")
+    live_claims = []
+    if st == 200 and isinstance(refs, list):
+        for e in refs:
+            name = e.get("ref", "")
+            if name.startswith("refs/claims/grid/"):
+                live_claims.append(name.rsplit("/", 1)[-1])
+    release = [p for p in sorted(set(live_claims)) if p not in busy_pids]
+    released = 0
+    for pid in release:
+        st, _, _ = gh.api(
+            "DELETE", f"/repos/{owner}/{repo}/git/refs/claims/grid/{pid}")
+        if st in (200, 204):
+            released += 1
+    if released:
+        log(f"released {released} claim refs (not busy)")
 
     # ---- 4. cascade for new verified hits --------------------------------
     overlay = read_json(OVERLAY_PATH) or {
@@ -305,11 +348,13 @@ def main() -> int:
     all_pids |= {p["pid"] for p in overlay.get("packages") or []}
     done_sorted = sorted(covered_done & all_pids, key=claim_sort_key)
     candidates_done = sum(base_candidates.get(pid, 0) for pid in done_sorted)
+    partial_state = {pid: merge_partials(recs)
+                     for pid, recs in partial_recs.items()
+                     if pid not in covered_done}
     coverage = {
         "updated_utc": now_utc(),
         "done": done_sorted,
-        "partial": {k: v for k, v in sorted(partial.items())
-                    if k not in covered_done},
+        "partial": partial_state,
     }
     commit({COVERAGE_PATH: json.dumps(coverage, indent=1) + "\n"},
            f"coverage: {len(done_sorted)}/{len(all_pids)} packages done")

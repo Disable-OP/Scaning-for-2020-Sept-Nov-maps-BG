@@ -77,6 +77,7 @@ SHARD_DIR = "grid_state/shards"
 CLAIM_DIR = "grid_state/claims"
 FOUND_DIR = "grid_state/found"
 OVERLAY_PATH = "grid_state/grid_plan_cascade.json"
+DIRTY_CAP = 200_000
 EXCEPTIONS_CAP = 200_000
 CONC_MIN, CONC_MAX = 64, 1800
 
@@ -140,60 +141,79 @@ class AIMD3:
         return self.rps
 
 
-class SecondsTracker:
-    """Cursor accounting for ms-dense packages.
+class CompletionTracker:
+    """Per-ordinal honest accounting for ms-dense packages.
 
-    A package is an ordered list of blocks (normally 1000-ms seconds). The
-    cursor (probed_through) may only advance across blocks where EVERY
-    candidate probe completed with a clean status (200/404). 5xx/timeout
-    blocks stay behind the cursor and are honestly re-probed on resume.
+    Field evidence (runs 38307759930/38309572970): the CDN emits ~0.5-1%
+    sporadic 503s. A per-SECOND cursor (all 1000 ms must be clean) freezes:
+    P(clean second) = 0.995^1000 ~= 0.7%, so every package ends partial at
+    ordinal ~0 and gets re-scanned forever. Design v3.2:
+
+    - clean ordinals (200/404) are marked in a bitmap
+    - dirty ordinals (5xx/timeout/other) are RECORDED individually (status
+      kept), up to DIRTY_CAP; recorded dirt is accounted (the cursor may
+      pass it) and becomes explicit retry debt for the resume
+    - when the cap is hit, further dirty ordinals remain unrecorded and the
+      cursor stalls there (honest: that ordinal is neither covered nor
+      recorded; resume re-probes from the cursor)
+
+    probed_through therefore means: every ordinal < cursor was completed as
+    200/404 (covered) or recorded as 5xx debt (in dirty_ranges of the result).
     """
 
-    def __init__(self, blocks: list[int], start_local: int = 0):
-        self.blocks = blocks
-        self.starts = [0]
-        for b in blocks:
-            self.starts.append(self.starts[-1] + b)
-        # Eager pending population: a block may only be advanced (counted
-        # into the cursor) after EVERY one of its probes completed clean.
-        # Lazy population here was a real bug: the advance walk would see
-        # unprobed blocks as "no pending entry" and skip them.
-        self.pending: dict[int, list[int]] = {i: [b, 0]
-                                              for i, b in enumerate(blocks)}
-        self.ptr = 0
-        skipped = 0
-        while self.ptr < len(blocks) and skipped + blocks[self.ptr] <= start_local:
-            skipped += blocks[self.ptr]
-            del self.pending[self.ptr]
-            self.ptr += 1
-        self.cursor_local = skipped
+    def __init__(self, n: int, start_local: int = 0):
+        self.n = n
+        self.clean = bytearray((n + 7) // 8)
+        self.dirty: dict[int, str] = {}
+        self.ptr = start_local
+        if start_local > n:
+            start_local = n
+        self.ptr = start_local
 
-    def block_of(self, local_ord: int) -> int:
-        return min(bisect.bisect_right(self.starts, local_ord) - 1,
-                   len(self.blocks) - 1)
-
-    def complete(self, local_ord: int, ok: bool) -> None:
-        i = self.block_of(local_ord)
-        st = self.pending.get(i)
-        if st is None:
-            return  # block already clean-completed and advanced past
-        st[0] -= 1
-        if not ok:
-            st[1] += 1
-        if st[0] <= 0 and st[1] == 0:
-            del self.pending[i]
-            self._advance()
-        # Dirty blocks (bad > 0) deliberately stay in `pending` forever:
-        # they act as barriers so the cursor never crosses a contaminated
-        # second; resume re-probes them from the cursor onward.
+    def complete(self, local_ord: int, ok: bool, status: str = "") -> None:
+        if local_ord < self.ptr:
+            return  # already accounted
+        if ok:
+            self.clean[local_ord >> 3] |= 1 << (local_ord & 7)
+        elif len(self.dirty) < DIRTY_CAP:
+            self.dirty[local_ord] = status
+        else:
+            return  # unrecordable dirt: cursor stalls here (honest)
+        self._advance()
 
     def _advance(self) -> None:
-        while self.ptr < len(self.blocks) and self.ptr not in self.pending:
-            self.cursor_local += self.blocks[self.ptr]
-            self.ptr += 1
+        p = self.ptr
+        clean, dirty, n = self.clean, self.dirty, self.n
+        while p < n:
+            if p in dirty:
+                p += 1
+                continue
+            if clean[p >> 3] & (1 << (p & 7)):
+                p += 1
+                continue
+            break
+        self.ptr = p
 
     def probed_through_local(self) -> int:
-        return self.cursor_local
+        return self.ptr
+
+    @staticmethod
+    def dirty_ranges(dirty: dict[int, str]) -> list[list[int]]:
+        """Range-compress dirty ordinals ([[a,b], ...]) for compact commits."""
+        out: list[list[int]] = []
+        for o in sorted(dirty):
+            if out and o == out[-1][1] + 1:
+                out[-1][1] = o
+            else:
+                out.append([o, o])
+        return out
+
+    @staticmethod
+    def expand_ranges(ranges: list[list[int]]) -> list[int]:
+        out = []
+        for a, b in ranges or []:
+            out.extend(range(int(a), int(b) + 1))
+        return out
 
 
 class OrdinalStream:
@@ -329,27 +349,27 @@ class Worker:
         self.commit({self.shard_path(): json.dumps(body, indent=1) + "\n"}, msg)
 
     def claim(self, pid: str, probed_through: int, status: str) -> bool:
-        ok = self.commit({
-            f"{CLAIM_DIR}/{pid}.json": json.dumps({
-                "pid": pid, "worker": self.worker_key,
-                "status": status, "probed_through": probed_through,
-                "heartbeat_utc": now_utc(),
-            }, indent=1) + "\n",
-        }, f"grid claim {pid} [{status}] by {self.worker_key}")
-        if not ok:
+        head = self.head_sha()
+        if not head:
             return False
-        got = self.read_json_state(f"{CLAIM_DIR}/{pid}.json")
-        if isinstance(got, dict) and got.get("worker") != self.worker_key:
-            return False
-        return True
-
-    def claim_stale(self, claim: dict) -> bool:
-        ts = str(claim.get("heartbeat_utc", ""))
-        try:
-            t = time.mktime(time.strptime(ts, "%Y-%m-%dT%H:%M:%SZ")) - time.timezone
-            return time.time() - t > 25 * 60
-        except Exception:
+        st, _, _ = self.gh.api(
+            "POST", f"/repos/{self.gh.owner}/{self.gh.repo}/git/refs",
+            body={"ref": f"refs/claims/grid/{pid}", "sha": head})
+        if st == 201:
             return True
+        if st == 422:
+            return False
+        print(f"claim {pid}: unexpected status {st}", flush=True)
+        return False
+
+    def head_sha(self, _cache: dict = {}) -> str:
+        now = time.monotonic()
+        if now - _cache.get("t", 0) < 30 and _cache.get("sha"):
+            return _cache["sha"]
+        ref = self.gh.get_ref(self.branch)
+        sha = (ref or {}).get("object", {}).get("sha", "")
+        _cache["sha"], _cache["t"] = sha, now
+        return sha
 
     # ---------------- hit handling ----------------
     async def download_and_verify(self, session, url: str, map_id: str,
@@ -438,21 +458,27 @@ class Worker:
         self.commit_shard(f"hit {name}")
 
     # ---------------- package sweep ----------------
-    async def sweep_package(self, session, pkg: dict, resume_global: int) -> dict:
+    async def sweep_package(self, session, pkg: dict, resume_global: int,
+                            prior_dirty: list | None = None) -> dict:
         stream = OrdinalStream(pkg)
-        blocks = stream.blocks()
         resume_local = max(0, resume_global - pkg["ordinal0"])
-        tracker = SecondsTracker(blocks, resume_local)
+        tracker = CompletionTracker(pkg["candidates"], resume_local)
+        # retry debt from the previous claimant: ordinals it recorded as 5xx.
+        # Served at high priority (after hit expansions, before new stream).
+        retry_ords = sorted(set(CompletionTracker.expand_ranges(prior_dirty)))
+        retry_ords = [o for o in retry_ords
+                      if pkg["ordinal0"] <= o < stream.end]
+        retry_pos = 0
         statuses: collections.Counter = collections.Counter()
         exp_statuses: collections.Counter = collections.Counter()
-        exceptions: list[list] = []
         found: list[dict] = []
         q: asyncio.Queue = asyncio.Queue(maxsize=4200)
         feeder_done = asyncio.Event()
         win_counts: collections.Counter = collections.Counter()
         started = time.monotonic()
 
-        async def probe(url: str, map_id: str, ts: int, ordinal, tier: str):
+        async def probe(url: str, map_id: str, ts: int, ordinal, tier: str,
+                        is_retry: bool = False):
             """HEAD (+1 inline retry); GET+verify on 200. Cursor-clean only
             for 200/404."""
             pause = self.aimd.pause_until - time.monotonic()
@@ -517,9 +543,14 @@ class Worker:
                 st = ST503 if code == 503 else f"OTHER_{code}"
             if ordinal is not None:
                 statuses[st] += 1
-                if st not in (ST200, ST404) and len(exceptions) < EXCEPTIONS_CAP:
-                    exceptions.append([ordinal, st])
-                tracker.complete(ordinal - pkg["ordinal0"], st in (ST200, ST404))
+                local = ordinal - pkg["ordinal0"]
+                if is_retry and local < tracker.ptr:
+                    # retry debt below the cursor: record the outcome directly
+                    # so a re-failed ordinal is carried forward, not dropped
+                    if st not in (ST200, ST404) and len(tracker.dirty) < DIRTY_CAP:
+                        tracker.dirty[local] = st
+                else:
+                    tracker.complete(local, st in (ST200, ST404), st)
             else:
                 exp_statuses[st] += 1
             win_counts[st] += 1
@@ -538,6 +569,9 @@ class Worker:
                     if kind == "pkg":
                         url, mid, ts = stream.at(x)
                         await probe(url, mid, ts, x, tier)
+                    elif kind == "retry":
+                        url, mid, ts = stream.at(x)
+                        await probe(url, mid, ts, x, tier, is_retry=True)
                     else:
                         url = fmt.format(map_id=map_id, ts_ms=x)
                         await probe(url, map_id, x, None, tier)
@@ -545,6 +579,7 @@ class Worker:
                     print(f"probe error: {e!r}", flush=True)
 
         async def feed() -> None:
+            nonlocal retry_pos
             try:
                 ordinal = pkg["ordinal0"] + resume_local
                 nxt = time.monotonic()
@@ -557,6 +592,10 @@ class Worker:
                         datum = ("exp", w["map_id"], w["path_fmt"], w["cur"],
                                  w["tier"])
                         w["cur"] += 1
+                    elif retry_pos < len(retry_ords):
+                        datum = ("retry", None, None, retry_ords[retry_pos],
+                                 pkg["tier"] + "+retry-debt")
+                        retry_pos += 1
                     elif ordinal < stream.end:
                         datum = ("pkg", None, None, ordinal, pkg["tier"])
                         ordinal += 1
@@ -624,20 +663,20 @@ class Worker:
         await supervisor
         probed = sum(statuses.values())
         probed_through = pkg["ordinal0"] + tracker.probed_through_local()
+        dirty_ranges = CompletionTracker.dirty_ranges(tracker.dirty)
         dur = time.monotonic() - started
         rec = {
-            "status": "done" if probed_through >= stream.end else "partial",
+            "status": ("done" if probed_through >= stream.end and
+                       not dirty_ranges else "partial"),
             "candidates": pkg["candidates"],
             "probed_unique": probed,
             "probed_through": probed_through,
+            "dirty_ranges": dirty_ranges,
             "statuses": dict(statuses),
             "expansion_statuses": dict(exp_statuses),
             "found": found,
-            "exceptions_n": len(exceptions),
             "rate_rps": round(probed / max(dur, 1e-6), 1),
         }
-        if exceptions:
-            rec["exceptions_sample"] = exceptions[:2000]
         self.probed_total += probed
         return rec
 
@@ -658,8 +697,15 @@ class Worker:
     def is_done(self, pid: str) -> bool:
         return pid in (self.coverage.get("done") or [])
 
-    def partial_through(self, pid: str) -> int:
-        return int((self.coverage.get("partial") or {}).get(pid, 0))
+    def partial_state(self, pid: str) -> tuple[int, list]:
+        p = (self.coverage.get("partial") or {}).get(pid) or {}
+        if isinstance(p, dict):
+            return int(p.get("through", 0)), list(p.get("dirty") or [])
+        return int(p or 0), []
+
+    # claims are refs/claims/grid/{pid} CAS (see claim() above); the
+    # commit+re-read file protocol lost races to the Contents API cache:
+    # 7 workers held one claim at fleet start (run 38309572970).
 
     async def run(self) -> int:
         started = time.monotonic()
@@ -689,12 +735,7 @@ class Worker:
                 self.refresh_budget_and_stop()
                 if self.stop.is_set() or self.is_done(pid):
                     continue
-                existing = self.read_json_state(f"{CLAIM_DIR}/{pid}.json")
-                resume = self.partial_through(pid)
-                if isinstance(existing, dict) and \
-                        existing.get("worker") != self.worker_key and \
-                        not self.claim_stale(existing):
-                    continue
+                resume, prior_dirty = self.partial_state(pid)
                 if not self.claim(pid, resume,
                                   "resuming" if resume else "claimed"):
                     continue
@@ -702,9 +743,10 @@ class Worker:
                 self.commit_shard(f"claimed {pid}")
                 claimed_this_run += 1
                 print(f"SCAN {pid} tier={pkg['tier']} "
-                      f"candidates={pkg['candidates']:,} resume={resume:,}",
-                      flush=True)
-                rec = await self.sweep_package(session, pkg, resume)
+                      f"candidates={pkg['candidates']:,} resume={resume:,} "
+                      f"retry_debt={len(prior_dirty)} ranges", flush=True)
+                rec = await self.sweep_package(session, pkg, resume,
+                                               prior_dirty)
                 self.package_statuses[pid] = rec
                 if any(h.get("zip_ok") and h.get("zip_crc_ok")
                        for h in rec["found"]):
