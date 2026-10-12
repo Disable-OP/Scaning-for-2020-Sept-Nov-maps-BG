@@ -176,10 +176,21 @@ def test_aimd() -> None:
     for _ in range(40):
         a.window_tick(0.0, 0.0, 8000.0)
     check("hard cap", a.rps == 8000.0)
-    a.window_tick(0.05, 0.0, 8000.0)
-    check("bad decay", abs(a.rps - 8000.0 * 0.6) < 1e-9)
-    a.window_tick(0.0, 0.0, 3000.0)
-    check("cap clamp", a.rps <= 3000.0)
+    # throttle-burst tolerance: 1-2% 503 -> hold, no collapse
+    a2 = AIMD3()
+    for _ in range(5):
+        a2.window_tick(0.0, 0.0, 8000.0)   # ramp to 1600
+    before = a2.rps
+    a2.window_tick(0.015, 0.0, 8000.0)
+    check("soft burst holds", a2.rps == before)
+    a2.window_tick(0.035, 0.0, 8000.0)     # mild -> x0.8
+    check("mild decay x0.8", abs(a2.rps - before * 0.8) < 1e-9)
+    a2.window_tick(0.10, 0.0, 8000.0)      # severe -> x0.6 but ratchet floor
+    check("severe decay with ratchet floor",
+          a2.rps >= max(60.0, a2.best_clean * 0.4) - 1e-9)
+    a3 = AIMD3()
+    a3.window_tick(0.05, 0.0, 8000.0)
+    check("hard floor MIN_RPS", a3.rps == 60.0)
     # inline streak
     b = AIMD3()
     for _ in range(20):

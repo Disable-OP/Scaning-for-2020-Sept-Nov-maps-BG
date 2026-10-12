@@ -92,12 +92,24 @@ def now_utc() -> str:
 # pure logic (unit-tested offline in test_grid.py)
 # ==========================================================================
 class AIMD3:
-    """Grid-tuned AIMD: fast clean ramp, multiplicative decay on badness."""
+    """Grid-tuned AIMD with throttle-burst tolerance.
+
+    Field evidence (grid run 38307759930): the CDN answers sustained probing
+    with SPORADIC 503 bursts (0-2.5% per window) tied to rate increases and
+    TLS handshakes, with zero timeouts/net-errors. Treating 2% 503 as a
+    crash event (x0.6) produced a 57..360 rps sawtooth. The tuned ladder:
+      clean  (bad<=0.5%, err<=1%)   -> +INCR, ratchet best_clean
+      soft   (bad<=2%, err<=2%)     -> hold (throttle bursts are normal)
+      mild   (bad<=5%, err<=5%)     -> x0.8
+      severe (else)                 -> x0.6, floored at 0.4x best_clean
+    The ratchet floor prevents collapse to the sawtooth bottom while still
+    letting honest backoff find the per-IP ceiling."""
 
     def __init__(self):
         self.rps = START_RPS
         self.pause_until = 0.0
         self.bad_streak = 0
+        self.best_clean = 0.0
 
     def record(self, bad: bool) -> None:
         if bad:
@@ -113,10 +125,17 @@ class AIMD3:
 
     def window_tick(self, bad_frac: float, err_frac: float, cap: float) -> float:
         cap = max(cap, MIN_RPS)
+        floor = max(MIN_RPS, self.best_clean * 0.4)
         if bad_frac <= 0.005 and err_frac <= 0.01:
+            self.best_clean = max(self.best_clean, self.rps)
             self.rps = min(self.rps + INCR_RPS, cap, MAX_RPS)
-        elif bad_frac > 0.02 or err_frac > 0.03:
-            self.rps = max(MIN_RPS, self.rps * DECAY)
+        elif bad_frac <= 0.02 and err_frac <= 0.02:
+            self.best_clean = max(self.best_clean, self.rps)
+            # hold: sporadic CDN throttle bursts are normal operation
+        elif bad_frac <= 0.05 and err_frac <= 0.05:
+            self.rps = max(floor, self.rps * 0.8)
+        else:
+            self.rps = max(floor, self.rps * DECAY)
         self.rps = min(max(self.rps, MIN_RPS), cap, MAX_RPS)
         return self.rps
 
@@ -228,7 +247,7 @@ class Worker:
         self.aimd = AIMD3()
         self.latencies: collections.deque = collections.deque(maxlen=4096)
         self.current_pid = ""
-        self.target_conc = 512
+        self.target_conc = 128  # avoid TLS-handshake stampedes at startup
         self.deadline = time.monotonic() + args.minutes * 60
         self.last_budget_read = 0.0
         self.last_coverage_read = 0.0
@@ -575,8 +594,12 @@ class Worker:
                     self.aimd.window_tick(bad, err, self.cap_rps())
                     lat = sorted(self.latencies)
                     p50 = (lat[len(lat) // 2] / 1000.0) if lat else 0.12
-                    self.target_conc = int(min(CONC_MAX, max(
-                        CONC_MIN, self.aimd.rps * max(p50 * 1.35, 0.10))))
+                    self.target_conc = int(min(
+                        CONC_MAX,
+                        max(CONC_MIN, self.aimd.rps * max(p50 * 1.35, 0.10)),
+                        # cap per-window pool growth: fewer simultaneous TLS
+                        # handshakes -> fewer WAF 503 bursts
+                        getattr(self, "target_conc", 128) + 256))
                     self.windows.append([
                         round(dur, 1), round(win_counts["_all"] / dur, 2),
                         win_counts[ST200], win_counts[ST404], win_counts[ST503],
