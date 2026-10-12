@@ -58,11 +58,11 @@ HOST = "staticgs.sandboxol.com"
 UA = "blockman-go-archival-grid/3.0 (ms-dense research sweep; adaptive rate; no bypass)"
 
 # AIMD v3 (grid-tuned; v5 constants capped a worker at 250 rps)
-MIN_RPS = 60.0
+MIN_RPS = 150.0
 START_RPS = 600.0
 MAX_RPS = 8000.0
 INCR_RPS = 200.0
-DECAY = 0.6
+DECAY = 0.7
 WINDOW_S = 10.0
 STREAK_PAUSE_S = 1.5
 
@@ -93,18 +93,18 @@ def now_utc() -> str:
 # pure logic (unit-tested offline in test_grid.py)
 # ==========================================================================
 class AIMD3:
-    """Grid-tuned AIMD with throttle-burst tolerance.
+    """Grid-tuned AIMD with BASELINE-NOISE tolerance.
 
-    Field evidence (grid run 38307759930): the CDN answers sustained probing
-    with SPORADIC 503 bursts (0-2.5% per window) tied to rate increases and
-    TLS handshakes, with zero timeouts/net-errors. Treating 2% 503 as a
-    crash event (x0.6) produced a 57..360 rps sawtooth. The tuned ladder:
-      clean  (bad<=0.5%, err<=1%)   -> +INCR, ratchet best_clean
-      soft   (bad<=2%, err<=2%)     -> hold (throttle bursts are normal)
-      mild   (bad<=5%, err<=5%)     -> x0.8
-      severe (else)                 -> x0.6, floored at 0.4x best_clean
-    The ratchet floor prevents collapse to the sawtooth bottom while still
-    letting honest backoff find the per-IP ceiling."""
+    Field evidence (runs 38307759930/38309572970/38311265604): the CDN sheds
+    ~0.3-1% of requests as 503 REGARDLESS of rate (background shedding, not a
+    rate signal). v3.1 bands (clean <=0.5%) were therefore unreachable and
+    decayed workers could never ramp back - they pinned at the 60 rps floor.
+    Tuned bands (v3.3):
+      clean  (bad<=1.5%, err<=2%)  -> +INCR, ratchet best_clean
+      soft   (bad<=3%,   err<=4%)  -> hold
+      mild   (bad<=8%,   err<=8%)  -> x0.9
+      severe (else)                -> x0.7, floored at 0.5x best_clean, MIN 150
+    """
 
     def __init__(self):
         self.rps = START_RPS
@@ -124,17 +124,17 @@ class AIMD3:
             if self.bad_streak:
                 self.bad_streak -= 1
 
-    def window_tick(self, bad_frac: float, err_frac: float, cap: float) -> float:
+    def window_tick(self, bad_frac: float, err_frac: float,
+                    cap: float) -> float:
         cap = max(cap, MIN_RPS)
-        floor = max(MIN_RPS, self.best_clean * 0.4)
-        if bad_frac <= 0.005 and err_frac <= 0.01:
+        floor = max(MIN_RPS, self.best_clean * 0.5)
+        if bad_frac <= 0.015 and err_frac <= 0.02:
             self.best_clean = max(self.best_clean, self.rps)
             self.rps = min(self.rps + INCR_RPS, cap, MAX_RPS)
-        elif bad_frac <= 0.02 and err_frac <= 0.02:
+        elif bad_frac <= 0.03 and err_frac <= 0.04:
             self.best_clean = max(self.best_clean, self.rps)
-            # hold: sporadic CDN throttle bursts are normal operation
-        elif bad_frac <= 0.05 and err_frac <= 0.05:
-            self.rps = max(floor, self.rps * 0.8)
+        elif bad_frac <= 0.08 and err_frac <= 0.08:
+            self.rps = max(floor, self.rps * 0.9)
         else:
             self.rps = max(floor, self.rps * DECAY)
         self.rps = min(max(self.rps, MIN_RPS), cap, MAX_RPS)
@@ -626,23 +626,30 @@ class Worker:
                 if now - last_window >= WINDOW_S:
                     dur = now - last_window
                     n = max(1, win_counts["_all"])
+                    completed_rps = win_counts["_all"] / dur
                     bad = (win_counts[ST503] +
                            sum(v for k, v in win_counts.items()
                                if k.startswith("OTHER"))) / n
                     err = (win_counts[STTIMEOUT] + win_counts[STNETERR]) / n
                     self.aimd.window_tick(bad, err, self.cap_rps())
                     lat = sorted(self.latencies)
-                    p50 = (lat[len(lat) // 2] / 1000.0) if lat else 0.12
-                    self.target_conc = int(min(
-                        CONC_MAX,
-                        max(CONC_MIN, self.aimd.rps * max(p50 * 1.35, 0.10)),
-                        # cap per-window pool growth: fewer simultaneous TLS
-                        # handshakes -> fewer WAF 503 bursts
-                        getattr(self, "target_conc", 128) + 256))
+                    p50 = (lat[len(lat) // 2] / 1000.0) if lat else 0.30
+                    p95 = (lat[int(len(lat) * 0.95)] / 1000.0) if lat else 1.0
+                    # Completion-aware pool sizing: size for what the pipeline
+                    # actually DELIVERS (not the setpoint). If completions lag
+                    # the setpoint the pool is the limiter -> grow it (bounded
+                    # per window to keep TLS handshakes from stampeding).
+                    want = max(self.aimd.rps, completed_rps) * \
+                        max(p95 * 1.2, 0.10)
+                    if completed_rps < self.aimd.rps * 0.8:
+                        want = max(want, self.target_conc + 320)
+                    self.target_conc = int(min(CONC_MAX, max(CONC_MIN, want)))
                     self.windows.append([
-                        round(dur, 1), round(win_counts["_all"] / dur, 2),
+                        round(dur, 1), round(completed_rps, 2),
                         win_counts[ST200], win_counts[ST404], win_counts[ST503],
-                        win_counts[STTIMEOUT], win_counts[STNETERR]])
+                        win_counts[STTIMEOUT], win_counts[STNETERR],
+                        round(p50 * 1000, 1), round(p95 * 1000, 1),
+                        self.target_conc])
                     win_counts.clear()
                     last_window = now
                 consumers = [c for c in consumers if not c.done()]

@@ -183,32 +183,31 @@ def test_aimd() -> None:
     for _ in range(40):
         a.window_tick(0.0, 0.0, 8000.0)
     check("hard cap", a.rps == 8000.0)
-    # throttle-burst tolerance: 1-2% 503 -> hold, no collapse
+    # baseline-noise tolerance: 1-3% 503 -> hold, no collapse (v3.3 bands)
     a2 = AIMD3()
     for _ in range(5):
         a2.window_tick(0.0, 0.0, 8000.0)   # ramp to 1600
     before = a2.rps
-    a2.window_tick(0.015, 0.0, 8000.0)
-    check("soft burst holds", a2.rps == before)
-    a2.window_tick(0.035, 0.0, 8000.0)     # mild -> x0.8
-    check("mild decay x0.8", abs(a2.rps - before * 0.8) < 1e-9)
-    a2.window_tick(0.10, 0.0, 8000.0)      # severe -> x0.6 but ratchet floor
+    a2.window_tick(0.025, 0.0, 8000.0)
+    check("baseline 503 holds", a2.rps == before)
+    a2.window_tick(0.05, 0.0, 8000.0)      # mild -> x0.9
+    check("mild decay x0.9", abs(a2.rps - before * 0.9) < 1e-9)
+    a2.window_tick(0.20, 0.0, 8000.0)      # severe -> x0.7, ratchet floor
     check("severe decay with ratchet floor",
-          a2.rps >= max(60.0, a2.best_clean * 0.4) - 1e-9)
+          a2.rps >= max(150.0, a2.best_clean * 0.5) - 1e-9)
+    # a decayed worker CAN ramp back under baseline noise (the v3.1 bug)
     a3 = AIMD3()
     for _ in range(10):
-        a3.window_tick(0.0, 0.0, 8000.0)   # ramp to 2600; proven rate = 2400
+        a3.window_tick(0.20, 0.0, 8000.0)  # storm: collapse toward floor
     for _ in range(10):
-        a3.window_tick(0.20, 0.0, 8000.0)  # sustained severe window
-    # best_clean snapshots the PROVEN (pre-increment) clean rate: 2400
-    check("ratchet floor holds under sustained severe",
-          abs(a3.rps - max(60.0, 2400.0 * 0.4)) < 1e-9,
+        a3.window_tick(0.01, 0.0, 8000.0)  # baseline-noise clean windows
+    check("recovery under baseline noise", a3.rps >= 150.0 + 200.0 * 9,
           f"rps={a3.rps}")
     # inline streak
     b = AIMD3()
     for _ in range(20):
         b.record(True)
-    check("streak decay+pause", b.rps == 600.0 * 0.6 and
+    check("streak decay+pause", b.rps == 600.0 * 0.7 and
           b.pause_until > 0)
 
 
