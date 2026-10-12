@@ -189,8 +189,13 @@ def test_aimd() -> None:
     check("severe decay with ratchet floor",
           a2.rps >= max(60.0, a2.best_clean * 0.4) - 1e-9)
     a3 = AIMD3()
-    a3.window_tick(0.05, 0.0, 8000.0)
-    check("hard floor MIN_RPS", a3.rps == 60.0)
+    for _ in range(10):
+        a3.window_tick(0.0, 0.0, 8000.0)   # ramp: best_clean = 2600
+    for _ in range(10):
+        a3.window_tick(0.20, 0.0, 8000.0)  # sustained severe window
+    check("ratchet floor holds under sustained severe",
+          abs(a3.rps - max(60.0, 2600.0 * 0.4)) < 1e-9,
+          f"rps={a3.rps}")
     # inline streak
     b = AIMD3()
     for _ in range(20):
