@@ -29,18 +29,21 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.mk.outputs.matrix }}
+      timeout: ${{ steps.mk.outputs.timeout }}
     steps:
       - name: Build worker matrix
         id: mk
         run: |
           N=$(python3 -c "print(max(1,min(20,int('${{ github.event.inputs.worker_count || '20' }}'))))")
-          echo "worker_count=$N"
+          T=$(python3 -c "print(int('${{ github.event.inputs.minutes || '300' }}') + 30)")
+          echo "worker_count=$N timeout=$T"
           echo "matrix=[$(seq -s, 0 $((N-1)))]" >> "$GITHUB_OUTPUT"
+          echo "timeout=$T" >> "$GITHUB_OUTPUT"
 
   harvest:
     needs: bootstrap
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ fromJSON(github.event.inputs.minutes || '300') + 30 }}
+    timeout-minutes: ${{ fromJSON(needs.bootstrap.outputs.timeout) }}
     strategy:
       max-parallel: 20
       fail-fast: false
