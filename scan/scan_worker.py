@@ -40,9 +40,9 @@ URL_FMT = "https://{host}/sandbox/games/maps/{{map_id}}.{{ts_ms}}.zip".format(ho
 UA = "blockman-go-archival-scan/5.0 (maps-path deep-scan research; adaptive rate; no bypass)"
 
 MIN_RPS = 12.0
-START_RPS = 25.0
-MAX_RPS = 250.0
-INCR_RPS = 5.0            # additive increase per stable window
+START_RPS = 100.0
+MAX_RPS = 2000.0
+INCR_RPS = 25.0           # additive increase per stable window
 WINDOW_S = 10.0
 BACKOFF_BASE_S = 2.0
 BACKOFF_MAX_S = 60.0
@@ -110,15 +110,22 @@ def percentile(sorted_vals: list[float], p: float) -> float:
     return sorted_vals[k]
 
 
-def build_candidates(spec: dict, args) -> tuple[list[tuple[int, str, int]], str]:
-    """Return ([(pos, map_id, ts_ms)], candidate_source). pos = position inside
-    this work item (for spec chunks pos == global stream ordinal)."""
+def build_candidates(spec: dict, args) -> tuple[list[tuple[int, str, int, str]], str]:
+    """Return ([(pos, map_id, ts_ms, path_fmt)], candidate_source).
+    pos = position inside this work item (for spec chunks pos == global
+    stream ordinal). path_fmt comes from the owning tier (per-tier
+    path_fmt enables maps/plugins/appres paths in one campaign);
+    retry batches default to the maps path (v1/v5 batches are maps-only)."""
     if args.retry_batch:
         batch = G.load_retry_batch(args.retry_batch)
         cap = args.max_probes or len(batch)
-        return ([(i, c["map_id"], int(c["ts_ms"])) for i, c in enumerate(batch[:cap])],
+        return ([(i, c["map_id"], int(c["ts_ms"]), URL_FMT)
+                 for i, c in enumerate(batch[:cap])],
                 f"retry_batch:{args.retry_batch}")
-    out = [(o, m, ts) for o, m, ts, _t in G.iter_chunk(spec, args.chunk_id)]
+    tier_path = {t["tier_id"]: t.get("path_fmt", URL_FMT)
+                 for t in spec.get("tiers", [])}
+    out = [(o, m, ts, tier_path.get(t, URL_FMT))
+           for o, m, ts, t in G.iter_chunk(spec, args.chunk_id)]
     if args.max_probes:
         out = out[:args.max_probes]
     return out, (f"epoch:{args.epoch}" if args.epoch > 0 else "spec")
@@ -155,10 +162,11 @@ async def download_and_verify(session, url: str, map_id: str, ts_ms: int,
 
 async def probe_one(session, map_id: str, ts_ms: int, aimd: AIMD,
                     head_attempts: list, latencies: collections.deque,
-                    stop: asyncio.Event, found_dir: Path):
+                    stop: asyncio.Event, found_dir: Path,
+                    path_fmt: str | None = None):
     """One candidate: HEAD (+one inline retry for transient), GET+verify on 200.
     Returns (status, found_record_or_None). Never converts 503 to 404."""
-    url = URL_FMT.format(map_id=map_id, ts_ms=ts_ms)
+    url = (path_fmt or URL_FMT).format(map_id=map_id, ts_ms=ts_ms)
     pause = aimd.pause_until - time.monotonic()
     if pause > 0:
         await asyncio.sleep(pause)
@@ -385,7 +393,7 @@ async def run(args) -> int:
     cand_iter = iter(candidates)
     exhausted = False
 
-    async def handle(pos: int, m: str, ts: int) -> None:
+    async def handle(pos: int, m: str, ts: int, path: str) -> None:
         nonlocal next_send
         if stop.is_set():
             return  # never probed: absent from results (honest partial)
@@ -395,7 +403,7 @@ async def run(args) -> int:
         jitter = 0.9 + 0.2 * ((pos * 2654435761) % 1000) / 1000.0
         next_send = max(next_send, time.monotonic()) + jitter / max(aimd.rps, 1.0)
         st, rec = await probe_one(session, m, ts, aimd, head_attempts,
-                                  latencies, stop, found_dir)
+                                  latencies, stop, found_dir, path_fmt=path)
         results[pos] = (st, rec)
         win_counts[st] += 1
         win_counts["_all"] += 1
@@ -414,11 +422,11 @@ async def run(args) -> int:
                 return
             while len(tasks) < target:
                 try:
-                    pos, m, ts = next(cand_iter)
+                    pos, m, ts, path = next(cand_iter)
                 except StopIteration:
                     exhausted = True
                     return
-                t = asyncio.create_task(handle(pos, m, ts))
+                t = asyncio.create_task(handle(pos, m, ts, path))
                 tasks.add(t)
                 t.add_done_callback(tasks.discard)
 

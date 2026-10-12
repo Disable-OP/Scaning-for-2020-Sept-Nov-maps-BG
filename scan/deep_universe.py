@@ -143,6 +143,71 @@ def _raw_windows(cfg: dict, ent: dict) -> list[tuple[str, int, int, str]]:
     return out
 
 
+def _build_static_epoch(cfg: dict, epoch_n: int, ent: dict,
+                        cum: dict[str, list[tuple[int, int]]]) -> dict:
+    """Static epoch: consume a committed spec_v1-shaped file (scan/<file>)
+    whose tiers carry explicit ranges and optional per-tier path_fmt.
+    Every range is subtracted against the cumulative covered set (v1 + prior
+    epochs) with exact interval arithmetic; tiers, tier_ids, priority and
+    path_fmt are preserved. Mutates `cum` to include this epoch's coverage."""
+    from pathlib import Path as _P
+    base = _build_static_epoch._spec_cache.get(ent["spec_file"])
+    if base is None:
+        base = G.load_spec(_P(__file__).parent / ent["spec_file"])
+        _build_static_epoch._spec_cache[ent["spec_file"]] = base
+    tiers_out = []
+    emitted = 0
+    maps_path = cfg["url_path_fmt"]
+    for t in base["tiers"]:
+        # coverage is namespaced by path: a plugin series and a map pack may
+        # share a name (e.g. 'g1046' in maps/ AND plugins/) - they are
+        # INDEPENDENT (path, name, ts) positions and must never subtract
+        # each other. Legacy v1 cum entries are bare map_ids on the maps
+        # path, so maps-path tiers consult both keys.
+        path = t.get("path_fmt", maps_path)
+        new_ranges = []
+        for r in t["ranges"]:
+            m = r["map_id"]
+            lo = r["base"] + r["start_offset_ms"]
+            hi = r["base"] + r["end_offset_ms"]
+            cov = cum.setdefault(f"{path}|{m}", [])
+            if "/sandbox/games/maps/" in path:
+                cov = cov + cum.get(m, [])
+            for rlo, rhi in _subtract([(lo, hi)], cov):
+                if rhi <= rlo:
+                    continue
+                new_ranges.append({"map_id": m, "base": rlo,
+                                   "start_offset_ms": 0,
+                                   "end_offset_ms": rhi - rlo})
+                emitted += rhi - rlo
+                key = f"{path}|{m}"
+                cum.setdefault(key, []).append((rlo, rhi))
+                cum[key][:] = _merge(cum[key])
+        if new_ranges:
+            nt = {k: v for k, v in t.items() if k != "ranges"}
+            nt["ranges"] = new_ranges
+            tiers_out.append(nt)
+    return {
+        "spec_id": f"{cfg['campaign_id']}-epoch-{epoch_n:02d}",
+        "campaign": cfg["campaign_id"],
+        "epoch": epoch_n,
+        "kind": "static",
+        "evidence_basis": ent["basis"],
+        "static_source": ent["spec_file"],
+        "host": cfg["host"],
+        "url_path_fmt": cfg["url_path_fmt"],
+        "chunk_size": cfg["chunk_size"],
+        "granularity": cfg["granularity"],
+        "search_scope": cfg["search_scope"],
+        "all_map_ids": cfg["all_map_ids"],
+        "anchors_ms": cfg["anchors_ms"],
+        "tiers": tiers_out,
+        "candidates_emitted": emitted,
+    }
+
+_build_static_epoch._spec_cache = {}
+
+
 def build_epoch(cfg: dict, spec_v1: dict, epoch_n: int,
                 _v1cov_cache: dict | None = None
                 ) -> tuple[dict | None, dict[str, list[tuple[int, int]]]]:
@@ -160,6 +225,10 @@ def build_epoch(cfg: dict, spec_v1: dict, epoch_n: int,
     for k in range(1, epoch_n):
         _ep, cum = build_epoch(cfg, spec_v1, k, _v1cov_cache=v1cov)
     ent = ladder[epoch_n - 1]
+
+    if ent.get("kind") == "static":
+        spec = _build_static_epoch(cfg, epoch_n, ent, cum)
+        return spec, cum
 
     per_map: dict[str, list[tuple[int, int, str]]] = {}
     for m, lo, hi, lab in _raw_windows(cfg, ent):
