@@ -1,9 +1,9 @@
 {
- "updated_utc": "2026-10-12T21:16:28Z",
+ "updated_utc": "2026-10-12T21:33:25Z",
  "campaign": "halloween-2021",
  "budget_rps": 60000.0,
  "active_workers": 20,
- "fleet_rps_ema": 2876.6,
+ "fleet_rps_ema": 5610.0,
  "probed_total_shards": 155649,
  "packages": {
   "done": 0,
