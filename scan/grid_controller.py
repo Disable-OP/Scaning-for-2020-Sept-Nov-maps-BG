@@ -347,7 +347,26 @@ def main() -> int:
         }, indent=1) + "\n"}, f"budget hint active={active_n}")
 
     # ---- 7. dispatch decision ----------------------------------------------
-    active_runs = gh.list_runs("grid.yml")
+    def live_grid_runs() -> list[dict]:
+        """in_progress runs + recently queued runs. A queued run that has
+        been waiting > 30 min is a zombie (planted while repo Actions was
+        disabled; GitHub attaches no jobs and refuses cancellation) and must
+        not block dispatching."""
+        out = []
+        for r in gh.list_runs("grid.yml"):
+            if r.get("status") == "in_progress":
+                out.append(r)
+                continue
+            try:
+                ca = datetime.strptime(r["created_at"], "%Y-%m-%dT%H:%M:%SZ") \
+                    .replace(tzinfo=timezone.utc).timestamp()
+            except Exception:
+                continue
+            if r.get("status") == "queued" and now - ca < 30 * 60:
+                out.append(r)
+        return out
+
+    active_runs = live_grid_runs()
     recent_run = False
     for r in gh.all_recent_runs("grid.yml", per_page=5):
         try:
