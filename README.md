@@ -56,19 +56,29 @@ v7 documents the supersession).
   fleet-wide; worker cadences (budget/STOP refresh 20 min, heartbeats 10 min)
   keep the fleet at a few hundred calls/hour.
 
-### Expected performance (honest math)
+### Field-measured performance (runs 38307759930 -> 38313806075)
 
-| scenario | v6 (as configured) | grid v3 |
+The CDN (Tencent COS) throttles overseas datacenter IPs (GitHub Actions
+runners) hard: field telemetry shows **~150-250 rps sustainable per runner IP**
+with 6-20% background 503 shedding, at ~340ms p50 latency - regardless of
+concurrency (pool 80 and pool 1800 hit the same wall). The grid therefore
+self-tunes each worker to its IP's sustainable point:
+
+| scenario | v6 (as configured) | grid v3 (field) |
 |---|---|---|
-| per-worker sustained | ~250 rps cap (450s to ramp) | AIMD 600 -> 4-8k rps |
-| fleet sustained (20 runners) | ~4-5k rps | 60-120k rps target |
-| tier-1 family maps (1.08B) | ~2.5-3 days | **~5h full sweep at 60k** |
-| all tier-1 (maps+plugins+bundles+appres10082, 3.89B) | ~9-10 days | **~18h at 60k, ~11h at 100k** |
-| full universe (28.5B) | ~66 days | ~5.5 days at 60k |
+| per-worker sustained | ~250 rps cap, 450s ramp, 35s setup/25s scan | ~140-200 rps effective goodput, zero setup cost |
+| fleet sustained (20 runners) | ~4-5k rps nominal, less in practice | **~3-4k rps effective, 24/7** |
+| retry economics | per-chunk rescan on any undetermined | exact 5xx debt carried forward (v3.2 bitmap) |
+| tier-1 family (3.89B) | ~9-10 days nominal | **~11-15 days continuous, prioritized** |
+| full universe (28.5B) | ~2-3 months | ~3-4 months continuous |
 
-If the release upload sits in the prior hours, the expected first hit is
-substantially earlier than full-sweep time; any single hit cascades the whole
-family within minutes (inline) to hours (c2 ±600s across 124 series).
+Throughput scaling is linear in concurrent runners: raise `worker_count`
+(paid plans allow >20 concurrent jobs) or attach self-hosted runners with
+CN-side egress (the same code measured 2.5k rps clean from a single
+China-side IP) to multiply fleet throughput. If the release upload sits in
+the prior hours, the expected first hit lands far earlier than full-sweep
+time; any single hit cascades the whole family within minutes (inline) to
+hours (c2 +/-600s across 124 series).
 
 ### Ops
 
