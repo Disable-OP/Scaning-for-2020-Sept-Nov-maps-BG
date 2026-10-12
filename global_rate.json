@@ -1,6 +1,6 @@
 {
- "budget_rps": 60000.0,
- "active_hint": 20,
- "updated_utc": "2026-10-12T21:56:57Z",
- "note": "grid v3 operator kick (fleet start budget)"
+ "budget_rps": 42000.0,
+ "active_hint": 35,
+ "updated_utc": "2026-10-12T21:57:31Z",
+ "note": "grid v3 governor (5xx/err fraction driven)"
 }
