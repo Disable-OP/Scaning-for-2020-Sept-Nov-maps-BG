@@ -79,7 +79,7 @@ FOUND_DIR = "grid_state/found"
 OVERLAY_PATH = "grid_state/grid_plan_cascade.json"
 DIRTY_CAP = 200_000
 EXCEPTIONS_CAP = 200_000
-CONC_MIN, CONC_MAX = 64, 1800
+CONC_MIN, CONC_MAX = 64, 512  # per-IP CDN throttle makes bigger pools pure churn
 
 ST404, ST200 = "404", "200"
 ST503, STTIMEOUT, STNETERR = "503", "TIMEOUT", "NETERR"
@@ -642,7 +642,7 @@ class Worker:
                     want = max(self.aimd.rps, completed_rps) * \
                         max(p95 * 1.2, 0.10)
                     if completed_rps < self.aimd.rps * 0.8:
-                        want = max(want, self.target_conc + 320)
+                        want = max(want, self.target_conc + 128)
                     self.target_conc = int(min(CONC_MAX, max(CONC_MIN, want)))
                     self.windows.append([
                         round(dur, 1), round(completed_rps, 2),
