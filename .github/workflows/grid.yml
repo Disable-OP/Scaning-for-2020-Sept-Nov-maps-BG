@@ -1,0 +1,87 @@
+name: grid
+
+on:
+  workflow_dispatch:
+    inputs:
+      worker_count:
+        description: 'Parallel workers (matrix size, hard cap 20 = GitHub free concurrency)'
+        required: false
+        default: '20'
+      minutes:
+        description: 'Minutes each worker scans before graceful drain'
+        required: false
+        default: '300'
+      mode:
+        description: 'full | test (label only; results are always honest)'
+        required: false
+        default: 'full'
+      max_probes:
+        description: 'Offline smoke cap per package (0 = normal claim-loop run)'
+        required: false
+        default: '0'
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.mk.outputs.matrix }}
+    steps:
+      - name: Build worker matrix
+        id: mk
+        run: |
+          N=$(python3 -c "print(max(1,min(20,int('${{ github.event.inputs.worker_count || '20' }}'))))")
+          echo "worker_count=$N"
+          echo "matrix=[$(seq -s, 0 $((N-1)))]" >> "$GITHUB_OUTPUT"
+
+  harvest:
+    needs: bootstrap
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ fromJSON(github.event.inputs.minutes || '300') + 30 }}
+    strategy:
+      max-parallel: 20
+      fail-fast: false
+      matrix:
+        worker: ${{ fromJson(needs.bootstrap.outputs.matrix) }}
+    steps:
+      - name: Checkout scan code (main)
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install "aiohttp>=3.9,<4"
+
+      - name: Claim-and-sweep (persistent harvester)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scan/grid_worker.py \
+            --index "${{ matrix.worker }}" \
+            --minutes "${{ github.event.inputs.minutes || '300' }}" \
+            --max-probes "${{ github.event.inputs.max_probes || '0' }}" \
+            --state-branch scan-state \
+            --out-dir worker_out
+
+      - name: Upload artifacts (found zips + logs)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grid-worker-${{ matrix.worker }}-${{ github.run_id }}
+          path: worker_out/
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Trigger controller (slot freed -> fast refill)
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run controller.yml -f trigger=worker-done || true

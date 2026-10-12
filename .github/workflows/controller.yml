@@ -2,17 +2,17 @@ name: controller
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/10 * * * *'
   workflow_dispatch:
     inputs:
       trigger:
-        description: 'What triggered this run (manual | worker-done)'
+        description: 'What triggered this run (manual | worker-done | grid-hit)'
         required: false
         default: 'manual'
       max_workers:
-        description: 'Maximum simultaneously dispatched workers (hard cap 100)'
+        description: 'Maximum simultaneously dispatched workers (hard cap 20)'
         required: false
-        default: '100'
+        default: '20'
 
 permissions:
   contents: write
@@ -25,7 +25,7 @@ concurrency:
 jobs:
   reconcile:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 30
     steps:
       - name: Checkout scan code
         uses: actions/checkout@v4
@@ -37,46 +37,27 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Skip if another controller cycle is already active or just ran
+      - name: Skip if a controller cycle just completed (< 4 min ago)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          LAST=$(gh run list --workflow=controller.yml --limit 6 \
-                 --json databaseId,createdAt,status,conclusion | \
-                 jq -c '[.[] | select(.databaseId != '"${{ github.run_id }}"')][0]')
-          echo "latest other controller run: $LAST"
-          CREATED=$(echo "$LAST" | jq -r '.createdAt // empty')
-          if [ -n "$CREATED" ]; then
+          LAST=$(gh run list --workflow=controller.yml --status=completed \
+                 --limit 1 --json updatedAt --jq '.[0].updatedAt')
+          echo "last completed controller at: $LAST"
+          if [ -n "$LAST" ]; then
             NOW=$(date -u +%s)
-            CREATEDTS=$(date -u -d "$CREATED" +%s)
-            AGE=$(( NOW - CREATEDTS ))
-            echo "age since latest other run creation: $AGE s"
-            if [ "$AGE" -lt 150 ]; then
-              echo "another controller run was created < 150s ago; skipping"
+            LASTTS=$(date -u -d "$LAST" +%s)
+            AGE=$(( NOW - LASTTS ))
+            echo "age seconds: $AGE"
+            if [ "$AGE" -lt 240 ]; then
+              echo "a controller cycle just ran; exiting to avoid duplicate work"
               exit 0
             fi
           fi
 
-      - name: Reconcile loop (ingest, dispatch, tune rate; ~45 min per run)
+      - name: Reconcile shards, govern budget, cascade on hits, dispatch grid
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MAX_ACTIVE_WORKERS: ${{ github.event.inputs.max_workers || '100' }}
-          MAX_DISPATCH_PER_CYCLE: '60'
-        run: |
-          for i in $(seq 1 28); do
-            echo "=== controller cycle $i/28 ==="
-            python scan/controller.py || exit 1
-            sleep 90
-          done
-
-      - name: Hand off orchestration (unattended self-chain)
-        if: success()
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if gh workflow run controller.yml -f trigger=self-chain; then
-            echo "next controller run dispatched"
-          else
-            echo "self-chain dispatch failed; cron */5 remains as fallback" >&2
-            exit 1
-          fi
+          MAX_ACTIVE_WORKERS: ${{ github.event.inputs.max_workers || '20' }}
+          WORKER_MINUTES: '300'
+        run: python scan/grid_controller.py

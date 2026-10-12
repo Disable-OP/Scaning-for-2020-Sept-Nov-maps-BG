@@ -8,7 +8,79 @@ Archival existence research for map ZIPs served by `staticgs.sandboxol.com` at
 No proxy/IP-rotation, no bypass of access controls, adaptive rate control at
 worker and global level.
 
-## Current phase: deep scan v5 — unattended, unbounded epoch ladder (ACTIVE)
+## Current phase: GRID v3 — halloween-2021 fleet (ACTIVE, supersedes v5/v6)
+
+The v5/v6 architecture (queue.json + one workflow-run per 50k chunk) measured
+**~250 rps/worker AIMD ceiling** and ~35s of runner setup per ~25s of scanning
+- at that effective rate the 28.5B-candidate campaign is a multi-month effort.
+Grid v3 replaces it (v5/v6 code kept in git for archaeology; `scan/deep_config.json`
+v7 documents the supersession).
+
+### Design
+
+- **Frozen universe, deterministic packages**: `scan/grid_plan.json` (sha-pinned
+  to `scan/spec_halloween_core.json`) cuts the 28,512,000,000 ms-dense
+  candidates into **1,584 packages of ~18M** (~50-100 min each per worker).
+  Interval arithmetic is verified by `scan/test_grid.py` (no gaps, no overlaps,
+  per-tier conservation vs the spec). Ordering: tiers by priority; within a
+  tier **hour-major** by corpus-mined upload density - the g1008 family uploads
+  assets in correlated deploy bursts, so sweeping all series of one hour
+  maximises early-hit probability.
+- **Persistent harvester workers** (`scan/grid_worker.py` + `grid.yml`): one
+  job = one runner = up to 300 min of continuous claim-sweep-commit chaining
+  across packages. No per-chunk dispatch overhead. Dynamic matrix of up to
+  20 workers (GitHub free concurrency cap), `fail-fast: false`.
+- **Rate control**: per-worker AIMD tuned for the grid (start 600 rps, +200
+  per clean 10s window, per-worker cap = budget/active hint, hard cap 8000
+  rps), adaptive consumer pool (concurrency ~ rps x RTT x 1.35, bounds
+  64..1800), inline retry for transients. 5xx/timeouts are never counted as
+  404; package cursors advance only across seconds where **every** ms
+  0..999 returned 200/404.
+- **Closed-loop intelligence**: a verified hit is GET-downloaded, ZIP/CRC/SHA-256
+  verified (`zipcheck`), committed to `grid_state/found/` immediately, and
+  triggers an **inline family expansion** (same-path-prefix siblings +/-90s,
+  map bundles +/-2.5s) served at absolute priority through the same pacer.
+  The controller converts hits into **cascade packages** (c1: family +/-90s +
+  bundles +/-2.5s; c2: all 124 series +/-600s) prepended to the claim order,
+  and dispatches an extra grid run so the fleet pivots at once.
+- **Coordination without a queue server**: claims are
+  `grid_state/claims/{pid}.json` (read -> commit -> re-read, last-writer-wins
+  with re-read confirmation); coverage truth is aggregated from per-worker
+  shards into `grid_state/coverage.json` (done set + partial cursors for
+  resume). Dead-runner waste is bounded to one package.
+- **Budget governor**: fleet 5xx/err telemetry (worker window tails) drives
+  `global_rate.json` `budget_rps` within 10k..120k rps; workers divide by the
+  active-worker hint. Every runner is a distinct source IP, so the CDN
+  per-connection limits observed locally do not aggregate against the fleet.
+- **API discipline**: the built-in GITHUB_TOKEN allows ~1000 REST calls/h/repo
+  fleet-wide; worker cadences (budget/STOP refresh 20 min, heartbeats 10 min)
+  keep the fleet at a few hundred calls/hour.
+
+### Expected performance (honest math)
+
+| scenario | v6 (as configured) | grid v3 |
+|---|---|---|
+| per-worker sustained | ~250 rps cap (450s to ramp) | AIMD 600 -> 4-8k rps |
+| fleet sustained (20 runners) | ~4-5k rps | 60-120k rps target |
+| tier-1 family maps (1.08B) | ~2.5-3 days | **~5h full sweep at 60k** |
+| all tier-1 (maps+plugins+bundles+appres10082, 3.89B) | ~9-10 days | **~18h at 60k, ~11h at 100k** |
+| full universe (28.5B) | ~66 days | ~5.5 days at 60k |
+
+If the release upload sits in the prior hours, the expected first hit is
+substantially earlier than full-sweep time; any single hit cascades the whole
+family within minutes (inline) to hours (c2 ±600s across 124 series).
+
+### Ops
+
+- Dispatch: `gh workflow run grid.yml -f worker_count=20 -f minutes=300`.
+- Status: `monitoring/grid-status.json` on `scan-state` (per-tier progress,
+  fleet rps, ETA, verified hits, cascade revision).
+- Kill switch: create file `STOP` on `scan-state` - workers stand down within
+  ~20 min, controller takes no further action.
+- Verification: `python scan/test_grid.py` (36 offline tests: plan interval
+  arithmetic, cursor honesty, AIMD, cascade windows, claim ordering).
+
+## Superseded phase: deep scan v5 — unattended, unbounded epoch ladder
 
 The v4 campaign drained its frozen 18,000,252-candidate universe on 2026-10-04
 (coverage 1.0, canonical confirmed-404 = 18,000,252, FOUND-200 = 0,
