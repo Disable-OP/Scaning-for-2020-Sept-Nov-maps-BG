@@ -1,6 +1,6 @@
 {
- "budget_rps": 29400.0,
- "active_hint": 22,
- "updated_utc": "2026-10-12T21:58:26Z",
+ "budget_rps": 20580.0,
+ "active_hint": 20,
+ "updated_utc": "2026-10-13T02:59:47Z",
  "note": "grid v3 governor (5xx/err fraction driven)"
 }
