@@ -1,10 +1,10 @@
 {
- "updated_utc": "2026-10-13T08:04:16Z",
+ "updated_utc": "2026-10-13T08:05:55Z",
  "campaign": "halloween-2021",
- "budget_rps": 10084.199999999999,
+ "budget_rps": 10000.0,
  "active_workers": 20,
- "fleet_rps_ema": 4151.5,
- "probed_total_shards": 60390155,
+ "fleet_rps_ema": 5169.0,
+ "probed_total_shards": 93502830,
  "packages": {
   "done": 0,
   "pending": 1584,
@@ -15,7 +15,7 @@
   "pending": 28512000000,
   "total": 28512000000
  },
- "eta_hours_at_budget": 785.39,
+ "eta_hours_at_budget": 792.0,
  "tier_progress": {
   "h1a_family_map_packs": {
    "done": 0,
@@ -67,5 +67,5 @@
   "revision": 0,
   "packages": 0
  },
- "dispatched_now": 0
+ "dispatched_now": 20
 }
