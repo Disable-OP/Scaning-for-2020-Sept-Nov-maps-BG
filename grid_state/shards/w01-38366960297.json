@@ -2,9 +2,9 @@
  "worker": "w01-38366960297",
  "index": 1,
  "run_id": "38366960297",
- "heartbeat_utc": "2026-10-13T13:06:43Z",
- "updated_utc": "2026-10-13T13:06:43Z",
- "current_pid": "b00006",
+ "heartbeat_utc": "2026-10-13T13:07:12Z",
+ "updated_utc": "2026-10-13T13:07:12Z",
+ "current_pid": "",
  "probed_total": 2480308,
  "rps_ema": 175.0,
  "windows_tail": [
